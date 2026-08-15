@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entraînement CEE1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #E7E5DC;
+    --paper: #F4F2EA;
+    --ink: #1C2333;
+    --ink-soft: #4B5163;
+    --line: #C9C4B4;
+    --brass: #9C7C2E;
+    --brass-dark: #7A611F;
+    --green: #2F5233;
+    --green-bg: #E4ECE0;
+    --red: #7C2A2A;
+    --red-bg: #F3E3DF;
+    --shadow: rgba(28,35,51,0.14);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 10% -10%, #EEECE1 0%, transparent 60%),
+      var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:32px 16px 64px;
+  }
+  .app{
+    width:100%;
+    max-width:680px;
+  }
+  .masthead{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-bottom:18px;
+    margin-bottom:22px;
+    border-bottom:2px solid var(--ink);
+  }
+  .masthead .id{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+  }
+  .masthead h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:22px;
+    margin:2px 0 0;
+    letter-spacing:0.01em;
+  }
+  .badge{
+    width:46px;height:46px;
+    border-radius:50%;
+    border:2px solid var(--brass);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--brass-dark);
+    flex-shrink:0;
+    background:var(--paper);
+  }
+
+  /* ---- START SCREEN ---- */
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:2px;
+    box-shadow:0 1px 2px var(--shadow), 0 8px 24px -12px var(--shadow);
+    padding:36px 32px;
+  }
+  .lead{
+    font-family:'Fraunces', serif;
+    font-size:26px;
+    font-weight:600;
+    line-height:1.3;
+    margin:0 0 14px;
+  }
+  .lead em{
+    font-style:normal;
+    color:var(--brass-dark);
+    border-bottom:2px solid var(--brass);
+  }
+  .rules{
+    list-style:none;
+    margin:22px 0 28px;
+    padding:0;
+    display:grid;
+    gap:12px;
+  }
+  .rules li{
+    display:flex;
+    gap:12px;
+    align-items:baseline;
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+  .rules li .n{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--brass-dark);
+    border:1px solid var(--brass);
+    border-radius:50%;
+    width:20px;height:20px;
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    margin-top:1px;
+  }
+  .rules li b{color:var(--ink);}
+  button{
+    font-family:'IBM Plex Sans', sans-serif;
+    cursor:pointer;
+    border:none;
+  }
+  .btn-primary{
+    background:var(--ink);
+    color:var(--paper);
+    font-weight:600;
+    font-size:15px;
+    padding:14px 26px;
+    border-radius:2px;
+    letter-spacing:0.01em;
+    transition:background .15s ease, transform .1s ease;
+    width:100%;
+  }
+  .btn-primary:hover{background:#333c54;}
+  .btn-primary:active{transform:scale(0.99);}
+  .btn-primary:disabled{background:var(--line); color:#8b8879; cursor:not-allowed;}
+  .btn-primary:disabled:hover{background:var(--line);}
+  .btn-secondary{
+    background:transparent;
+    color:var(--ink);
+    font-weight:600;
+    font-size:14px;
+    padding:12px 20px;
+    border:1.5px solid var(--ink);
+    border-radius:2px;
+  }
+  .btn-secondary:hover{background:var(--ink); color:var(--paper);}
+
+  /* ---- QUIZ SCREEN ---- */
+  .progress-track{
+    height:4px;
+    background:var(--line);
+    border-radius:2px;
+    overflow:hidden;
+    margin-bottom:8px;
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--brass);
+    transition:width .3s ease;
+  }
+  .progress-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    color:var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:24px;
+    text-transform:uppercase;
+  }
+  .qnum{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--brass-dark);
+    letter-spacing:0.08em;
+    margin-bottom:10px;
+  }
+  .qtext{
+    font-family:'Fraunces', serif;
+    font-size:21px;
+    font-weight:600;
+    line-height:1.4;
+    margin:0 0 22px;
+  }
+  textarea{
+    width:100%;
+    min-height:90px;
+    resize:vertical;
+    border:1px solid var(--line);
+    background:#fff;
+    border-radius:2px;
+    padding:12px 14px;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:14px;
+    color:var(--ink);
+    line-height:1.5;
+  }
+  textarea:focus{outline:2px solid var(--brass); outline-offset:1px;}
+  textarea::placeholder{color:#9A9585;}
+  .answer-label{
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 8px;
+    font-weight:600;
+  }
+  .divider{
+    border:none;
+    border-top:1px dashed var(--line);
+    margin:24px 0;
+  }
+  .ref-answer{
+    background:var(--green-bg);
+    border-left:3px solid var(--green);
+    padding:16px 18px;
+    border-radius:2px;
+    margin-bottom:22px;
+  }
+  .ref-answer .ref-label{
+    font-size:11px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--green);
+    font-weight:700;
+    margin-bottom:8px;
+  }
+  .ref-answer ul{
+    margin:0;
+    padding-left:18px;
+    color:var(--ink);
+    font-size:14.5px;
+    line-height:1.7;
+  }
+  .row-btns{
+    display:flex;
+    gap:10px;
+  }
+  .grade-btn{
+    flex:1;
+    padding:13px 16px;
+    border-radius:2px;
+    font-weight:600;
+    font-size:14px;
+    border:1.5px solid var(--line);
+    background:#fff;
+    color:var(--ink-soft);
+    transition:all .15s ease;
+  }
+  .grade-btn.correct-choice:hover, .grade-btn.correct-choice.active{
+    background:var(--green-bg); border-color:var(--green); color:var(--green);
+  }
+  .grade-btn.incorrect-choice:hover, .grade-btn.incorrect-choice.active{
+    background:var(--red-bg); border-color:var(--red); color:var(--red);
+  }
+  .reveal-btn{
+    width:100%;
+    padding:13px 16px;
+    border-radius:2px;
+    font-weight:600;
+    font-size:14px;
+    border:1.5px dashed var(--brass);
+    background:transparent;
+    color:var(--brass-dark);
+  }
+  .reveal-btn:hover{background:#efe6cf;}
+  .next-btn{
+    margin-top:18px;
+  }
+  .hidden{display:none !important;}
+
+  /* ---- RESULT SCREEN ---- */
+  .stamp-wrap{
+    text-align:center;
+    padding:18px 0 8px;
+  }
+  .stamp{
+    display:inline-block;
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:30px;
+    letter-spacing:0.06em;
+    padding:12px 28px;
+    border:4px solid currentColor;
+    border-radius:6px;
+    transform:rotate(-4deg);
+    text-transform:uppercase;
+  }
+  .stamp.pass{color:var(--green);}
+  .stamp.fail{color:var(--red);}
+  .score-line{
+    text-align:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--ink-soft);
+    margin:18px 0 6px;
+    letter-spacing:0.04em;
+  }
+  .score-big{
+    text-align:center;
+    font-family:'Fraunces', serif;
+    font-size:52px;
+    font-weight:700;
+    margin:0;
+    line-height:1;
+  }
+  .threshold-note{
+    text-align:center;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-bottom:26px;
+  }
+  .review-title{
+    font-family:'Fraunces', serif;
+    font-size:15px;
+    font-weight:600;
+    margin:0 0 14px;
+    padding-top:22px;
+    border-top:1px solid var(--line);
+  }
+  .review-item{
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .review-item:last-child{border-bottom:none;}
+  .review-item .rq{
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:6px;
+    display:flex;
+    gap:8px;
+    align-items:flex-start;
+  }
+  .review-item .tag{
+    flex-shrink:0;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    padding:2px 6px;
+    border-radius:10px;
+    background:var(--red-bg);
+    color:var(--red);
+    margin-top:2px;
+  }
+  .review-item ul{
+    margin:6px 0 0 22px;
+    padding:0;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+  }
+  .no-errors{
+    text-align:center;
+    font-size:14px;
+    color:var(--ink-soft);
+    padding:20px 0;
+  }
+  .actions{
+    margin-top:28px;
+    display:flex;
+    gap:10px;
+  }
+  @media (max-width:480px){
+    .card{padding:26px 20px;}
+    .lead{font-size:22px;}
+    .qtext{font-size:18px;}
+    .score-big{font-size:42px;}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="masthead">
+    <div>
+      <div class="id">Entraînement &middot; Corps d'encadrement</div>
+      <h1>Préparation CEE1</h1>
+    </div>
+    <div class="badge">PN</div>
+  </div>
+
+  <div id="screen-start" class="card">
+    <p class="lead">47 fiches de révision.<br><em>25 questions tirées au sort</em>, à chaque session.</p>
+    <ul class="rules">
+      <li><span class="n">1</span><span>Une question par écran. Tu dois <b>rédiger ta réponse</b> pour passer à la suivante — pas de correction affichée en cours de route.</span></li>
+      <li><span class="n">2</span><span>Une fois les 25 questions traitées, tu passes en revue <b>chaque réponse de référence</b> et tu t'auto-évalues (bon / faux).</span></li>
+      <li><span class="n">3</span><span>Seuil de réussite : <b>12 bonnes réponses sur 25</b>. En dessous, c'est ajourné — on retente une nouvelle série.<br><span style="font-size:15px; font-weight:600; color:var(--brass-dark);">Quiz réalisé par Aymeric.</span></span></li>
+    </ul>
+    <button class="btn-primary" onclick="startQuiz()">Commencer les 25 questions</button>
+  </div>
+
+  <div id="screen-quiz" class="card hidden">
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:4%"></div></div>
+    <div class="progress-label">
+      <span id="progressText">Question 1 / 25</span>
+      <span id="scoreRunning">Réponses en cours</span>
+    </div>
+
+    <div class="qnum" id="qnum">Fiche n°—</div>
+    <p class="qtext" id="qtext"></p>
+
+    <p class="answer-label">Ta réponse</p>
+    <textarea id="userAnswer" placeholder="Formule ta réponse ici…" oninput="onAnswerInput()"></textarea>
+
+    <button class="btn-primary next-btn" id="nextBtn" onclick="nextQuestion()" disabled>Question suivante →</button>
+  </div>
+
+  <div id="screen-correction" class="card hidden">
+    <div class="progress-track"><div class="progress-fill" id="corrProgressFill" style="width:4%"></div></div>
+    <div class="progress-label">
+      <span id="corrProgressText">Correction 1 / 25</span>
+      <span id="corrScoreRunning">0 bonne rép.</span>
+    </div>
+
+    <div class="qnum" id="corrQnum">Fiche n°—</div>
+    <p class="qtext" id="corrQtext"></p>
+
+    <p class="answer-label">Ta réponse</p>
+    <div class="ref-answer" id="userAnswerBox" style="background:#fff; border-left-color:var(--line);">
+      <p id="userAnswerText" style="margin:0; font-size:14.5px; color:var(--ink); line-height:1.6;"></p>
+    </div>
+
+    <div class="ref-answer">
+      <div class="ref-label">Réponse de référence</div>
+      <ul id="corrRefList"></ul>
+    </div>
+
+    <p class="answer-label">Ton auto-évaluation</p>
+    <div class="row-btns">
+      <button class="grade-btn correct-choice" id="btnCorrect" onclick="grade(true)">✓ J'avais bon</button>
+      <button class="grade-btn incorrect-choice" id="btnIncorrect" onclick="grade(false)">✗ J'avais faux</button>
+    </div>
+    <button class="btn-primary next-btn hidden" id="corrNextBtn" onclick="nextCorrection()">Suivant →</button>
+  </div>
+
+  <div id="screen-result" class="card hidden">
+    <div class="stamp-wrap">
+      <div class="stamp" id="stampEl">ACQUIS</div>
+    </div>
+    <p class="score-big" id="scoreBig">0/25</p>
+    <p class="score-line" id="scoreLine">0% de bonnes réponses</p>
+    <p class="threshold-note">Seuil de réussite fixé à 12/25</p>
+
+    <div id="reviewSection"></div>
+
+    <div class="actions">
+      <button class="btn-secondary" style="flex:1" onclick="resetToStart()">Nouvelle série (25 autres questions)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {q:"Quels sont les corps de la Police Nationale ?", a:["Le corps d'encadrement et d'application","Le corps de commandement","Le corps de conception et de direction"]},
+  {q:"Que signifie le salut ?", a:["Signe de courtoisie"]},
+  {q:"Quelle est la durée de l'enquête de flagrant délit ?", a:["Elle se poursuit sans discontinuer pendant une durée de 8 jours"]},
+  {q:"Que signifie F.P.R. ?", a:["Fichier des Personnes Recherchées"]},
+  {q:"Quelles sont les conditions préalables à l'usage de l'arme ?", a:["Agir dans l'exercice de ses fonctions","Être revêtu de son uniforme ou des insignes extérieurs et apparents de sa qualité","Ne peut utiliser son arme qu'en cas d'absolue nécessité et de manière strictement proportionnée"]},
+  {q:"Quels sont les éléments constitutifs d'une infraction ?", a:["Élément légal","Élément matériel","Élément moral"]},
+  {q:"Quelles sont les conditions nécessaires de la complicité ?", a:["Un fait principal punissable","Une participation à l'infraction","Une intention de participer à l'infraction"]},
+  {q:"Citez 6 rubriques permettant de diffuser le signalement d'une personne.", a:["Sexe","Âge","Taille","Corpulence","Type / Cheveux","Yeux / Barbe / Visage / Voix","Habillement / Démarche / Autres éléments"]},
+  {q:"Quels sont les objectifs de l'utilisation de la caméra piéton ?", a:["Prévenir les incidents au cours des interventions","Constater les infractions et collecter les preuves nécessaires à la poursuite des auteurs","Assurer la formation des agents"]},
+  {q:"Quelle est la composition du tribunal correctionnel ?", a:["Il est composé de 3 juges et 1 représentant du ministère public"]},
+  {q:"Comment s'appelle la décision rendue par le tribunal correctionnel ?", a:["Un jugement"]},
+  {q:"Citez les mesures de rétention à caractère judiciaire.", a:["La garde à vue","La retenue des mineurs de 10 à 13 ans","La vérification d'identité","L'exécution des mandats d'arrêt ou d'amener","L'exécution d'une retenue judiciaire","L'exécution d'un mandat de recherche"]},
+  {q:"Quels sont les principes à respecter lors d'une patrouille portée ?", a:["Maintien d'une liaison constante","Respect des temps et des lieux de la mission","Compte rendu hiérarchique en fin de patrouille"]},
+  {q:"Quel article, alinéa et code prévoient le contrôle d'identité sur réquisition du procureur ?", a:["L'article 78-2 alinéa 7 du Code de procédure pénale"]},
+  {q:"Quelles sont les particularités d'une réquisition du procureur de la République en matière de contrôle d'identité ?", a:["Elle doit être écrite","Elle doit préciser les infractions à rechercher","Elle doit déterminer les lieux et la période de temps concernées"]},
+  {q:"Quels articles prévoient le menottage ?", a:["L'article 803 du Code de procédure pénale","L'article R.434-17 du Code de sécurité intérieure"]},
+  {q:"Quelles sont les circonstances permettant de procéder à un menottage ?", a:["L'individu est considéré comme dangereux pour lui-même ou pour autrui","L'individu est susceptible de prendre la fuite"]},
+  {q:"Citez une mesure de sûreté.", a:["Une palpation de sécurité"]},
+  {q:"Que signifie C.I.C. ?", a:["Centre d'Information et de Commandement"]},
+  {q:"Quel document délivré par le médecin vous permet de maintenir dans les locaux de police des personnes en état d'ivresse publique et manifeste à l'issue de leur examen ?", a:["Le certificat de non-admission (ou non hospitalisation)"]},
+  {q:"Combien de temps peuvent être retenues des personnes en état d'ivresse publique et manifeste en chambre de sûreté ?", a:["La retenue prend fin après complet dégrisement"]},
+  {q:"Citez trois cas de rétention dans les locaux de police à caractère administratif.", a:["La retenue pour vérification du droit de séjour","L'hébergement des étrangers avant une mesure de reconduite à la frontière","Le recueil temporaire des malades mentaux","La garde des mineurs en fugue","La retenue des personnes en état d'ivresse publique et manifeste"]},
+  {q:"Quel article prévoit le cadre légal d'usage des armes par les forces de l'ordre ?", a:["L'article L.435-1 du Code de sécurité intérieure"]},
+  {q:"Parmi les cinq situations prévues, quelles sont celles qui nécessitent des sommations ?", a:["La défense des lieux qu'ils occupent ou des personnes qui leur sont confiées","La fuite d'un individu dangereux placé sous leur garde"]},
+  {q:"Combien de temps doit s'écouler entre deux sommations ?", a:["Les deux sommations doivent se succéder dans un temps court"]},
+  {q:"Quel est l'élément matériel du viol ?", a:["Un acte de pénétration sexuelle ou un acte bucco-génital commis sur la personne d'autrui","Absence de consentement de la victime"]},
+  {q:"Quelles juridictions pénales du 1er degré sont compétentes pour juger l'auteur majeur d'un viol ?", a:["La cour d'assises","La cour criminelle départementale"]},
+  {q:"Citez les juridictions pénales du 1er degré.", a:["Le tribunal correctionnel","Le tribunal de police","La cour d'assises","La cour criminelle départementale"]},
+  {q:"Quelles sont les conditions pour que la tentative soit retenue ?", a:["Un commencement d'exécution","Une absence de désistement volontaire","Une intention coupable"]},
+  {q:"Quel protocole d'intervention devez-vous mettre en place en cas de découverte d'un objet suspect ?", a:["Aviser","Évacuer","Réglementer"]},
+  {q:"Quels sont les principes à respecter lors de votre patrouille ?", a:["Maintenir une liaison radio constante","Accomplir la mission dans un temps et un lieu précis","Rendre compte à la hiérarchie en fin de patrouille"]},
+  {q:"Quelle est la durée maximale d'une mesure de vérification d'identité ?", a:["4 heures"]},
+  {q:"Quels sont les droits d'une personne majeure retenue pour une vérification d'identité ?", a:["Faire aviser le procureur de la République","Prévenir à tout moment sa famille ou toute autre personne de son choix"]},
+  {q:"Citez les cas dans lesquels la loi autorise un A.P.J. à pénétrer dans un domicile pendant les heures légales.", a:["L'exécution d'un mandat d'amener, d'arrêt, de recherche","L'exécution des décisions portant condamnation","L'exécution d'une contrainte judiciaire","La perquisition en enquête préliminaire (avec l'assentiment de la personne concernée)"]},
+  {q:"Citez l'élément matériel des violences volontaires.", a:["Un acte positif de violence","Commis sur la personne d'autrui","Entraînant un résultat dommageable"]},
+  {q:"Selon l'article 59 alinéa 1 du Code de procédure pénale, quel cas vous permet de vous introduire dans un domicile ?", a:["La réclamation faite de l'intérieur d'une maison"]},
+  {q:"Quel est le but de la palpation de sécurité ?", a:["Savoir si une personne est porteuse ou non d'un objet susceptible d'être dangereux pour elle-même ou pour autrui"]},
+  {q:"À quel moment considère-t-on un tapage comme nocturne ?", a:["Le tapage nocturne est une atteinte à la tranquillité publique entre le coucher et le lever du soleil"]},
+  {q:"Quelle est la classification précise du tapage ?", a:["Contravention de 3ème classe"]},
+  {q:"Quelles sont les autorités habilitées à procéder à des contrôles d'identité ?", a:["Les O.P.J. (art. 16 du CPP)","Les A.P.J. (art. 20 du CPP), sur l'ordre et sous la responsabilité de l'OPJ","Les A.P.J. adjoints (art. 21 du CPP), sur l'ordre et sous la responsabilité de l'OPJ"]},
+  {q:"Citez les cas de flagrance.", a:["Le crime ou délit qui se commet actuellement","Le crime ou délit qui vient de se commettre","Dans un temps très voisin de l'action, la personne soupçonnée est poursuivie par la clameur publique","Dans un temps très voisin de l'action, la personne est trouvée en possession d'objets, de traces ou d'indices laissant penser qu'elle a participé au crime ou délit"]},
+  {q:"Citez les cas de rétention à caractère administratif dans les locaux de police.", a:["La retenue de mineur fugueur","La retenue pour vérification du droit de séjour","Le placement en chambre de sûreté de personne en état d'ivresse","Le recueil temporaire des malades mentaux","La retenue pour vérification de situation"]},
+  {q:"Quels sont les agents de la Police Nationale autorisés à porter la caméra piéton ?", a:["Les personnels actifs","Les policiers adjoints","Les réservistes"]},
+  {q:"Quelles sont les 5 situations de cadre légal d'usage des armes prévues par le Code de la sécurité intérieure ?", a:["Atteintes à la vie ou à l'intégrité physique portées contre eux ou un tiers, ou personnes armées menaçant leur vie/intégrité ou celles d'un tiers","La défense des lieux qu'ils occupent ou des personnes qui leur sont confiées (sommations)","La fuite d'un individu dangereux placé sous leur garde (sommations)","L'immobilisation d'un véhicule occupé par un ou des individus dangereux","Le périple meurtrier"]},
+  {q:"Quelles sont les conditions nécessaires à la légitime défense des personnes prévues à l'article 122-5 du Code pénal ?", a:["Une atteinte injustifiée, actuelle, réelle","Un acte de défense nécessaire, simultané, proportionné"]},
+  {q:"Quels sont les 2 cas présumés de légitime défense prévus à l'article 122-6 du Code pénal ?", a:["Pour repousser de nuit l'entrée par effraction, violence ou ruse dans un lieu habité","Pour se défendre, de jour comme de nuit, contre les auteurs de vols et de pillages exécutés avec violence"]},
+  {q:"Quelles sont les conditions de la tentative punissable ?", a:["Un commencement d'exécution","L'absence de désistement volontaire"]}
+];
+
+const TOTAL_TO_ASK = 25;
+const PASS_THRESHOLD = 12;
+
+let session = [];
+let userAnswers = [];
+let currentIndex = 0;
+let correctCount = 0;
+let results = [];
+let currentGraded = null;
+
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function startQuiz(){
+  const idx = shuffle(QUESTIONS.map((_,i)=>i)).slice(0, TOTAL_TO_ASK);
+  session = idx.map(i => QUESTIONS[i]);
+  userAnswers = [];
+  currentIndex = 0;
+  correctCount = 0;
+  results = [];
+  document.getElementById('screen-start').classList.add('hidden');
+  document.getElementById('screen-result').classList.add('hidden');
+  document.getElementById('screen-correction').classList.add('hidden');
+  document.getElementById('screen-quiz').classList.remove('hidden');
+  showQuestion();
+}
+
+function showQuestion(){
+  const q = session[currentIndex];
+  document.getElementById('qnum').textContent = 'Fiche n°' + (currentIndex+1);
+  document.getElementById('qtext').textContent = q.q;
+  document.getElementById('userAnswer').value = '';
+  document.getElementById('nextBtn').disabled = true;
+
+  const pct = Math.round(((currentIndex) / TOTAL_TO_ASK) * 100) + 4;
+  document.getElementById('progressFill').style.width = Math.min(pct,100) + '%';
+  document.getElementById('progressText').textContent = 'Question ' + (currentIndex+1) + ' / ' + TOTAL_TO_ASK;
+  document.getElementById('userAnswer').focus();
+}
+
+function onAnswerInput(){
+  const val = document.getElementById('userAnswer').value.trim();
+  document.getElementById('nextBtn').disabled = val.length === 0;
+}
+
+function nextQuestion(){
+  const val = document.getElementById('userAnswer').value.trim();
+  if(val.length === 0) return;
+  userAnswers.push(val);
+
+  if(currentIndex + 1 < TOTAL_TO_ASK){
+    currentIndex++;
+    showQuestion();
+  } else {
+    currentIndex = 0;
+    document.getElementById('screen-quiz').classList.add('hidden');
+    document.getElementById('screen-correction').classList.remove('hidden');
+    showCorrection();
+  }
+}
+
+function showCorrection(){
+  currentGraded = null;
+  const q = session[currentIndex];
+  document.getElementById('corrQnum').textContent = 'Fiche n°' + (currentIndex+1);
+  document.getElementById('corrQtext').textContent = q.q;
+  document.getElementById('userAnswerText').textContent = userAnswers[currentIndex];
+  document.getElementById('corrNextBtn').classList.add('hidden');
+  document.getElementById('btnCorrect').classList.remove('active');
+  document.getElementById('btnIncorrect').classList.remove('active');
+
+  const refList = document.getElementById('corrRefList');
+  refList.innerHTML = '';
+  q.a.forEach(point => {
+    const li = document.createElement('li');
+    li.textContent = point;
+    refList.appendChild(li);
+  });
+
+  const pct = Math.round(((currentIndex) / TOTAL_TO_ASK) * 100) + 4;
+  document.getElementById('corrProgressFill').style.width = Math.min(pct,100) + '%';
+  document.getElementById('corrProgressText').textContent = 'Correction ' + (currentIndex+1) + ' / ' + TOTAL_TO_ASK;
+  document.getElementById('corrScoreRunning').textContent = correctCount + ' bonne(s) rép.';
+}
+
+function grade(isCorrect){
+  currentGraded = isCorrect;
+  document.getElementById('btnCorrect').classList.toggle('active', isCorrect);
+  document.getElementById('btnIncorrect').classList.toggle('active', !isCorrect);
+  document.getElementById('corrNextBtn').classList.remove('hidden');
+}
+
+function nextCorrection(){
+  if(currentGraded === null) return;
+  const q = session[currentIndex];
+  if(currentGraded) correctCount++;
+  results.push({q: q.q, a: q.a, userAnswer: userAnswers[currentIndex], correct: currentGraded});
+
+  if(currentIndex + 1 < TOTAL_TO_ASK){
+    currentIndex++;
+    showCorrection();
+  } else {
+    showResult();
+  }
+}
+
+function showResult(){
+  document.getElementById('screen-correction').classList.add('hidden');
+  document.getElementById('screen-result').classList.remove('hidden');
+
+  const passed = correctCount >= PASS_THRESHOLD;
+  const stamp = document.getElementById('stampEl');
+  stamp.textContent = passed ? 'Acquis' : 'Ajourné';
+  stamp.className = 'stamp ' + (passed ? 'pass' : 'fail');
+
+  document.getElementById('scoreBig').textContent = correctCount + '/' + TOTAL_TO_ASK;
+  document.getElementById('scoreLine').textContent = Math.round((correctCount/TOTAL_TO_ASK)*100) + '% de bonnes réponses';
+
+  const wrong = results.filter(r => !r.correct);
+  const reviewSection = document.getElementById('reviewSection');
+  if(wrong.length === 0){
+    reviewSection.innerHTML = '<p class="review-title">À revoir</p><p class="no-errors">Aucune erreur — série parfaite.</p>';
+  } else {
+    let html = '<p class="review-title">À revoir (' + wrong.length + ')</p>';
+    wrong.forEach(r => {
+      html += '<div class="review-item"><div class="rq"><span class="tag">Faux</span><span>' + escapeHtml(r.q) + '</span></div><ul>';
+      r.a.forEach(pt => { html += '<li>' + escapeHtml(pt) + '</li>'; });
+      html += '</ul></div>';
+    });
+    reviewSection.innerHTML = html;
+  }
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function resetToStart(){
+  document.getElementById('screen-result').classList.add('hidden');
+  document.getElementById('screen-start').classList.remove('hidden');
+}
+</script>
+</body>
+</html>
