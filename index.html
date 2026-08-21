@@ -4338,11 +4338,12 @@ function refreshPlayerCard(){
 }
 
 /* ---- ACCUEIL : salutation + descriptions vivantes sur les tuiles ---- */
-function refreshHomeGreeting(){
+  function refreshHomeGreeting(){
   const el = document.getElementById('homeGreeting');
   if(!el) return;
   const h = new Date().getHours();
-  const hello = h < 6 ? 'Bonne nuit' : (h < 12 ? 'Bonjour' : (h < 18 ? 'Bon après-midi' : 'Bonsoir'));
+  const hello = h < 12 ? 'Bonjour' : (h < 18 ? 'Bon après-midi' : 'Bonsoir');
+  el.textContent = hello + ', ' + (currentPseudo || 'toi') + ' 👋';
   let suffix = '';
   try{
     const st = computeStreak();
