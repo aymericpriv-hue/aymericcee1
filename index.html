@@ -1109,7 +1109,119 @@
         <span class="pl-stat"><b id="plBadges">0</b><small>récompenses</small></span>
       </div>
     </div>
+<!-- === CSS === -->
+<style>
+  /* Style de base de la carte */
+  #playerCard {
+    position: relative; 
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
 
+  /* Style et position du bouton croix en haut à gauche */
+  .toggle-btn {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #888;
+    line-height: 1;
+    z-index: 10;
+    padding: 4px;
+  }
+
+  .toggle-btn:hover {
+    color: #000;
+  }
+
+  /* État rétréci de la carte (ajuste la taille si besoin) */
+  #playerCard.shrunk {
+    width: 40px !important;
+    height: 40px !important;
+    min-height: unset !important;
+    padding: 0 !important;
+    overflow: hidden;
+  }
+
+  /* Masque le contenu lorsque la carte est réduite */
+  #playerCard.shrunk #playerCardContent {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* Transition fluide pour le contenu */
+  #playerCardContent {
+    transition: opacity 0.2s ease;
+  }
+</style>
+
+
+<!-- === HTML === -->
+<div id="playerCard" class="hidden">
+  <!-- Bouton pour rétrécir/agrandir en haut à gauche -->
+  <button id="btnToggleCard" class="toggle-btn">&times;</button>
+
+  <!-- Enveloppe tout le contenu existant de ta carte -->
+  <div id="playerCardContent">
+    <div id="plIcon"></div>
+    <div id="plRank"></div>
+    <div id="plXp"></div>
+    <div id="plNext"></div>
+    <div style="width: 100%; background: #eee;"><div id="plBar" style="height: 5px;"></div></div>
+    <div>Série : <span id="plStreak"></span></div>
+    <div>Total : <span id="plSeries"></span></div>
+    <div>Moyenne : <span id="plAvg"></span></div>
+    <div>Badges : <span id="plBadges"></span></div>
+  </div>
+</div>
+
+
+<!-- === JAVASCRIPT === -->
+<script>
+  // Gestion du clic pour rétrécir / agrandir la carte
+  document.addEventListener('DOMContentLoaded', () => {
+    const card = document.getElementById('playerCard');
+    const toggleBtn = document.getElementById('btnToggleCard');
+
+    if(toggleBtn && card) {
+      toggleBtn.addEventListener('click', () => {
+        card.classList.toggle('shrunk');
+        // Alterne entre la croix (×) et le plus (+)
+        toggleBtn.innerHTML = card.classList.contains('shrunk') ? '+' : '&times;';
+      });
+    }
+  });
+
+  /* ---- CARTE JOUEUR : grade, XP, série de jours, récompenses ---- */
+  function refreshPlayerCard(){
+    const card = document.getElementById('playerCard');
+    if(!card) return;
+    const r = getMyRank();
+
+    document.getElementById('plIcon').textContent = r.rank.icon;
+    document.getElementById('plRank').textContent = r.rank.name;
+    document.getElementById('plXp').textContent = r.xp.toLocaleString('fr-FR') + ' XP';
+    document.getElementById('plNext').textContent = r.next
+      ? 'Encore ' + (r.next.xp - r.xp).toLocaleString('fr-FR') + ' XP pour ' + (r.next.short || r.next.name)
+      : 'Sommet de la hiérarchie atteint 👑';
+    document.getElementById('plBar').style.width = r.progress + '%';
+
+    let streak = 0, badges = 0;
+    try{ streak = computeStreak(); }catch(e){}
+    try{ badges = getEarnedBadges().length; }catch(e){}
+    const s = computeStats();
+
+    document.getElementById('plStreak').textContent = String(streak);
+    document.getElementById('plSeries').textContent = String(s.totalSeries);
+    document.getElementById('plAvg').textContent = s.totalSeries > 0 ? s.avgScore + '%' : '—';
+    document.getElementById('plBadges').textContent = String(badges);
+    card.classList.remove('hidden');
+  }
+</script>
     <div class="home-hero">
       <p id="homeGreeting" class="hero-hello"></p>
      <p class="lead"> + de 50 fiches, <b style="color:var(--brass-dark);">24 grades</b>, <b style="color:#2E5C8A;">l'alphabet OTAN</b> et les sigles clés — <b style="color:var(--red);">tu progresses série après série.</b></p>
