@@ -1095,7 +1095,7 @@
   </div>
   <p id="streakBanner" class="hidden streak-banner" style="text-align:center; font-size:13.5px; font-weight:600; border-radius:12px; padding:11px; margin-bottom:16px;"></p>
   
-  <!-- Carte joueur avec le bouton croix et le contenu enveloppé -->
+  <!-- Carte joueur -->
   <div id="playerCard" class="player-card hidden">
     <button id="btnToggleCard" class="toggle-btn">&times;</button>
     <div id="playerCardContent">
@@ -1144,20 +1144,21 @@
     color: var(--ink, #000);
   }
 
-  /* État réduit de la carte */
+  /* Rétrograde complètement la taille de la tuile */
   #playerCard.shrunk {
-    width: 40px !important;
-    height: 40px !important;
-    min-height: unset !important;
+    width: 36px !important;
+    height: 36px !important;
+    min-height: 0 !important;
+    max-height: 36px !important;
     padding: 0 !important;
-    overflow: hidden;
+    margin: 0 !important;
+    border: 1px solid var(--line, #ccc);
+    box-shadow: none !important;
   }
 
-  /* Masque le contenu interne lors de la réduction */
+  /* Cache complètement le contenu et gère la croix en mode réduit */
   #playerCard.shrunk #playerCardContent {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+    display: none !important;
   }
 
   #playerCardContent {
