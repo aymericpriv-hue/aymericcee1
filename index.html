@@ -912,7 +912,30 @@
     .pay-spinner{animation:none; border-top-color:var(--brass);}
   }
 
-  /* ---- CARTE JOUEUR ---- */
+  /* ---- LES DEUX GRANDES PORTES ---- */
+  .mode-door{
+    position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:4px; padding:26px 16px; cursor:pointer; text-align:center;
+    border:1px solid var(--line); border-radius:16px; background:var(--paper);
+    font-family:'IBM Plex Sans', sans-serif;
+    transition:transform .14s ease, border-color .14s ease, box-shadow .14s ease;
+  }
+  .mode-door:hover{
+    transform:translateY(-3px); border-color:var(--brass);
+    box-shadow:0 14px 30px -18px rgba(0,0,0,0.55);
+  }
+  .mode-door:active{transform:translateY(0);}
+  .md-ic{font-size:38px; line-height:1; margin-bottom:6px; transition:transform .16s ease;}
+  .mode-door:hover .md-ic{transform:scale(1.12);}
+  .md-t{font-family:'Fraunces', serif; font-size:17px; font-weight:700; color:var(--ink);}
+  .md-s{font-size:12px; color:var(--ink-soft); line-height:1.4;}
+  .md-badge{
+    position:absolute; top:10px; right:12px; min-width:20px; padding:1px 6px;
+    background:var(--red); color:#fff; font-size:11px; font-weight:800; border-radius:99px;
+  }
+  .pc-avatar svg{display:block;}
+
+    /* ---- CARTE JOUEUR ---- */
   .player-card{
     border:1px solid rgba(176,138,46,0.28); border-radius:14px; padding:16px 18px;
     background:linear-gradient(135deg, rgba(176,138,46,0.10) 0%, var(--paper) 55%);
@@ -1093,7 +1116,7 @@
       <div class="crumb"><span>Préparation CEE1</span><span class="sep">/</span><span class="here">Tableau de bord</span></div>
     </div>
     <div id="profileBar" class="hidden profile-chip" onclick="showAccountScreen()" title="Mon compte">
-      <span class="pc-avatar">👮</span>
+      <span id="pcAvatar" class="pc-avatar">👮</span>
       <span class="pc-text">
         <span class="pc-name"><span id="profileNameLabel"></span><span id="proBadge" class="hidden pc-pro">PRO</span></span>
         <span id="profileRankLabel" class="pc-rank"></span>
@@ -1204,19 +1227,22 @@
     </div>
     <button id="srTile" class="row-card hidden" style="margin-top:12px;" onclick="startSpacedReview()"></button>
 
-    <p class="sec-label">Multijoueur</p>
-    <div class="grid3">
-      <button class="col-card" onclick="showMpMenu('duel')"><span class="ic i-gold">⚔️</span><span class="t">Duel 1v1</span><span class="s">Code à 4 chiffres, en direct</span></button>
-      <button class="col-card" onclick="showMpMenu('battle')"><span class="ic i-purple">🎖️</span><span class="t">Bataille de Section</span><span class="s">Toute la classe, au vidéoprojecteur</span></button>
-      <button class="col-card" onclick="showChallengesScreen()"><span class="ic i-green">🎯<span id="chBadge" class="hidden" style="background:var(--red); color:#fff; font-size:9.5px; font-weight:700; padding:0 5px; border-radius:9px; margin-left:3px; vertical-align:top;"></span></span><span class="t">Défis entre camarades</span><span class="s">Joue quand tu veux, même hors ligne</span></button>
-    </div>
-    <button id="tournamentTile" class="row-card hidden" style="margin-top:12px;" onclick="showTournamentScreen()"><span class="row-inner"><span class="ic">🏆</span><span class="tx"><span class="t" id="tournamentTileLabel">Tournoi de promo en cours !</span></span><span class="arrow">→</span></span></button>
-
-    <p class="sec-label">Entraînement ciblé</p>
+    <p class="sec-label">Choisis ton mode</p>
     <div class="grid2">
-      <button class="row-card" onclick="showExamIntro()"><span class="row-inner"><span class="ic i-red">📝</span><span class="tx"><span class="t">Examen blanc <span id="lockIcon-exam" class="lock-badge">🔒</span></span><span class="s" id="descExam">25 questions chrono — admis à 12</span></span></span></button>
-      <button class="row-card" onclick="showSurvivalIntro()"><span class="row-inner"><span class="ic i-orange">🔥</span><span class="tx"><span class="t">Mode Survie</span><span class="s" id="descSurvival">Enchaîne jusqu'à la première erreur</span></span></span></button>
+      <button class="mode-door" onclick="showSoloHub()">
+        <span class="md-ic">🎯</span>
+        <span class="md-t">Mode solo</span>
+        <span class="md-s">Je révise à mon rythme</span>
+      </button>
+      <button class="mode-door" onclick="showOnlineHub()">
+        <span class="md-ic">🌐</span>
+        <span class="md-t">Mode en ligne</span>
+        <span class="md-s">Je défie ma promo</span>
+        <span id="chBadge" class="hidden md-badge"></span>
+      </button>
     </div>
+
+    <button id="tournamentTile" class="row-card hidden" style="margin-top:12px;" onclick="showTournamentScreen()"><span class="row-inner"><span class="ic i-gold">🏆</span><span class="tx"><span class="t" id="tournamentTileLabel">Tournoi de promo en cours !</span></span><span class="arrow">→</span></span></button>
 
     <div id="premiumHomeTile" class="hidden">
       <p class="sec-label">Premium</p>
@@ -1225,23 +1251,6 @@
         <span class="tx"><span class="t">Passer Premium — 12,99 € à vie</span><span class="s">Quiz CEE1 complet, examens blancs, classement de la promo et création de batailles.</span></span>
       </button>
     </div>
-
-    <p class="sec-label">Ta progression</p>
-    <div class="grid2">
-      <button class="row-card" onclick="showLeaderboard()"><span class="row-inner"><span class="ic i-gold">📊</span><span class="tx"><span class="t">Ma progression <span id="lockIcon-progress" class="lock-badge">🔒</span></span><span class="s" id="descProgress">Séries, moyenne et points faibles</span></span><span class="arrow">→</span></span></button>
-      <button class="row-card" onclick="showGlobalLeaderboard()"><span class="row-inner"><span class="ic i-blue">🌍</span><span class="tx"><span class="t">Classement de la promo <span id="lockIcon-globalboard" class="lock-badge">🔒</span></span><span class="s" id="descBoard">Ton rang cette semaine</span></span><span class="arrow">→</span></span></button>
-    </div>
-
-    <details class="rules-box" style="margin-top:22px;">
-      <summary>Plus de modules — grades, alphabet, sigles, parrainage</summary>
-      <div class="grid2" style="margin-top:12px;">
-        <button class="col-card" onclick="showGradesScope()"><span class="ic">🎖️</span><span class="t">Grades</span></button>
-        <button class="col-card" onclick="showAlphaScope()"><span class="ic">🔤</span><span class="t">Alphabet OTAN</span></button>
-        <button class="col-card" onclick="showOrgsScope()"><span class="ic">🏛️</span><span class="t">Sigles &amp; organisations</span></button>
-        <button class="col-card" onclick="startRevision()"><span class="ic">🗂️</span><span class="t">Tout relire <span id="lockIcon-revision" class="lock-badge">🔒</span></span></button>
-      </div>
-      <button class="row-card" style="margin-top:12px;" onclick="showReferralScreen()"><span class="row-inner"><span class="ic">🤝</span><span class="tx"><span class="t">Invite tes camarades</span><span class="s">À 10 parrainages, ton pseudo passe en <span class="pname-gold">doré</span> 👑</span></span><span class="arrow">→</span></span></button>
-    </details>
 
     <details class="rules-box" style="margin-top:12px;">
       <summary>Comment ça marche — les 4 règles</summary>
@@ -1876,6 +1885,50 @@
     <button class="btn-secondary" style="width:100%; margin-top:18px;" onclick="showGlobalLeaderboard()">🔄 Rafraîchir</button>
   </div>
 
+  <div id="screen-solo" class="card hidden">
+    <button class="back-menu" onclick="backToMenu()">← Retour</button>
+    <p class="lead" style="font-size:22px;">🎯 Mode solo</p>
+    <p style="font-size:13px; color:var(--ink-soft); margin-bottom:18px;">Révise à ton rythme, personne ne regarde.</p>
+    <div class="grid2">
+      <button class="row-card" onclick="startQuizScoped(true)"><span class="row-inner"><span class="ic i-gold">🚀</span><span class="tx"><span class="t">Ma série de 25 <span id="lockIcon-quiz2" class="lock-badge">🔒</span></span><span class="s">Le mélange complet, comme à l'examen</span></span><span class="arrow">→</span></span></button>
+      <button class="row-card" onclick="showFiches()"><span class="row-inner"><span class="ic i-blue">📖</span><span class="tx"><span class="t">Fiches de révision</span><span class="s" id="descFiches2">Lire avant de s'auto-tester</span></span><span class="arrow">→</span></span></button>
+      <button class="row-card" onclick="showExamIntro()"><span class="row-inner"><span class="ic i-red">📝</span><span class="tx"><span class="t">Examen blanc <span id="lockIcon-exam" class="lock-badge">🔒</span></span><span class="s" id="descExam">25 questions chrono — admis à 12</span></span><span class="arrow">→</span></span></button>
+      <button class="row-card" onclick="showSurvivalIntro()"><span class="row-inner"><span class="ic i-orange">🔥</span><span class="tx"><span class="t">Mode Survie</span><span class="s" id="descSurvival">Enchaîne jusqu'à la première erreur</span></span><span class="arrow">→</span></span></button>
+    </div>
+    <button id="srTile2" class="row-card hidden" style="margin-top:12px;" onclick="startSpacedReview()"></button>
+    <details class="rules-box" style="margin-top:16px;">
+      <summary>✨ Réviser par thème — grades, alphabet, sigles</summary>
+      <div class="grid2" style="margin-top:10px;">
+        <button class="col-card" onclick="showGradesScope()"><span class="ic i-gold">🎖️</span><span class="t">Grades</span></button>
+        <button class="col-card" onclick="showAlphaScope()"><span class="ic i-blue">🔤</span><span class="t">Alphabet OTAN</span></button>
+        <button class="col-card" onclick="showOrgsScope()"><span class="ic i-red">🏛️</span><span class="t">Sigles &amp; orgas</span></button>
+        <button class="col-card" onclick="startRevision()"><span class="ic i-green">🗂️</span><span class="t">Tout relire <span id="lockIcon-revision" class="lock-badge">🔒</span></span></button>
+      </div>
+    </details>
+  </div>
+
+  <div id="screen-online" class="card hidden">
+    <button class="back-menu" onclick="backToMenu()">← Retour</button>
+    <p class="lead" style="font-size:22px;">🌐 Mode en ligne</p>
+    <p style="font-size:13px; color:var(--ink-soft); margin-bottom:18px;">Affronte les autres élèves de ta promo.</p>
+    <div class="grid2">
+      <button class="row-card" onclick="showMpMenu('duel')"><span class="row-inner"><span class="ic i-gold">⚔️</span><span class="tx"><span class="t">Duel 1v1</span><span class="s">Code à 4 chiffres, en direct</span></span><span class="arrow">→</span></span></button>
+      <button class="row-card" onclick="showMpMenu('battle')"><span class="row-inner"><span class="ic i-purple">🎖️</span><span class="tx"><span class="t">Bataille de Section</span><span class="s">Toute la classe, au vidéoprojecteur</span></span><span class="arrow">→</span></span></button>
+      <button class="row-card" onclick="showChallengesScreen()"><span class="row-inner"><span class="ic i-green">🎯</span><span class="tx"><span class="t">Défis entre camarades <span id="chBadge2" class="hidden" style="background:var(--red); color:#fff; font-size:9.5px; font-weight:700; padding:0 6px; border-radius:9px;"></span></span><span class="s">Joue quand tu veux, même s'il est hors ligne</span></span><span class="arrow">→</span></span></button>
+      <button class="row-card" onclick="showGlobalLeaderboard()"><span class="row-inner"><span class="ic i-blue">🌍</span><span class="tx"><span class="t">Classement de la promo <span id="lockIcon-globalboard" class="lock-badge">🔒</span></span><span class="s" id="descBoard">Ton rang cette semaine</span></span><span class="arrow">→</span></span></button>
+    </div>
+    <button class="row-card" style="margin-top:12px;" onclick="showReferralScreen()"><span class="row-inner"><span class="ic i-gold">🤝</span><span class="tx"><span class="t">Invite tes camarades</span><span class="s">À 10 parrainages, ton pseudo passe en <span class="pname-gold">doré</span> 👑</span></span><span class="arrow">→</span></span></button>
+  </div>
+
+  <div id="screen-avatar" class="card hidden">
+    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <p class="lead" style="font-size:22px;">🧑‍✈️ Mon personnage</p>
+    <p style="font-size:13px; color:var(--ink-soft); margin-bottom:18px;">Il te représente partout : profil, classements et batailles. Certaines tenues se débloquent en gagnant de l'expérience.</p>
+    <div style="text-align:center; margin-bottom:18px;"><div id="avatarPreview"></div></div>
+    <div id="avatarPickers"></div>
+    <button class="btn-primary" style="margin-top:18px;" onclick="backToMenu()">✔ C'est parfait</button>
+  </div>
+
   <div id="screen-account" class="card hidden">
     <button class="back-menu" onclick="backToMenu()">← Menu</button>
     <p class="lead" style="font-size:20px;">⚙️ Mon compte</p>
@@ -1926,8 +1979,17 @@
     <p class="answer-label" style="margin-top:16px;">Mon titre (récompenses débloquées)</p>
     <div id="titlePicker" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
 
+    <div class="section-label" style="margin-top:22px;"><div class="rule"></div><span>📊 Ma progression</span><div class="rule"></div></div>
+    <div class="grid2">
+      <button class="row-card" onclick="showLeaderboard()"><span class="row-inner"><span class="ic i-gold">📊</span><span class="tx"><span class="t">Mes stats <span id="lockIcon-progress" class="lock-badge">🔒</span></span><span class="s" id="descProgress">Séries, moyenne et points faibles</span></span><span class="arrow">→</span></span></button>
+      <button class="row-card" onclick="switchProgressTab('weak')"><span class="row-inner"><span class="ic i-red">🎯</span><span class="tx"><span class="t">Mes points faibles</span><span class="s">Ce que tu rates le plus souvent</span></span><span class="arrow">→</span></span></button>
+      <button class="row-card" onclick="switchProgressTab('rewards')"><span class="row-inner"><span class="ic i-green">🎖️</span><span class="tx"><span class="t">Mes récompenses</span><span class="s">Les insignes débloqués</span></span><span class="arrow">→</span></span></button>
+      <button class="row-card" onclick="showGlobalLeaderboard()"><span class="row-inner"><span class="ic i-blue">🌍</span><span class="tx"><span class="t">Classement promo <span id="lockIcon-globalboard2" class="lock-badge">🔒</span></span><span class="s">Ton rang cette semaine</span></span><span class="arrow">→</span></span></button>
+    </div>
+
     <div class="section-label" style="margin-top:22px;"><div class="rule"></div><span>Autres</span><div class="rule"></div></div>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+      <button class="btn-secondary" style="grid-column:1 / -1; border-color:var(--brass); color:var(--brass-dark); font-weight:700;" onclick="showAvatarScreen()">🧑‍✈️ Personnaliser mon personnage</button>
       <button class="btn-secondary" onclick="showAboutScreen()">À propos</button>
       <button class="btn-secondary" onclick="showReferralScreen()">🤝 Parrainage</button>
       <button class="btn-secondary" onclick="showLeaderboard()">📊 Ma progression</button>
@@ -2380,7 +2442,7 @@ function resetToStart(){
   backToMenu();
 }
 
-const ALL_SCREEN_IDS = ['screen-auth','screen-welcome-offer','screen-paywall','screen-start','screen-quiz','screen-grades','screen-alpha','screen-orgs','screen-spell','screen-grades-scope','screen-orgs-scope','screen-alpha-scope','screen-fiches','screen-weak','screen-result','screen-gresult','screen-aresult','screen-oresult','screen-sresult','screen-leaderboard','screen-global-leaderboard','screen-account','screen-revision','screen-mp-menu','screen-mp-lobby','screen-mp-question','screen-mp-podium','screen-about','screen-referral','screen-admin','screen-legal','screen-battle-history','screen-rewards','screen-mp-board','screen-daily','screen-exam','screen-survival','screen-challenges','screen-tournament'];
+const ALL_SCREEN_IDS = ['screen-auth','screen-welcome-offer','screen-paywall','screen-start','screen-quiz','screen-grades','screen-alpha','screen-orgs','screen-spell','screen-grades-scope','screen-orgs-scope','screen-alpha-scope','screen-fiches','screen-weak','screen-result','screen-gresult','screen-aresult','screen-oresult','screen-sresult','screen-leaderboard','screen-global-leaderboard','screen-solo','screen-online','screen-avatar','screen-account','screen-revision','screen-mp-menu','screen-mp-lobby','screen-mp-question','screen-mp-podium','screen-about','screen-referral','screen-admin','screen-legal','screen-battle-history','screen-rewards','screen-mp-board','screen-daily','screen-exam','screen-survival','screen-challenges','screen-tournament'];
 const ADMIN_PSEUDOS = ['aymeric', 'aymeric1', 'naolank'];
 
 // Comparaison insensible à la casse : « Aymeric », « aymeric1 »… fonctionnent tous
@@ -4828,7 +4890,7 @@ function refreshPaidStatus(){
 }
 
 function updatePaidUI(){
-  const lockIds = ['lockIcon-quiz','lockIcon-quizpure','lockIcon-revision','lockIcon-progress','lockIcon-globalboard','lockIcon-spell','lockIcon-exam','lockIcon-fiches','lockIcon-aifiches','lockIcon-routier'];
+  const lockIds = ['lockIcon-quiz','lockIcon-quizpure','lockIcon-revision','lockIcon-progress','lockIcon-globalboard','lockIcon-spell','lockIcon-exam','lockIcon-fiches','lockIcon-aifiches','lockIcon-routier','lockIcon-quiz2','lockIcon-globalboard2'];
   lockIds.forEach(function(id){
     const el = document.getElementById(id);
     if(el) el.style.display = isPaidUser ? 'none' : 'inline';
@@ -6049,11 +6111,13 @@ function acceptChallenge(i){
 }
 
 function updateChallengeBadge(){
-  const b = document.getElementById('chBadge');
-  if(!b) return;
   const n = receivedChallenges.length;
-  b.classList.toggle('hidden', n === 0);
-  if(n > 0) b.textContent = n;
+  ['chBadge', 'chBadge2'].forEach(function(id){
+    const b = document.getElementById(id);
+    if(!b) return;
+    b.classList.toggle('hidden', n === 0);
+    if(n > 0) b.textContent = n;
+  });
 }
 
 // Vérifie discrètement s'il y a des défis en attente (badge sur l'accueil)
@@ -6804,6 +6868,8 @@ function flairPseudoHtml(pseudo, flair){
 }
 
 function updateProfileFlair(){
+  const av = document.getElementById('pcAvatar');
+  if(av){ try{ av.innerHTML = buildAvatarSvg(getAvatarConfig(), 32); }catch(e){} }
   const label = document.getElementById('profileNameLabel');
   if(!label || !currentPseudo) return;
   const flair = getMyFlair();
@@ -6855,6 +6921,203 @@ function renderBadges(){
       '</div>' +
     '</div>';
   }).join('');
+}
+
+/* ============================================================
+   MON PERSONNAGE — un avatar unique, personnalisable.
+   Les tenues se débloquent avec l'expérience ou le Premium.
+   ============================================================ */
+const AV_SKINS  = ['#F2C9A0','#E0AC7E','#C68B5E','#9C6440','#6E4429'];
+const AV_HAIRS  = ['#2B2118','#6B4423','#B8860B','#8B2500','#4A4A4A','#F0E0C0'];
+const AV_SHIRTS = [
+  { id:'bleu',   nom:'Tenue bleue',      c:'#24518F', need:{type:'free'} },
+  { id:'noir',   nom:'Tenue d\'intervention', c:'#1C2333', need:{type:'xp', xp:2200} },
+  { id:'sombre', nom:'Tenue sombre',     c:'#2E3A4E', need:{type:'xp', xp:800} },
+  { id:'kaki',   nom:'Tenue kaki',       c:'#4A5340', need:{type:'xp', xp:6000} },
+  { id:'blanc',  nom:'Chemise blanche',  c:'#E8ECF4', need:{type:'xp', xp:12000} },
+  { id:'or',     nom:'Tenue de cérémonie', c:'#6B5A2E', need:{type:'premium'} }
+];
+const AV_HEADS = [
+  { id:'aucun',    nom:'Tête nue',   need:{type:'free'} },
+  { id:'casquette',nom:'Casquette',  need:{type:'free'} },
+  { id:'kepi',     nom:'Képi',       need:{type:'xp', xp:1400} },
+  { id:'casque',   nom:'Casque d\'ordre public', need:{type:'xp', xp:9800} },
+  { id:'beret',    nom:'Béret',      need:{type:'premium'} }
+];
+const AV_GEARS = [
+  { id:'aucun',    nom:'Aucun',            need:{type:'free'} },
+  { id:'brassard', nom:'Brassard Police',  need:{type:'xp', xp:400} },
+  { id:'radio',    nom:'Radio à l\'épaule', need:{type:'xp', xp:3200} },
+  { id:'gilet',    nom:'Gilet pare-balles', need:{type:'premium'} },
+  { id:'lunettes', nom:'Lunettes de soleil', need:{type:'premium'} }
+];
+
+function avatarKey(){ return 'cee1_avatar2_' + (currentUser ? currentUser.uid : 'anon'); }
+
+function getAvatarConfig(){
+  const parDefaut = { skin:0, hair:0, shirt:'bleu', head:'casquette', gear:'aucun' };
+  try{
+    const brut = JSON.parse(localStorage.getItem(avatarKey()) || 'null');
+    return brut ? Object.assign(parDefaut, brut) : parDefaut;
+  }catch(e){ return parDefaut; }
+}
+
+function saveAvatarConfig(cfg){
+  try{ localStorage.setItem(avatarKey(), JSON.stringify(cfg)); }catch(e){}
+}
+
+// Une tenue est-elle accessible à cet élève ?
+function avatarUnlocked(item){
+  if(!item || !item.need) return true;
+  if(item.need.type === 'free') return true;
+  if(item.need.type === 'premium') return !!isPaidUser;
+  if(item.need.type === 'xp') return computeXP() >= item.need.xp;
+  return false;
+}
+
+function avatarLockLabel(item){
+  if(avatarUnlocked(item)) return '';
+  if(item.need.type === 'premium') return '⭐ Premium';
+  return '🔒 ' + item.need.xp.toLocaleString('fr-FR') + ' XP';
+}
+
+// Dessine le personnage en SVG (aucune image à charger)
+function buildAvatarSvg(cfg, taille){
+  cfg = cfg || getAvatarConfig();
+  const s = AV_SKINS[cfg.skin] || AV_SKINS[0];
+  const h = AV_HAIRS[cfg.hair] || AV_HAIRS[0];
+  const shirt = (AV_SHIRTS.find(function(x){ return x.id === cfg.shirt; }) || AV_SHIRTS[0]).c;
+  const t = taille || 96;
+  let svg = '<svg viewBox="0 0 100 100" width="' + t + '" height="' + t + '" role="img" aria-label="Mon personnage">';
+  svg += '<circle cx="50" cy="50" r="49" fill="rgba(176,138,46,0.10)"/>';
+  // buste
+  svg += '<path d="M22 100 C22 78 34 70 50 70 C66 70 78 78 78 100 Z" fill="' + shirt + '"/>';
+  svg += '<path d="M46 70 h8 v10 h-8 Z" fill="' + s + '"/>';
+  if(cfg.gear === 'gilet'){
+    svg += '<path d="M30 100 C30 80 38 74 50 74 C62 74 70 80 70 100 Z" fill="#232C3D" stroke="#3D4A63" stroke-width="1.5"/>';
+    svg += '<rect x="36" y="82" width="28" height="4" rx="2" fill="#3D4A63"/>';
+    svg += '<rect x="46" y="88" width="8" height="8" rx="1.5" fill="#4A5A78"/>';
+  }
+  if(cfg.gear === 'brassard') svg += '<rect x="24" y="84" width="12" height="8" rx="2" fill="#24518F" stroke="#E8ECF4" stroke-width="1"/>';
+  if(cfg.gear === 'radio'){
+    svg += '<rect x="64" y="76" width="7" height="12" rx="2" fill="#1C2333"/>';
+    svg += '<rect x="66.5" y="70" width="2" height="7" rx="1" fill="#1C2333"/>';
+  }
+  // tête
+  svg += '<ellipse cx="50" cy="46" rx="19" ry="21" fill="' + s + '"/>';
+  // cheveux (masqués par le casque)
+  if(cfg.head !== 'casque') svg += '<path d="M31 44 C31 28 69 28 69 44 C69 36 62 31 50 31 C38 31 31 36 31 44 Z" fill="' + h + '"/>';
+  // yeux et sourire
+  if(cfg.gear === 'lunettes'){
+    svg += '<rect x="35" y="41" width="30" height="9" rx="4" fill="#12161F"/>';
+    svg += '<rect x="49" y="44" width="2" height="3" fill="#2A3242"/>';
+  } else {
+    svg += '<circle cx="43" cy="46" r="2.4" fill="#1C2333"/><circle cx="57" cy="46" r="2.4" fill="#1C2333"/>';
+  }
+  svg += '<path d="M44 55 Q50 59 56 55" stroke="#1C2333" stroke-width="1.8" fill="none" stroke-linecap="round"/>';
+  // couvre-chef
+  if(cfg.head === 'casquette'){
+    svg += '<path d="M30 36 C30 24 70 24 70 36 Z" fill="#1C2333"/>';
+    svg += '<path d="M28 36 h44 v4 h-44 Z" fill="#12161F"/>';
+    svg += '<circle cx="50" cy="31" r="3" fill="#D4AF37"/>';
+  } else if(cfg.head === 'kepi'){
+    svg += '<path d="M29 34 h42 v6 h-42 Z" fill="#12161F"/>';
+    svg += '<path d="M31 22 h38 v12 h-38 Z" fill="#1C2333"/>';
+    svg += '<rect x="31" y="30" width="38" height="3" fill="#D4AF37"/>';
+    svg += '<circle cx="50" cy="26" r="3.2" fill="#D4AF37"/>';
+  } else if(cfg.head === 'casque'){
+    svg += '<path d="M28 46 C28 24 72 24 72 46 Z" fill="#2A3242"/>';
+    svg += '<path d="M28 44 h44 v5 h-44 Z" fill="#12161F"/>';
+    svg += '<path d="M33 44 C33 32 67 32 67 44 Z" fill="rgba(180,210,255,0.22)"/>';
+  } else if(cfg.head === 'beret'){
+    svg += '<path d="M30 34 C30 22 70 22 68 34 C60 30 40 30 30 34 Z" fill="#1B2A45"/>';
+    svg += '<circle cx="66" cy="27" r="3.4" fill="#D4AF37"/>';
+  }
+  return svg + '</svg>';
+}
+
+function showSoloHub(){
+  showScreen('screen-solo');
+  try{
+    refreshHomeDescriptions();
+    const n = srDueIds().length;
+    const t = document.getElementById('srTile2');
+    t.classList.toggle('hidden', n === 0);
+    if(n > 0) t.innerHTML = '<span class="row-inner"><span class="ic i-green">🔁</span><span class="tx">'
+      + '<span class="t">À revoir aujourd\'hui : ' + n + ' fiche' + (n > 1 ? 's' : '') + '</span>'
+      + '<span class="s">Ce que tu as raté revient au bon moment</span></span><span class="arrow">→</span></span>';
+    const df = document.getElementById('descFiches2');
+    const src = document.getElementById('descFiches');
+    if(df && src) df.textContent = src.textContent;
+  }catch(e){}
+}
+
+function showOnlineHub(){
+  showScreen('screen-online');
+  try{
+    refreshBoardDescription();
+    const n = receivedChallenges.length;
+    const b = document.getElementById('chBadge2');
+    if(b){ b.classList.toggle('hidden', n === 0); if(n > 0) b.textContent = n; }
+  }catch(e){}
+}
+
+function showAvatarScreen(){
+  showScreen('screen-avatar');
+  renderAvatarScreen();
+}
+
+function renderAvatarScreen(){
+  const cfg = getAvatarConfig();
+  document.getElementById('avatarPreview').innerHTML = buildAvatarSvg(cfg, 150);
+
+  function rangeCouleurs(titre, liste, champ){
+    let h = '<p class="answer-label" style="margin-top:16px;">' + titre + '</p><div style="display:flex; gap:9px; flex-wrap:wrap;">';
+    liste.forEach(function(col, i){
+      h += '<div onclick="setAvatarPart(\'' + champ + '\', ' + i + ')" style="width:34px; height:34px; border-radius:50%; background:' + col + '; cursor:pointer; border:3px solid ' + (cfg[champ] === i ? 'var(--brass)' : 'var(--line)') + ';"></div>';
+    });
+    return h + '</div>';
+  }
+
+  function rangeTenues(titre, liste, champ){
+    let h = '<p class="answer-label" style="margin-top:16px;">' + titre + '</p><div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">';
+    liste.forEach(function(item){
+      const dispo = avatarUnlocked(item);
+      const choisi = cfg[champ] === item.id;
+      h += '<button class="btn-secondary" style="padding:9px 8px; font-size:11.5px; text-align:left; line-height:1.4;'
+        + (choisi ? ' border-color:var(--brass); box-shadow:0 0 0 3px var(--focus);' : '')
+        + (dispo ? '' : ' opacity:0.55;') + '" onclick="setAvatarPart(\'' + champ + '\', \'' + item.id + '\')">'
+        + escapeHtml(item.nom)
+        + (dispo ? (choisi ? ' ✔' : '') : '<br><span style="font-size:10px; color:var(--brass-dark);">' + avatarLockLabel(item) + '</span>')
+        + '</button>';
+    });
+    return h + '</div>';
+  }
+
+  document.getElementById('avatarPickers').innerHTML =
+    rangeCouleurs('Teint', AV_SKINS, 'skin') +
+    rangeCouleurs('Cheveux', AV_HAIRS, 'hair') +
+    rangeTenues('Tenue', AV_SHIRTS, 'shirt') +
+    rangeTenues('Couvre-chef', AV_HEADS, 'head') +
+    rangeTenues('Équipement', AV_GEARS, 'gear');
+}
+
+function setAvatarPart(champ, valeur){
+  const cfg = getAvatarConfig();
+  if(champ === 'shirt' || champ === 'head' || champ === 'gear'){
+    const liste = champ === 'shirt' ? AV_SHIRTS : (champ === 'head' ? AV_HEADS : AV_GEARS);
+    const item = liste.find(function(x){ return x.id === valeur; });
+    if(!avatarUnlocked(item)){
+      if(item.need.type === 'premium'){ showPaywall(); return; }
+      alert('Cette tenue se débloque à ' + item.need.xp.toLocaleString('fr-FR') + ' XP.\n\nTu en as ' + computeXP().toLocaleString('fr-FR') + ' — continue tes séries !');
+      return;
+    }
+  }
+  cfg[champ] = valeur;
+  saveAvatarConfig(cfg);
+  renderAvatarScreen();
+  updateProfileFlair();
+  try{ syncToCloud(); }catch(e){}
 }
 
 /* ---- SECTIONS : choix perso + duel des sections au classement ---- */
