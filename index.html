@@ -1204,30 +1204,7 @@
     </div>
 
 
-    <div class="home-hero">
-      <p id="homeGreeting" class="hero-hello"></p>
-      <p class="hero-quote"><span class="hq-a">139 fiches</span>, <span class="hq-b">24 grades</span>, <span class="hq-c">l'alphabet OTAN</span> et <span class="hq-d">les sigles clés</span> — <span class="hq-e">tu progresses série après série.</span></p>
-      <button class="home-hero-cta" onclick="startQuizScoped(true)">🚀 Lancer ma série (25 questions) <span id="lockIcon-quiz" class="lock-badge">🔒</span></button>
-      <p class="home-hero-sub" onclick="startQuizScoped(false)">Uniquement les questions CEE1, sans mélange <span id="lockIcon-quizpure" class="lock-badge">🔒</span></p>
-    </div>
-
-    <p class="sec-label">Quotidien</p>
-    <div class="grid2">
-      <button id="fichesHomeTile" class="row-card" onclick="showFiches()"><span class="row-inner"><span class="ic i-blue">📖</span><span class="tx"><span class="t">Fiches de révision</span><span class="s" id="descFiches">Lire avant de s'auto-tester</span></span><span class="arrow">→</span></span></button>
-      <button id="dailyTile" class="row-card" onclick="showDailyChallenge()"><span class="row-inner"><span class="ic i-gold">🗓️</span><span class="tx"><span class="t">Défi du jour</span><span class="s">Même question pour toute la promo</span></span><span class="arrow">→</span></span></button>
-    </div>
-    <div id="goalTile" class="hidden" style="margin-top:12px; border:1px solid var(--line); border-radius:12px; padding:16px; background:var(--paper);">
-      <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px;">
-        <span id="goalLabel" style="font-size:13px; font-weight:600;">🏅 Objectif du jour : 0/20 bonnes réponses</span>
-        <span id="goalPct" style="font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft);">0%</span>
-      </div>
-      <div class="goal-track" style="height:5px; border-radius:99px; margin-top:12px; overflow:hidden;">
-        <div id="goalBar" style="height:100%; width:0%; background:linear-gradient(90deg, #B08A2E, #F0C868); border-radius:99px; transition:width 0.5s;"></div>
-      </div>
-    </div>
-    <button id="srTile" class="row-card hidden" style="margin-top:12px;" onclick="startSpacedReview()"></button>
-
-    <p class="sec-label">Choisis ton mode</p>
+    <p class="sec-label">Que veux-tu faire ?</p>
     <div class="grid2">
       <button class="mode-door" onclick="showSoloHub()">
         <span class="md-ic">🎯</span>
@@ -1889,13 +1866,33 @@
     <button class="back-menu" onclick="backToMenu()">← Retour</button>
     <p class="lead" style="font-size:22px;">🎯 Mode solo</p>
     <p style="font-size:13px; color:var(--ink-soft); margin-bottom:18px;">Révise à ton rythme, personne ne regarde.</p>
+    <div class="home-hero">
+      <p id="homeGreeting" class="hero-hello"></p>
+      <p class="hero-quote"><span class="hq-a">139 fiches</span>, <span class="hq-b">24 grades</span>, <span class="hq-c">l'alphabet OTAN</span> et <span class="hq-d">les sigles clés</span> — <span class="hq-e">tu progresses série après série.</span></p>
+      <button class="home-hero-cta" onclick="startQuizScoped(true)">🚀 Lancer ma série (25 questions) <span id="lockIcon-quiz" class="lock-badge">🔒</span></button>
+      <p class="home-hero-sub" onclick="startQuizScoped(false)">Uniquement les questions CEE1, sans mélange <span id="lockIcon-quizpure" class="lock-badge">🔒</span></p>
+    </div>
+
+    <p class="sec-label">Aujourd'hui</p>
     <div class="grid2">
-      <button class="row-card" onclick="startQuizScoped(true)"><span class="row-inner"><span class="ic i-gold">🚀</span><span class="tx"><span class="t">Ma série de 25 <span id="lockIcon-quiz2" class="lock-badge">🔒</span></span><span class="s">Le mélange complet, comme à l'examen</span></span><span class="arrow">→</span></span></button>
-      <button class="row-card" onclick="showFiches()"><span class="row-inner"><span class="ic i-blue">📖</span><span class="tx"><span class="t">Fiches de révision</span><span class="s" id="descFiches2">Lire avant de s'auto-tester</span></span><span class="arrow">→</span></span></button>
+      <button id="fichesHomeTile" class="row-card" onclick="showFiches()"><span class="row-inner"><span class="ic i-blue">📖</span><span class="tx"><span class="t">Fiches de révision</span><span class="s" id="descFiches">Lire avant de s'auto-tester</span></span><span class="arrow">→</span></span></button>
+      <button id="dailyTile" class="row-card" onclick="showDailyChallenge()"><span class="row-inner"><span class="ic i-gold">🗓️</span><span class="tx"><span class="t">Défi du jour</span><span class="s">Même question pour toute la promo</span></span><span class="arrow">→</span></span></button>
+    </div>
+    <div id="goalTile" class="hidden" style="margin-top:12px; border:1px solid var(--line); border-radius:12px; padding:16px; background:var(--paper);">
+      <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px;">
+        <span id="goalLabel" style="font-size:13px; font-weight:600;">🏅 Objectif du jour : 0/20 bonnes réponses</span>
+        <span id="goalPct" style="font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft);">0%</span>
+      </div>
+      <div class="goal-track" style="height:5px; border-radius:99px; margin-top:12px; overflow:hidden;">
+        <div id="goalBar" style="height:100%; width:0%; background:linear-gradient(90deg, #B08A2E, #F0C868); border-radius:99px; transition:width 0.5s;"></div>
+      </div>
+    </div>
+    <button id="srTile" class="row-card hidden" style="margin-top:12px;" onclick="startSpacedReview()"></button>
+
+    <div class="grid2">
       <button class="row-card" onclick="showExamIntro()"><span class="row-inner"><span class="ic i-red">📝</span><span class="tx"><span class="t">Examen blanc <span id="lockIcon-exam" class="lock-badge">🔒</span></span><span class="s" id="descExam">25 questions chrono — admis à 12</span></span><span class="arrow">→</span></span></button>
       <button class="row-card" onclick="showSurvivalIntro()"><span class="row-inner"><span class="ic i-orange">🔥</span><span class="tx"><span class="t">Mode Survie</span><span class="s" id="descSurvival">Enchaîne jusqu'à la première erreur</span></span><span class="arrow">→</span></span></button>
     </div>
-    <button id="srTile2" class="row-card hidden" style="margin-top:12px;" onclick="startSpacedReview()"></button>
     <details class="rules-box" style="margin-top:16px;">
       <summary>✨ Réviser par thème — grades, alphabet, sigles</summary>
       <div class="grid2" style="margin-top:10px;">
@@ -2829,6 +2826,7 @@ const GRADES_SCOPE_KEYS = {Tous:'grades', CDD:'grades_cdd', Commandement:'grades
 const ORGS_SCOPE_KEYS = {Tous:'orgs', 'Police Nationale':'orgs_pn', 'Préfecture de Paris':'orgs_pp', 'Autres services':'orgs_autres'};
 
 function saveSession(moduleKey, correct, total){
+  invalidateAvatarXp();
   try{
     const raw = localStorage.getItem(HISTORY_KEY);
     const history = raw ? JSON.parse(raw) : [];
@@ -4890,7 +4888,7 @@ function refreshPaidStatus(){
 }
 
 function updatePaidUI(){
-  const lockIds = ['lockIcon-quiz','lockIcon-quizpure','lockIcon-revision','lockIcon-progress','lockIcon-globalboard','lockIcon-spell','lockIcon-exam','lockIcon-fiches','lockIcon-aifiches','lockIcon-routier','lockIcon-quiz2','lockIcon-globalboard2'];
+  const lockIds = ['lockIcon-quiz','lockIcon-quizpure','lockIcon-revision','lockIcon-progress','lockIcon-globalboard','lockIcon-spell','lockIcon-exam','lockIcon-fiches','lockIcon-aifiches','lockIcon-routier','lockIcon-globalboard2'];
   lockIds.forEach(function(id){
     const el = document.getElementById(id);
     if(el) el.style.display = isPaidUser ? 'none' : 'inline';
@@ -6686,6 +6684,7 @@ function computeXP(){
 
 function addBonusXP(amount){
   if(!currentUser) return;
+  invalidateAvatarXp();
   try{
     const cur = parseInt(localStorage.getItem('cee1_xp_bonus_' + currentUser.uid) || '0', 10) || 0;
     localStorage.setItem('cee1_xp_bonus_' + currentUser.uid, String(cur + amount));
@@ -6937,12 +6936,36 @@ const AV_SHIRTS = [
   { id:'blanc',  nom:'Chemise blanche',  c:'#E8ECF4', need:{type:'xp', xp:12000} },
   { id:'or',     nom:'Tenue de cérémonie', c:'#6B5A2E', need:{type:'premium'} }
 ];
+const AV_STYLES = [
+  { id:'court',   nom:'Cheveux courts' },
+  { id:'rase',    nom:'Rasé' },
+  { id:'boucle',  nom:'Cheveux bouclés' },
+  { id:'afro',    nom:'Afro' },
+  { id:'tresses', nom:'Tresses' },
+  { id:'chignon', nom:'Chignon' },
+  { id:'long',    nom:'Cheveux longs' },
+  { id:'crete',   nom:'Crête' },
+  { id:'chauve',  nom:'Chauve' }
+];
+const AV_EYES = [
+  { id:'ronds',   nom:'Ronds' },
+  { id:'amandes', nom:'En amande' },
+  { id:'rieurs',  nom:'Rieurs' },
+  { id:'determines', nom:'Déterminés' },
+  { id:'endormis', nom:'Endormis' }
+];
+const AV_EYECOLORS = ['#3B2A1A','#4A6B8A','#3E6B4A','#6B5B3E','#2B2B2B'];
+
 const AV_HEADS = [
-  { id:'aucun',    nom:'Tête nue',   need:{type:'free'} },
-  { id:'casquette',nom:'Casquette',  need:{type:'free'} },
-  { id:'kepi',     nom:'Képi',       need:{type:'xp', xp:1400} },
-  { id:'casque',   nom:'Casque d\'ordre public', need:{type:'xp', xp:9800} },
-  { id:'beret',    nom:'Béret',      need:{type:'premium'} }
+  { id:'aucun',     nom:'Rien',       need:{type:'free'} },
+  { id:'casquette', nom:'Casquette',  need:{type:'free'} },
+  { id:'durag',     nom:'Durag',      need:{type:'free'} },
+  { id:'bandana',   nom:'Bandana',    need:{type:'free'} },
+  { id:'bonnet',    nom:'Bonnet',     need:{type:'xp', xp:400} },
+  { id:'kepi',      nom:'Képi',       need:{type:'xp', xp:1400} },
+  { id:'casquettePN', nom:'Casquette Police', need:{type:'xp', xp:2200} },
+  { id:'casque',    nom:'Casque d\'ordre public', need:{type:'xp', xp:9800} },
+  { id:'beret',     nom:'Béret',      need:{type:'premium'} }
 ];
 const AV_GEARS = [
   { id:'aucun',    nom:'Aucun',            need:{type:'free'} },
@@ -6955,7 +6978,7 @@ const AV_GEARS = [
 function avatarKey(){ return 'cee1_avatar2_' + (currentUser ? currentUser.uid : 'anon'); }
 
 function getAvatarConfig(){
-  const parDefaut = { skin:0, hair:0, shirt:'bleu', head:'casquette', gear:'aucun' };
+  const parDefaut = { skin:0, hair:0, style:'court', eyes:'ronds', eyecolor:0, shirt:'bleu', head:'aucun', gear:'aucun' };
   try{
     const brut = JSON.parse(localStorage.getItem(avatarKey()) || 'null');
     return brut ? Object.assign(parDefaut, brut) : parDefaut;
@@ -6967,6 +6990,12 @@ function saveAvatarConfig(cfg){
 }
 
 // Une tenue est-elle accessible à cet élève ?
+// L'XP est mis en cache pendant l'affichage de l'écran : sans ça, on relisait
+// tout l'historique une fois par tenue (16 fois par rendu).
+// Pas de mise en cache : l'XP doit toujours refléter la réalité, sinon une tenue
+// tout juste débloquée resterait grisée. Le coût est négligeable.
+function invalidateAvatarXp(){ /* conservé pour compatibilité, plus de cache */ }
+
 function avatarUnlocked(item){
   if(!item || !item.need) return true;
   if(item.need.type === 'free') return true;
@@ -7038,17 +7067,12 @@ function buildAvatarSvg(cfg, taille){
 
 function showSoloHub(){
   showScreen('screen-solo');
+  // Le mode solo contient désormais la série, la carte du jour et la révision espacée
   try{
     refreshHomeDescriptions();
-    const n = srDueIds().length;
-    const t = document.getElementById('srTile2');
-    t.classList.toggle('hidden', n === 0);
-    if(n > 0) t.innerHTML = '<span class="row-inner"><span class="ic i-green">🔁</span><span class="tx">'
-      + '<span class="t">À revoir aujourd\'hui : ' + n + ' fiche' + (n > 1 ? 's' : '') + '</span>'
-      + '<span class="s">Ce que tu as raté revient au bon moment</span></span><span class="arrow">→</span></span>';
-    const df = document.getElementById('descFiches2');
-    const src = document.getElementById('descFiches');
-    if(df && src) df.textContent = src.textContent;
+    refreshDailyTile();
+    refreshSrTile();
+    refreshGoalTile();
   }catch(e){}
 }
 
@@ -7103,6 +7127,7 @@ function renderAvatarScreen(){
 }
 
 function setAvatarPart(champ, valeur){
+  invalidateAvatarXp();
   const cfg = getAvatarConfig();
   if(champ === 'shirt' || champ === 'head' || champ === 'gear'){
     const liste = champ === 'shirt' ? AV_SHIRTS : (champ === 'head' ? AV_HEADS : AV_GEARS);
