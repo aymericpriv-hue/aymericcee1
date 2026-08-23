@@ -7018,6 +7018,27 @@ function loadGlobalLeaderboard(mode, period){
     .catch(function(){ return []; });
 }
 
+// Les scores et le suivi d'erreurs sont stockés globalement dans le navigateur.
+// Sans ce nettoyage, un nouvel inscrit héritait des séries du compte précédent
+// utilisé sur le même appareil (d'où « 2 séries, 62 % » dès l'inscription).
+const OWNER_KEY = 'cee1_data_owner';
+
+function purgeDataIfDifferentUser(){
+  if(!currentUser) return;
+  let proprietaire = null;
+  try{ proprietaire = localStorage.getItem(OWNER_KEY); }catch(e){ return; }
+  if(proprietaire === currentUser.uid) return;   // mêmes données, rien à faire
+  try{
+    if(proprietaire !== null){
+      // Un autre compte a utilisé cet appareil : on repart d'une ardoise vierge
+      localStorage.removeItem(HISTORY_KEY);
+      localStorage.removeItem(MISSED_KEY);
+      localStorage.removeItem(IMPORTED_HASHES_KEY);
+    }
+    localStorage.setItem(OWNER_KEY, currentUser.uid);
+  }catch(e){}
+}
+
 function loadFromCloud(){
   if(!firebaseReady || !currentUser) return Promise.resolve();
   return fbDb.collection('progress').doc(currentUser.uid).get().then(function(doc){
@@ -7061,6 +7082,7 @@ if(firebaseReady){
       currentUser = user;
       currentPseudo = user.displayName || (user.email ? user.email.split('@')[0] : 'Utilisateur');
       try{ localStorage.setItem(HAS_LOGGED_KEY, '1'); }catch(e){}
+      purgeDataIfDifferentUser();
       loadFromCloud().then(function(){
         unlockApp(currentPseudo);
       });
