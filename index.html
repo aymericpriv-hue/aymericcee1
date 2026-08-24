@@ -648,7 +648,6 @@
     font-weight:800;
   }
   #flairColorRow{max-width:100%;}
-  #flairAvatarRow{max-height:none;}
   .flair-swatch{
     width:30px; height:30px; border-radius:50%; cursor:pointer;
     border:2px solid var(--line); display:inline-block;
@@ -911,6 +910,102 @@
   @media (prefers-reduced-motion: reduce){
     .pay-spinner{animation:none; border-top-color:var(--brass);}
   }
+
+  .av-thumb{display:inline-block; vertical-align:middle; overflow:hidden; border-radius:50%; background:rgba(176,138,46,0.10);}
+  .av-thumb svg{display:block; margin-top:-2px;}
+
+  /* ---- EN-TÊTE DU COMPTE ---- */
+  .acc-head{
+    display:flex; align-items:center; gap:16px; padding:16px;
+    border:1px solid var(--line); border-radius:16px; margin-bottom:14px;
+    background:radial-gradient(circle at 15% 30%, rgba(176,138,46,0.12), transparent 65%), var(--paper);
+  }
+  .acc-avatar{flex:none;}
+  .acc-avatar svg{display:block; filter:drop-shadow(0 6px 12px rgba(0,0,0,0.25));}
+  .acc-id{flex:1; min-width:0;}
+  .acc-pseudo{font-family:'Fraunces', serif; font-size:19px; font-weight:700; color:var(--ink); margin:0;}
+  .acc-rank{font-size:12px; color:var(--ink-soft); margin:3px 0 0; line-height:1.4;}
+  .acc-track{height:6px; border-radius:99px; background:var(--line); overflow:hidden; margin:10px 0 6px;}
+  .acc-bar{height:100%; border-radius:99px; background:linear-gradient(90deg, #B08A2E, #F0C868); transition:width .7s cubic-bezier(.2,.8,.3,1);}
+  .acc-next{font-size:11px; color:var(--ink-soft); margin:0;}
+
+  /* ---- CHOIX DES THÈMES ---- */
+  .theme-pick{
+    display:flex; align-items:center; gap:12px; width:100%; margin-bottom:9px;
+    padding:14px 14px; cursor:pointer; text-align:left;
+    border:1.5px solid var(--line); border-radius:14px; background:var(--paper);
+    font-family:'IBM Plex Sans', sans-serif;
+    transition:border-color .12s ease, background .12s ease, transform .12s ease;
+  }
+  .theme-pick:hover{border-color:var(--ink-soft);}
+  .theme-pick:active{transform:scale(0.99);}
+  .theme-pick.on{border-color:var(--brass); background:rgba(176,138,46,0.08);}
+  .tp-ic{font-size:24px; flex:none;}
+  .tp-tx{flex:1; min-width:0;}
+  .tp-t{display:block; font-size:14px; font-weight:700; color:var(--ink);}
+  .tp-s{display:block; font-size:11.5px; color:var(--ink-soft); margin-top:2px;}
+  .tp-check{
+    width:26px; height:26px; flex:none; border-radius:50%; display:grid; place-items:center;
+    border:1.5px solid var(--line); color:var(--brass-dark); font-weight:800; font-size:14px;
+  }
+  .theme-pick.on .tp-check{border-color:var(--brass); background:var(--brass); color:#1A1305;}
+
+  /* ---- ENCART D'AIDE ---- */
+  .how-box{
+    position:relative; border:1px solid var(--line); border-radius:14px;
+    background:var(--paper); padding:14px 40px 14px 16px; margin-bottom:16px;
+  }
+  .how-title{font-size:13px; font-weight:700; color:var(--ink); margin:0 0 8px;}
+  .how-body{font-size:12.5px; color:var(--ink-soft); line-height:1.65;}
+  .how-body ol, .how-body ul{margin:0; padding-left:18px;}
+  .how-body li{margin-bottom:4px;}
+  .how-close{
+    position:absolute; top:8px; right:10px; width:26px; height:26px;
+    border:none; background:transparent; color:var(--ink-soft);
+    font-size:19px; line-height:1; cursor:pointer; border-radius:8px;
+  }
+  .how-close:hover{color:var(--ink); background:var(--line);}
+
+  /* ---- RETOUR PLUS VISIBLE ---- */
+  .back-menu{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--paper); border:1px solid var(--line); border-radius:99px;
+    padding:7px 16px 7px 12px; margin-bottom:16px;
+    font-family:'IBM Plex Sans', sans-serif; font-size:13px; font-weight:600;
+    color:var(--ink); cursor:pointer;
+    transition:border-color .12s ease, background .12s ease, transform .12s ease;
+  }
+  .back-menu:hover{border-color:var(--brass); background:var(--line); transform:translateX(-2px);}
+  .back-menu:active{transform:translateX(0);}
+
+  /* ---- SÉLECTEUR DE PERSONNAGE ---- */
+  .av-stage{
+    text-align:center; padding:18px 12px 14px; margin-bottom:16px;
+    border:1px solid var(--line); border-radius:16px;
+    background:radial-gradient(circle at 50% 30%, rgba(176,138,46,0.12), transparent 70%), var(--paper);
+  }
+  .av-preview svg{display:block; margin:0 auto; filter:drop-shadow(0 8px 16px rgba(0,0,0,0.28));}
+  .av-legend{
+    font-size:12px; color:var(--ink-soft); margin:10px 0 0; line-height:1.5;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .av-row{
+    display:flex; align-items:center; gap:10px; padding:9px 10px; margin-bottom:7px;
+    border:1px solid var(--line); border-radius:12px; background:var(--paper);
+  }
+  .av-row-ic{font-size:17px; width:24px; text-align:center; flex:none;}
+  .av-row-mid{flex:1; min-width:0; text-align:center;}
+  .av-row-t{display:block; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); font-family:'IBM Plex Mono', monospace;}
+  .av-row-v{display:block; font-size:13.5px; font-weight:700; color:var(--ink); margin-top:2px;}
+  .av-row-v.av-locked{color:var(--brass-dark);}
+  .av-arrow{
+    width:34px; height:34px; flex:none; border-radius:50%;
+    border:1px solid var(--line); background:transparent; color:var(--ink);
+    font-size:20px; line-height:1; cursor:pointer;
+    transition:background .12s ease, border-color .12s ease, transform .12s ease;
+  }
+  .av-arrow:hover{background:var(--line); border-color:var(--ink-soft);}
+  .av-arrow:active{transform:scale(0.92);}
 
   /* ---- LES DEUX GRANDES PORTES ---- */
   .mode-door{
@@ -1179,30 +1274,19 @@
       <span style="cursor:pointer; color:var(--ink-soft); font-weight:700;" onclick="dismissAnnouncement()">✕</span>
     </div>
     <p id="streakBanner" class="hidden streak-banner" style="text-align:center; font-size:13.5px; font-weight:600; border-radius:12px; padding:11px; margin-bottom:16px;"></p>
-    <div id="playerCard" class="player-card hidden">
-      <button id="plToggle" class="pl-toggle" onclick="togglePlayerCard()" title="Réduire">×</button>
-      <div id="plMini" class="pl-mini hidden" onclick="togglePlayerCard()" title="Afficher mon grade">
-        <span id="plMiniIcon">🎓</span><span id="plMiniXp" class="pl-mini-xp">0 XP</span>
-      </div>
-      <div id="plBody">
-      <div class="pl-top">
-        <span id="plIcon" class="pl-icon">🎓</span>
-        <div class="pl-id">
-          <span id="plRank" class="pl-rank">Élève Policier Adjoint</span>
-          <span id="plNext" class="pl-next">Prochain grade…</span>
-        </div>
-        <span id="plXp" class="pl-xp">0 XP</span>
-      </div>
-      <div class="pl-track"><div id="plBar" class="pl-bar" style="width:0%"></div></div>
-      <div class="pl-stats">
-        <span class="pl-stat"><b id="plStreak">0</b><small>jours d'affilée</small></span>
-        <span class="pl-stat"><b id="plSeries">0</b><small>séries jouées</small></span>
-        <span class="pl-stat"><b id="plAvg">—</b><small>moyenne</small></span>
-        <span class="pl-stat"><b id="plBadges">0</b><small>récompenses</small></span>
-      </div>
-      </div>
+
+    <div id="howBox" class="how-box">
+      <button class="how-close" onclick="dismissHowBox()" aria-label="Masquer">×</button>
+      <p class="how-title">💡 Comment ça marche</p>
+      <div class="how-body"><ul class="rules">
+        <li><span class="n">1</span><span>Un mélange : surtout des questions CEE1, mais aussi quelques grades 🎖️, lettres OTAN 🔤 et sigles d'organisations 🏛️ glissés dans la série pour varier.</span></li>
+        <li><span class="n">2</span><span>Une fiche par écran. Tu dois <b>rédiger ta réponse</b>, puis tu affiches <b>la réponse de référence</b> pour te corriger toi-même, tout de suite.</span></li>
+        <li><span class="n">3</span><span>Indique honnêtement si tu avais <b>bon</b> ou <b>faux</b> — c'est ce qui construit ton score, et ce qui fait revenir plus souvent ce que tu rates.</span></li>
+        <li><span class="n">4</span><span>Seuil de réussite : <b>12 bonnes réponses sur 25</b>. En dessous, c'est ajourné — on retente, et cette fois tu vises mieux.</span></li>
+      </ul></div>
     </div>
 
+    <p id="homeGreeting" class="hero-hello"></p>
 
     <p class="sec-label">Que veux-tu faire ?</p>
     <div class="grid2">
@@ -1229,15 +1313,6 @@
       </button>
     </div>
 
-    <details class="rules-box" style="margin-top:12px;">
-      <summary>Comment ça marche — les 4 règles</summary>
-      <ul class="rules">
-        <li><span class="n">1</span><span>Un mélange : surtout des questions CEE1, mais aussi quelques grades 🎖️, lettres OTAN 🔤 et sigles d'organisations 🏛️ glissés dans la série pour varier.</span></li>
-        <li><span class="n">2</span><span>Une fiche par écran. Tu dois <b>rédiger ta réponse</b>, puis tu affiches <b>la réponse de référence</b> pour te corriger toi-même, tout de suite.</span></li>
-        <li><span class="n">3</span><span>Indique honnêtement si tu avais <b>bon</b> ou <b>faux</b> — c'est ce qui construit ton score, et ce qui fait revenir plus souvent ce que tu rates.</span></li>
-        <li><span class="n">4</span><span>Seuil de réussite : <b>12 bonnes réponses sur 25</b>. En dessous, c'est ajourné — on retente, et cette fois tu vises mieux.</span></li>
-      </ul>
-    </details>
 
     <div class="home-footer">
       <span class="fl">Quiz réalisé par <b style="color:var(--ink);">Aymeric</b> — 158<sup>e</sup> promotion</span>
@@ -1250,7 +1325,7 @@
   </div>
 
   <div id="screen-mp-menu" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="lead" id="mpMenuTitle" style="font-size:20px;">⚔️ Duel 1v1</p>
     <p id="mpMenuDesc" style="font-size:13.5px; color:var(--ink-soft); margin-bottom:12px;"></p>
     <p id="mpConnStatus" style="font-size:12.5px; color:var(--ink-soft); margin-bottom:12px; min-height:16px;"></p>
@@ -1320,7 +1395,7 @@
   </div>
 
   <div id="screen-tournament" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="qnum" id="tournName"></p>
     <p class="lead" style="font-size:21px;">🏆 Tournoi de promo</p>
     <p id="tournStatus" style="font-size:13.5px; font-weight:600; margin-bottom:16px;"></p>
@@ -1329,7 +1404,7 @@
   </div>
 
   <div id="screen-challenges" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <div id="chMain">
       <p class="lead" style="font-size:21px;">🎯 Défis entre camarades</p>
       <p style="font-size:13px; color:var(--ink-soft); margin-bottom:16px;">Défie n'importe qui, <b>même hors ligne</b> : tu joues 5 questions, il relève le défi à sa prochaine connexion sur les <b>mêmes questions</b>, et le site tranche.</p>
@@ -1361,7 +1436,7 @@
 
   <div id="screen-survival" class="card hidden">
     <div id="svIntro">
-      <button class="back-menu" onclick="backToMenu()">← Menu</button>
+      <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
       <p class="lead" style="font-size:21px;">🔥 Mode Survie</p>
       <p style="font-size:14px; color:var(--ink-soft); line-height:1.7; margin-bottom:8px;">Des questions en chaîne, <b>15 secondes</b> chacune. Une seule erreur — ou un temps écoulé — et c'est terminé. Jusqu'où peux-tu tenir ?</p>
       <p id="svBestLine" style="font-size:13.5px; font-weight:700; color:var(--brass-dark); margin-bottom:18px;"></p>
@@ -1383,14 +1458,14 @@
       <div class="actions">
         <button class="btn-secondary" style="flex:1" onclick="shareSurvival()">📤 Partager</button>
         <button class="btn-secondary" style="flex:1" onclick="startSurvival()">Rejouer</button>
-        <button class="btn-secondary" style="flex:1" onclick="backToMenu()">← Menu</button>
+        <button class="btn-secondary" style="flex:1" onclick="backToMenu()">← Retour à l'accueil</button>
       </div>
     </div>
   </div>
 
   <div id="screen-exam" class="card hidden">
     <div id="examIntro">
-      <button class="back-menu" onclick="backToMenu()">← Menu</button>
+      <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
       <p class="lead" style="font-size:21px;">📝 Examen blanc</p>
       <p style="font-size:14px; color:var(--ink-soft); line-height:1.7; margin-bottom:20px;">Conditions réelles : <b>25 questions</b>, <b>30 secondes</b> chacune, <b>aucune correction avant la fin</b>. Pas de réponse dans le temps = compté faux. À la fin : ta note sur 25 — <b>12 bonnes réponses pour être admis</b> — et la correction de chaque erreur.</p>
       <button class="btn-primary" onclick="startExam()">Démarrer l'examen</button>
@@ -1413,13 +1488,13 @@
       <div class="actions">
         <button class="btn-secondary" style="flex:1" onclick="shareExamResult()">📤 Partager</button>
         <button class="btn-secondary" style="flex:1" onclick="startExam()">Refaire</button>
-        <button class="btn-secondary" style="flex:1" onclick="backToMenu()">← Menu</button>
+        <button class="btn-secondary" style="flex:1" onclick="backToMenu()">← Retour à l'accueil</button>
       </div>
     </div>
   </div>
 
   <div id="screen-daily" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="qnum" id="dailyDate"></p>
     <p class="lead" style="font-size:21px;">🗓️ Défi du jour</p>
     <p style="font-size:13px; color:var(--ink-soft); margin-bottom:18px;">Une seule question, la même pour toute la promo, une seule tentative. Bonne réponse : <b style="color:var(--brass-dark);">+50 XP</b> · participation : +10 XP.</p>
@@ -1478,7 +1553,7 @@
   </div>
 
   <div id="screen-about" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="lead" style="font-size:20px;">À propos</p>
     <p style="font-size:14px; line-height:1.7; color:var(--ink);">
       Ce site a été créé par Aymeric, élève de la 158ème promotion de l'ENP Périgueux,
@@ -1494,7 +1569,7 @@
   </div>
 
   <div id="screen-referral" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="lead" style="font-size:20px;">🤝 Parrainage</p>
     <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:20px;">Partage ton lien avec tes camarades de promo. Chaque inscription via ton lien compte ci-dessous.</p>
     <div style="display:flex; gap:8px; margin-bottom:14px;">
@@ -1507,7 +1582,7 @@
   </div>
 
   <div id="screen-admin" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="lead" style="font-size:20px;">🛠️ Tableau de bord</p>
     <p style="font-size:12px; color:var(--ink-soft); margin-bottom:20px;">Vue rapide — non sécurisée en soi, la vraie protection reste dans les règles Firestore. Pour les actions (débloquer un compte, etc.), passe toujours par la console Firebase.</p>
     <div id="adminUidBox" style="border:1px solid var(--brass); border-radius:12px; padding:14px; margin-bottom:14px; background:rgba(176,138,46,0.06);"></div>
@@ -1546,7 +1621,7 @@
   </div>
 
   <div id="screen-battle-history" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <div style="display:flex; gap:6px; margin-bottom:18px; flex-wrap:wrap;">
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px;" onclick="switchProgressTab('scores')">🏆 Scores</button>
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px;" onclick="switchProgressTab('weak')">🎯 Points faibles</button>
@@ -1560,7 +1635,7 @@
   </div>
 
   <div id="screen-rewards" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <div style="display:flex; gap:6px; margin-bottom:18px; flex-wrap:wrap;">
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px;" onclick="switchProgressTab('scores')">🏆 Scores</button>
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px;" onclick="switchProgressTab('weak')">🎯 Points faibles</button>
@@ -1573,7 +1648,7 @@
   </div>
 
   <div id="screen-grades-scope" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="lead" style="font-size:20px;">🎖️ Choisis ton périmètre</p>
     <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:20px;">Tu peux réviser tous les grades, ou te concentrer sur un seul corps.</p>
     <div class="module-grid">
@@ -1585,7 +1660,7 @@
   </div>
 
   <div id="screen-orgs-scope" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="lead" style="font-size:20px;">🏛️ Choisis ton périmètre</p>
     <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:20px;">Tous les sigles, ou seulement ceux d'une famille d'organisations.</p>
     <div class="module-grid">
@@ -1597,7 +1672,7 @@
   </div>
 
   <div id="screen-alpha-scope" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="lead" style="font-size:20px;">🔤 Choisis ton exercice</p>
     <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:20px;">Réviser lettre par lettre, ou t'entraîner à épeler des mots entiers au micro.</p>
     <div class="module-grid">
@@ -1607,7 +1682,7 @@
   </div>
 
   <div id="screen-spell" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <div class="progress-track"><div class="progress-fill" id="sProgressFill" style="width:4%"></div></div>
     <div class="progress-label">
       <span id="sProgressText">Mot 1 / 10</span>
@@ -1653,7 +1728,7 @@
   </div>
 
   <div id="screen-quiz" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:4%"></div></div>
     <div class="progress-label">
       <span id="progressText">Question 1 / 25</span>
@@ -1689,7 +1764,7 @@
   </div>
 
   <div id="screen-grades" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <div class="progress-track"><div class="progress-fill" id="gProgressFill" style="width:4%"></div></div>
     <div class="progress-label">
       <span id="gProgressText">Grade 1 / 24</span>
@@ -1734,7 +1809,7 @@
   </div>
 
   <div id="screen-alpha" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <div class="progress-track"><div class="progress-fill" id="aProgressFill" style="width:4%"></div></div>
     <div class="progress-label">
       <span id="aProgressText">Lettre 1 / 26</span>
@@ -1779,7 +1854,7 @@
   </div>
 
   <div id="screen-orgs" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <div class="progress-track"><div class="progress-fill" id="oProgressFill" style="width:4%"></div></div>
     <div class="progress-label">
       <span id="oProgressText">Question 1 / 25</span>
@@ -1822,7 +1897,7 @@
   </div>
 
   <div id="screen-leaderboard" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <div style="display:flex; gap:6px; margin-bottom:18px; flex-wrap:wrap;">
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px; background:var(--ink); color:var(--paper);" onclick="switchProgressTab('scores')">🏆 Scores</button>
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px;" onclick="switchProgressTab('weak')">🎯 Points faibles</button>
@@ -1862,15 +1937,23 @@
     <button class="btn-secondary" style="width:100%; margin-top:18px;" onclick="showGlobalLeaderboard()">🔄 Rafraîchir</button>
   </div>
 
+  <div id="screen-themes" class="card hidden">
+    <button class="back-menu" onclick="showSoloHub()">← Retour</button>
+    <p class="lead" style="font-size:22px;">🎯 Ma série</p>
+    <p style="font-size:13px; color:var(--ink-soft); margin-bottom:16px;">Choisis un ou plusieurs thèmes. Tu auras 25 questions tirées dedans.</p>
+    <div id="themeList"></div>
+    <p id="themeCount" style="text-align:center; font-size:12.5px; color:var(--ink-soft); margin:14px 0 0;"></p>
+    <button class="btn-primary" style="margin-top:10px;" onclick="startThemedQuiz()">🚀 Lancer ma série</button>
+    <button class="btn-secondary" style="width:100%; margin-top:10px;" onclick="selectAllThemes()">Tout sélectionner</button>
+  </div>
+
   <div id="screen-solo" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="lead" style="font-size:22px;">🎯 Mode solo</p>
     <p style="font-size:13px; color:var(--ink-soft); margin-bottom:18px;">Révise à ton rythme, personne ne regarde.</p>
     <div class="home-hero">
-      <p id="homeGreeting" class="hero-hello"></p>
       <p class="hero-quote"><span class="hq-a">139 fiches</span>, <span class="hq-b">24 grades</span>, <span class="hq-c">l'alphabet OTAN</span> et <span class="hq-d">les sigles clés</span> — <span class="hq-e">tu progresses série après série.</span></p>
-      <button class="home-hero-cta" onclick="startQuizScoped(true)">🚀 Lancer ma série (25 questions) <span id="lockIcon-quiz" class="lock-badge">🔒</span></button>
-      <p class="home-hero-sub" onclick="startQuizScoped(false)">Uniquement les questions CEE1, sans mélange <span id="lockIcon-quizpure" class="lock-badge">🔒</span></p>
+      <button class="home-hero-cta" onclick="showThemePicker()">🚀 Lancer ma série (25 questions) <span id="lockIcon-quiz" class="lock-badge">🔒</span></button>
     </div>
 
     <p class="sec-label">Aujourd'hui</p>
@@ -1905,37 +1988,77 @@
   </div>
 
   <div id="screen-online" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="lead" style="font-size:22px;">🌐 Mode en ligne</p>
     <p style="font-size:13px; color:var(--ink-soft); margin-bottom:18px;">Affronte les autres élèves de ta promo.</p>
+
     <div class="grid2">
-      <button class="row-card" onclick="showMpMenu('duel')"><span class="row-inner"><span class="ic i-gold">⚔️</span><span class="tx"><span class="t">Duel 1v1</span><span class="s">Code à 4 chiffres, en direct</span></span><span class="arrow">→</span></span></button>
-      <button class="row-card" onclick="showMpMenu('battle')"><span class="row-inner"><span class="ic i-purple">🎖️</span><span class="tx"><span class="t">Bataille de Section</span><span class="s">Toute la classe, au vidéoprojecteur</span></span><span class="arrow">→</span></span></button>
-      <button class="row-card" onclick="showChallengesScreen()"><span class="row-inner"><span class="ic i-green">🎯</span><span class="tx"><span class="t">Défis entre camarades <span id="chBadge2" class="hidden" style="background:var(--red); color:#fff; font-size:9.5px; font-weight:700; padding:0 6px; border-radius:9px;"></span></span><span class="s">Joue quand tu veux, même s'il est hors ligne</span></span><span class="arrow">→</span></span></button>
-      <button class="row-card" onclick="showGlobalLeaderboard()"><span class="row-inner"><span class="ic i-blue">🌍</span><span class="tx"><span class="t">Classement de la promo <span id="lockIcon-globalboard" class="lock-badge">🔒</span></span><span class="s" id="descBoard">Ton rang cette semaine</span></span><span class="arrow">→</span></span></button>
+      <button class="mode-door" onclick="showMpMenu('duel')">
+        <span class="md-ic">⚔️</span>
+        <span class="md-t">Duel 1v1</span>
+        <span class="md-s">En direct, avec un code</span>
+      </button>
+      <button class="mode-door" onclick="showChallengesScreen()">
+        <span class="md-ic">🎯</span>
+        <span class="md-t">Défis</span>
+        <span class="md-s">Joue quand tu veux</span>
+        <span id="chBadge2" class="hidden md-badge"></span>
+      </button>
     </div>
-    <button class="row-card" style="margin-top:12px;" onclick="showReferralScreen()"><span class="row-inner"><span class="ic i-gold">🤝</span><span class="tx"><span class="t">Invite tes camarades</span><span class="s">À 10 parrainages, ton pseudo passe en <span class="pname-gold">doré</span> 👑</span></span><span class="arrow">→</span></span></button>
+
+    <button class="row-card" style="margin-top:12px;" onclick="showMpMenu('battle')"><span class="row-inner"><span class="ic i-purple">🎖️</span><span class="tx"><span class="t">Bataille de Section</span><span class="s">Toute la classe, au vidéoprojecteur</span></span><span class="arrow">→</span></span></button>
+    <button class="row-card" style="margin-top:10px;" onclick="showGlobalLeaderboard()"><span class="row-inner"><span class="ic i-blue">🌍</span><span class="tx"><span class="t">Classement de la promo <span id="lockIcon-globalboard" class="lock-badge">🔒</span></span><span class="s" id="descBoard">Ton rang cette semaine</span></span><span class="arrow">→</span></span></button>
+    <button class="row-card" style="margin-top:10px;" onclick="showReferralScreen()"><span class="row-inner"><span class="ic i-gold">🤝</span><span class="tx"><span class="t">Inviter des camarades</span><span class="s">Plus on est nombreux, mieux c'est</span></span><span class="arrow">→</span></span></button>
   </div>
 
   <div id="screen-avatar" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="lead" style="font-size:22px;">🧑‍✈️ Mon personnage</p>
-    <p style="font-size:13px; color:var(--ink-soft); margin-bottom:18px;">Il te représente partout : profil, classements et batailles. Certaines tenues se débloquent en gagnant de l'expérience.</p>
-    <div style="text-align:center; margin-bottom:18px;"><div id="avatarPreview"></div></div>
-    <div id="avatarPickers"></div>
-    <button class="btn-primary" style="margin-top:18px;" onclick="backToMenu()">✔ C'est parfait</button>
+    <p style="font-size:13px; color:var(--ink-soft); margin-bottom:16px;">Il te représente partout sur le site. Utilise les flèches pour composer le tien.</p>
+
+    <div class="av-stage">
+      <div id="avatarPreview" class="av-preview"></div>
+      <p id="avatarLegend" class="av-legend"></p>
+    </div>
+
+    <div id="avatarRows"></div>
+
+    <div style="display:flex; gap:10px; margin-top:20px;">
+      <button class="btn-secondary" style="flex:1;" onclick="resetAvatar()">↺ Réinitialiser</button>
+      <button class="btn-primary" style="flex:2;" onclick="validateAvatar()">✔ Valider mon personnage</button>
+    </div>
+    <button class="btn-secondary" style="width:100%; margin-top:10px;" onclick="randomAvatar()">🎲 Surprends-moi</button>
   </div>
 
   <div id="screen-account" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
-    <p class="lead" style="font-size:20px;">⚙️ Mon compte</p>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
 
+    <!-- Identité : personnage + grade, d'un seul coup d'œil -->
+    <div class="acc-head">
+      <div id="accAvatar" class="acc-avatar"></div>
+      <div class="acc-id">
+        <p id="accPseudo" class="acc-pseudo"></p>
+        <p id="accRank" class="acc-rank"></p>
+        <div class="acc-track"><div id="accBar" class="acc-bar" style="width:0%"></div></div>
+        <p id="accNext" class="acc-next"></p>
+      </div>
+    </div>
+    <button class="btn-primary" style="margin-bottom:18px;" onclick="showAvatarScreen()">🧑‍✈️ Modifier mon personnage</button>
+
+    <p class="sec-label">📊 Ma progression</p>
+    <div class="grid2">
+      <button class="row-card" onclick="showLeaderboard()"><span class="row-inner"><span class="ic i-gold">📊</span><span class="tx"><span class="t">Mes stats <span id="lockIcon-progress" class="lock-badge">🔒</span></span><span class="s" id="descProgress">Séries et moyenne</span></span><span class="arrow">→</span></span></button>
+      <button class="row-card" onclick="showWeakPoints()"><span class="row-inner"><span class="ic i-red">🎯</span><span class="tx"><span class="t">Points faibles</span><span class="s">Ce que tu rates le plus</span></span><span class="arrow">→</span></span></button>
+      <button class="row-card" onclick="switchProgressTab('rewards')"><span class="row-inner"><span class="ic i-green">🎖️</span><span class="tx"><span class="t">Récompenses</span><span class="s">Tes insignes débloqués</span></span><span class="arrow">→</span></span></button>
+      <button class="row-card" onclick="showGlobalLeaderboard()"><span class="row-inner"><span class="ic i-blue">🌍</span><span class="tx"><span class="t">Classement <span id="lockIcon-globalboard2" class="lock-badge">🔒</span></span><span class="s">Ton rang cette semaine</span></span><span class="arrow">→</span></span></button>
+    </div>
+
+    <p class="sec-label">⚙️ Mon compte</p>
     <p class="answer-label">Pseudo affiché</p>
     <div style="display:flex; gap:8px;">
       <input type="text" id="accountDisplayName" placeholder="Pseudo affiché" style="flex:1; border:1px solid var(--line); background:#fff; border-radius:2px; padding:12px 14px; font-family:'IBM Plex Sans', sans-serif; font-size:14px;">
       <button class="btn-secondary" onclick="updateDisplayName()">OK</button>
     </div>
-
     <p class="answer-label" style="margin-top:16px;">Ma section (pour le duel des sections au classement)</p>
     <select id="accountSection" onchange="saveSectionChoice()" style="width:100%; border:1px solid var(--line); background:#fff; border-radius:2px; padding:12px 14px; font-family:'IBM Plex Sans', sans-serif; font-size:14px;">
       <option value="">— Non renseignée —</option>
@@ -1944,59 +2067,44 @@
       <option value="7">Section 7</option><option value="8">Section 8</option><option value="9">Section 9</option>
       <option value="10">Section 10</option>
     </select>
-
     <details class="rules-box" style="margin-top:16px;">
       <summary>Changer mon mot de passe</summary>
       <input type="password" id="accountCurrentPass" placeholder="Mot de passe actuel" style="width:100%; border:1px solid var(--line); background:#fff; border-radius:2px; padding:12px 14px; font-family:'IBM Plex Sans', sans-serif; font-size:14px; margin:8px 0 10px;">
       <input type="password" id="accountNewPass" placeholder="Nouveau (6 caractères minimum)" style="width:100%; border:1px solid var(--line); background:#fff; border-radius:2px; padding:12px 14px; font-family:'IBM Plex Sans', sans-serif; font-size:14px; margin-bottom:8px;">
       <button class="btn-secondary" style="width:100%; margin-bottom:12px;" onclick="updateAccountPassword()">Valider le nouveau mot de passe</button>
     </details>
-    <p id="accountError" style="font-size:12.5px; color:var(--red); min-height:18px; margin:6px 0 0;"></p>
-    <p id="accountSuccess" style="font-size:12.5px; color:var(--green); min-height:18px; margin:0;"></p>
 
     <div id="accountProZone" class="hidden">
-      <div class="section-label" style="margin-top:18px;"><div class="rule"></div><span>Personnalisation (PRO)</span><div class="rule"></div></div>
+      <p class="sec-label">✨ Personnalisation Premium</p>
       <p class="answer-label">Couleur de mon pseudo</p>
       <div id="flairColorRow" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:6px;"></div>
-      <p style="font-size:11px; color:var(--ink-soft); margin:4px 0 14px;">Le pseudo <span class="pname-gold">doré</span> est réservé aux 10 parrainages 👑</p>
-      <p class="answer-label">Mon avatar (batailles & classements)</p>
-      <div id="flairAvatarRow" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
+      <p class="answer-label" style="margin-top:16px;">Mon titre (récompenses débloquées)</p>
+    <div id="titlePicker" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
     </div>
 
-    <div style="margin-top:18px;">
-      <p class="answer-label" style="margin-bottom:6px;">Volume des sons et vibrations (jeu)</p>
+    <p class="sec-label">🔊 Réglages</p>
+    <p class="answer-label" style="margin-bottom:6px;">Volume des sons et vibrations (jeu)</p>
       <div style="display:flex; align-items:center; gap:12px;">
         <span id="volumeIcon" style="font-size:18px; width:24px;">🔊</span>
         <input type="range" id="volumeSlider" min="0" max="100" step="5" value="60" style="flex:1; accent-color:var(--brass); cursor:pointer;" oninput="setVolume(this.value, false)" onchange="setVolume(this.value, true)">
         <span id="volumeLabel" style="font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:700; width:42px; text-align:right;">60%</span>
       </div>
-      <p style="margin-top:12px;"><span style="font-size:12px; color:var(--ink-soft); text-decoration:underline; cursor:pointer;" onclick="startTour()">🎓 Revoir la présentation du site</span></p>
-    </div>
 
-    <p class="answer-label" style="margin-top:16px;">Mon titre (récompenses débloquées)</p>
-    <div id="titlePicker" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
+    <p id="accountError" class="err" style="min-height:16px; margin:10px 0 0;"></p>
+    <p id="accountSuccess" style="min-height:16px; margin:4px 0 0; font-size:12.5px; color:var(--green); font-weight:600;"></p>
 
-    <div class="section-label" style="margin-top:22px;"><div class="rule"></div><span>📊 Ma progression</span><div class="rule"></div></div>
-    <div class="grid2">
-      <button class="row-card" onclick="showLeaderboard()"><span class="row-inner"><span class="ic i-gold">📊</span><span class="tx"><span class="t">Mes stats <span id="lockIcon-progress" class="lock-badge">🔒</span></span><span class="s" id="descProgress">Séries, moyenne et points faibles</span></span><span class="arrow">→</span></span></button>
-      <button class="row-card" onclick="switchProgressTab('weak')"><span class="row-inner"><span class="ic i-red">🎯</span><span class="tx"><span class="t">Mes points faibles</span><span class="s">Ce que tu rates le plus souvent</span></span><span class="arrow">→</span></span></button>
-      <button class="row-card" onclick="switchProgressTab('rewards')"><span class="row-inner"><span class="ic i-green">🎖️</span><span class="tx"><span class="t">Mes récompenses</span><span class="s">Les insignes débloqués</span></span><span class="arrow">→</span></span></button>
-      <button class="row-card" onclick="showGlobalLeaderboard()"><span class="row-inner"><span class="ic i-blue">🌍</span><span class="tx"><span class="t">Classement promo <span id="lockIcon-globalboard2" class="lock-badge">🔒</span></span><span class="s">Ton rang cette semaine</span></span><span class="arrow">→</span></span></button>
-    </div>
-
-    <div class="section-label" style="margin-top:22px;"><div class="rule"></div><span>Autres</span><div class="rule"></div></div>
+    <p class="sec-label">Autres</p>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-      <button class="btn-secondary" style="grid-column:1 / -1; border-color:var(--brass); color:var(--brass-dark); font-weight:700;" onclick="showAvatarScreen()">🧑‍✈️ Personnaliser mon personnage</button>
-      <button class="btn-secondary" onclick="showAboutScreen()">À propos</button>
       <button class="btn-secondary" onclick="showReferralScreen()">🤝 Parrainage</button>
-      <button class="btn-secondary" onclick="showLeaderboard()">📊 Ma progression</button>
+      <button class="btn-secondary" onclick="showAboutScreen()">À propos</button>
       <button class="btn-secondary" onclick="showLegalScreen('account')">Mentions légales</button>
+      <button class="btn-secondary" onclick="exportProgressData()">💾 Sauvegarder</button>
       <button id="adminAccessBtn" class="btn-secondary hidden" style="grid-column:1 / -1;" onclick="showAdminScreen()">🛠️ Tableau de bord</button>
     </div>
   </div>
 
   <div id="screen-fiches" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="lead" style="font-size:22px;">📖 Fiches de révision</p>
     <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:18px;">Lis avant de t'auto-tester : chaque fiche cache sa réponse — touche-la pour la révéler.</p>
     <div id="fichesThemePicker" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px;">
@@ -2034,7 +2142,7 @@
   </div>
 
   <div id="screen-weak" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <div style="display:flex; gap:6px; margin-bottom:18px; flex-wrap:wrap;">
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px;" onclick="switchProgressTab('scores')">🏆 Scores</button>
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px; background:var(--ink); color:var(--paper);" onclick="switchProgressTab('weak')">🎯 Points faibles</button>
@@ -2056,7 +2164,7 @@
   <input type="file" id="importFileInput" accept=".txt" style="display:none;" onchange="importProgressData(this)">
 
   <div id="screen-revision" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Menu</button>
+    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
     <p class="lead" style="font-size:22px;">📖 Révisions — tout voir</p>
     <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:16px;">Toutes les questions et leurs réponses, affichées directement, sans quiz.</p>
 
@@ -2266,26 +2374,47 @@ function shuffle(arr){
   return a;
 }
 
-function startQuiz(mixed){
+// themes = liste d'identifiants choisis par l'élève ; le nombre de questions
+// par thème est réparti proportionnellement pour toujours arriver à 25.
+function startQuiz(mixed, themes){
   if(mixed === undefined) mixed = true;
   quizSaveKey = mixed ? 'quiz' : 'quiz_pure';
   let pool = [];
 
   if(mixed){
-    const nQuiz = 15, nRoutier = 3, nGrades = 3, nAlpha = 2, nOrgs = 2;
-    weightedSample(QUESTIONS_POOL, nQuiz).forEach(q => {
+    let choisis = (themes && themes.length) ? themes : ['cee1','routier','grades','alpha','orgs'];
+    // Garde-fou : jamais de contenu premium pour un compte gratuit
+    if(!isPaidUser){
+      const libres = QUIZ_THEMES.filter(function(t){ return !t.premium; }).map(function(t){ return t.id; });
+      choisis = choisis.filter(function(id){ return libres.indexOf(id) !== -1; });
+      if(choisis.length === 0) choisis = libres;
+    }
+    // Poids relatifs : les questions CEE1 et routier priment quand elles sont là
+    const poids = { cee1: 5, routier: 3, grades: 2, alpha: 1.5, orgs: 1.5 };
+    const total = choisis.reduce(function(s, id){ return s + (poids[id] || 1); }, 0);
+    const parts = {};
+    let cumul = 0;
+    choisis.forEach(function(id, i){
+      const n = (i === choisis.length - 1)
+        ? TOTAL_TO_ASK - cumul
+        : Math.max(1, Math.round(TOTAL_TO_ASK * (poids[id] || 1) / total));
+      parts[id] = Math.max(0, n);
+      cumul += parts[id];
+    });
+
+    if(parts.cee1) weightedSample(QUESTIONS_POOL, parts.cee1).forEach(q => {
       pool.push({type:'text', kind:'Questions CEE1', id:q.id, prompt: q.q, answer: q.a});
     });
-    weightedSample(ROUTIER_POOL, nRoutier).forEach(q => {
+    if(parts.routier) weightedSample(ROUTIER_POOL, parts.routier).forEach(q => {
       pool.push({type:'text', kind:'Contrôle routier', id:q.id, prompt: q.q, answer: q.a});
     });
-    weightedSample(GRADES_POOL, nGrades).forEach(g => {
+    if(parts.grades) weightedSample(GRADES_POOL, parts.grades).forEach(g => {
       pool.push({type:'image', kind:'Reconnaissance des grades', id:g.id, img: g.img, prompt:'Quel est ce grade ?', answer: g.names});
     });
-    weightedSample(ALPHABET_POOL, nAlpha).forEach(a => {
+    if(parts.alpha) weightedSample(ALPHABET_POOL, parts.alpha).forEach(a => {
       pool.push({type:'text', kind:'Alphabet OTAN', id:a.id, prompt: 'Quel est le mot-code OTAN pour la lettre ' + a.letter + ' ?', answer: [a.word]});
     });
-    weightedSample(ORGS_POOL, nOrgs).forEach(o => {
+    if(parts.orgs) weightedSample(ORGS_POOL, parts.orgs).forEach(o => {
       const askAcr = Math.random() < 0.5;
       pool.push({
         type:'text',
@@ -2295,6 +2424,23 @@ function startQuiz(mixed){
         answer: [askAcr ? o.name : o.acr]
       });
     });
+    // Si un thème n'a pas assez d'items uniques, on complète avec les autres
+    // thèmes choisis pour toujours livrer une série pleine.
+    if(pool.length < TOTAL_TO_ASK){
+      const dejaVus = new Set(pool.map(function(x){ return x.id; }));
+      const secours = [];
+      if(choisis.indexOf('cee1') !== -1) QUESTIONS_POOL.forEach(q => secours.push({type:'text', kind:'Questions CEE1', id:q.id, prompt:q.q, answer:q.a}));
+      if(choisis.indexOf('routier') !== -1) ROUTIER_POOL.forEach(q => secours.push({type:'text', kind:'Contrôle routier', id:q.id, prompt:q.q, answer:q.a}));
+      if(choisis.indexOf('grades') !== -1) GRADES_POOL.forEach(g => secours.push({type:'image', kind:'Reconnaissance des grades', id:g.id, img:g.img, prompt:'Quel est ce grade ?', answer:g.names}));
+      if(choisis.indexOf('alpha') !== -1) ALPHABET_POOL.forEach(a => secours.push({type:'text', kind:'Alphabet OTAN', id:a.id, prompt:'Quel est le mot-code OTAN pour la lettre ' + a.letter + ' ?', answer:[a.word]}));
+      if(choisis.indexOf('orgs') !== -1) ORGS_POOL.forEach(o => secours.push({type:'text', kind:'Organisations & acronymes', id:o.id, prompt:'Que signifie ' + o.acr + ' ?', answer:[o.name]}));
+      shuffle(secours).forEach(function(item){
+        if(pool.length >= TOTAL_TO_ASK) return;
+        if(dejaVus.has(item.id)) return;
+        dejaVus.add(item.id);
+        pool.push(item);
+      });
+    }
   } else {
     weightedSample(QUESTIONS_POOL, TOTAL_TO_ASK).forEach(q => {
       pool.push({type:'text', kind:'Questions CEE1', id:q.id, prompt: q.q, answer: q.a});
@@ -2439,7 +2585,7 @@ function resetToStart(){
   backToMenu();
 }
 
-const ALL_SCREEN_IDS = ['screen-auth','screen-welcome-offer','screen-paywall','screen-start','screen-quiz','screen-grades','screen-alpha','screen-orgs','screen-spell','screen-grades-scope','screen-orgs-scope','screen-alpha-scope','screen-fiches','screen-weak','screen-result','screen-gresult','screen-aresult','screen-oresult','screen-sresult','screen-leaderboard','screen-global-leaderboard','screen-solo','screen-online','screen-avatar','screen-account','screen-revision','screen-mp-menu','screen-mp-lobby','screen-mp-question','screen-mp-podium','screen-about','screen-referral','screen-admin','screen-legal','screen-battle-history','screen-rewards','screen-mp-board','screen-daily','screen-exam','screen-survival','screen-challenges','screen-tournament'];
+const ALL_SCREEN_IDS = ['screen-auth','screen-welcome-offer','screen-paywall','screen-start','screen-quiz','screen-grades','screen-alpha','screen-orgs','screen-spell','screen-grades-scope','screen-orgs-scope','screen-alpha-scope','screen-fiches','screen-weak','screen-result','screen-gresult','screen-aresult','screen-oresult','screen-sresult','screen-leaderboard','screen-global-leaderboard','screen-themes','screen-solo','screen-online','screen-avatar','screen-account','screen-revision','screen-mp-menu','screen-mp-lobby','screen-mp-question','screen-mp-podium','screen-about','screen-referral','screen-admin','screen-legal','screen-battle-history','screen-rewards','screen-mp-board','screen-daily','screen-exam','screen-survival','screen-challenges','screen-tournament'];
 const ADMIN_PSEUDOS = ['aymeric', 'aymeric1', 'naolank'];
 
 // Comparaison insensible à la casse : « Aymeric », « aymeric1 »… fonctionnent tous
@@ -2496,7 +2642,7 @@ function backToMenu(){
     if(!confirm('Tu es en plein ' + activity + ' — la progression sera perdue. Quitter quand même ?')) return;
     clearActivityTimers();
   }
-  try{ refreshPlayerCard(); refreshHomeGreeting(); refreshHomeDescriptions(); refreshDailyTile(); refreshSrTile(); refreshGoalTile(); }catch(e){}
+  try{ refreshHowBox(); refreshHomeGreeting(); refreshHomeDescriptions(); refreshDailyTile(); refreshSrTile(); refreshGoalTile(); }catch(e){}
   showScreen('screen-start');
 }
 
@@ -2508,8 +2654,27 @@ window.addEventListener('beforeunload', function(e){
   }
 });
 
+function refreshAccountHeader(){
+  const av = document.getElementById('accAvatar');
+  if(av){ try{ av.innerHTML = buildAvatarSvg(getAvatarConfig(), 88); }catch(e){} }
+  const p = document.getElementById('accPseudo');
+  if(p) p.textContent = currentPseudo || '';
+  try{
+    const r = getMyRank();
+    const rk = document.getElementById('accRank');
+    if(rk) rk.textContent = r.rank.icon + ' ' + r.rank.name + ' · ' + r.xp.toLocaleString('fr-FR') + ' XP';
+    const bar = document.getElementById('accBar');
+    if(bar) bar.style.width = r.progress + '%';
+    const nx = document.getElementById('accNext');
+    if(nx) nx.textContent = r.next
+      ? 'Encore ' + (r.next.xp - r.xp).toLocaleString('fr-FR') + ' XP pour ' + (r.next.short || r.next.name)
+      : 'Sommet de la hiérarchie atteint 👑';
+  }catch(e){}
+}
+
 function showAccountScreen(){
   showScreen('screen-account');
+  refreshAccountHeader();
   document.getElementById('accountDisplayName').value = currentPseudo || '';
   document.getElementById('accountSection').value = getMySection();
   document.getElementById('accountCurrentPass').value = '';
@@ -2523,7 +2688,7 @@ function showAccountScreen(){
   renderFlairPickers();
 }
 
-const FLAIR_AVATARS = ['👮','👮‍♀️','🚔','🚨','🛡️','⭐','🌟','🦅','🐺','🦁','🐉','🔥','⚡','🎯','🃏','♠️','⚔️','🎖️','🏅','👑','💎','🚀','🧭','⚓','🌍','🦊','🐻','🦈'];
+// Les avatars emoji ont été remplacés par le personnage dessiné (voir buildAvatarSvg).
 
 function setVolume(value, playTest){
   const v = Math.max(0, Math.min(100, parseInt(value, 10) || 0));
@@ -2561,14 +2726,7 @@ function renderFlairPickers(){
     });
     colorRow.innerHTML = html;
   }
-  const avRow = document.getElementById('flairAvatarRow');
-  if(avRow){
-    let html = '<button class="btn-secondary' + (myAvatar === '' ? '' : '') + '" style="padding:6px 10px; font-size:12px;' + (myAvatar === '' ? ' border-color:var(--ink);' : '') + '" onclick="setFlairAvatar(\'\')">Aucun</button>';
-    FLAIR_AVATARS.forEach(function(av){
-      html += '<button class="btn-secondary" style="padding:6px 10px; font-size:16px;' + (myAvatar === av ? ' border-color:var(--ink); box-shadow:0 0 0 3px var(--focus);' : '') + '" onclick="setFlairAvatar(\'' + av + '\')">' + av + '</button>';
-    });
-    avRow.innerHTML = html;
-  }
+
 }
 
 function setFlairColor(col){
@@ -2578,12 +2736,7 @@ function setFlairColor(col){
   updateProfileFlair();
 }
 
-function setFlairAvatar(av){
-  if(!currentUser || !isPaidUser) return;
-  try{ localStorage.setItem('cee1_avatar_' + currentUser.uid, av); }catch(e){}
-  renderFlairPickers();
-  updateProfileFlair();
-}
+
 
 function showAdminScreen(){
   showScreen('screen-admin');
@@ -2592,7 +2745,10 @@ function showAdminScreen(){
   const annEl = document.getElementById('annText');
   if(annEl) annEl.value = announcementRaw || '';
   const annStatus = document.getElementById('annStatus');
-  if(annStatus) annStatus.textContent = '';
+  if(annStatus){
+    annStatus.style.color = 'var(--ink-soft)';
+    annStatus.textContent = 'État du bandeau : ' + annDiag;
+  }
   const uidBox = document.getElementById('adminUidBox');
   if(uidBox && currentUser){
     uidBox.innerHTML = '<p style="font-size:12px; font-weight:700; margin:0 0 6px;">🔑 Ton identifiant (UID) — à coller dans Firestore</p>'
@@ -3227,7 +3383,7 @@ function _showGlobalLeaderboardInner(mode, period){
           const isMe = currentUser && entry.uid === currentUser.uid;
           html += '<div class="podium-col p' + rank + (isMe ? ' me' : '') + '">' +
             '<div class="podium-rank-badge">' + rank + '</div>' +
-            '<div class="podium-name">' + flairPseudoHtml(entry.pseudo || '?', entry) + (isMe ? ' •' : '') + '</div>' +
+            '<div class="podium-name">' + flairPseudoHtml(entry.pseudo || '?', { color: entry.color, gold: entry.gold, character: entry.character }) + (isMe ? ' •' : '') + '</div>' +
             '<div class="podium-score">' + (entry[scoreField]||0) + '%</div>' +
             '<div class="podium-bar"></div>' +
           '</div>';
@@ -3247,7 +3403,7 @@ function _showGlobalLeaderboardInner(mode, period){
           }
           const isMe = currentUser && entry.uid === currentUser.uid;
           html += '<div class="review-item" style="display:flex; justify-content:space-between; align-items:center;' + (isMe ? ' border-color:var(--brass);' : '') + '">' +
-            '<div><span style="font-family:\'IBM Plex Mono\', monospace; color:var(--ink-soft); font-size:12px; margin-right:8px;">#' + rank + '</span>' + flairPseudoHtml(entry.pseudo || '?', entry) + sectionTagHtml(entry) + (entry.title ? ' <span style="font-size:10px; color:var(--brass-dark);">' + escapeHtml(String(entry.title).slice(0, 40)) + '</span>' : '') + (entry.survivalBest > 0 ? ' <span style="font-size:10px; color:var(--ink-soft);">🔥' + entry.survivalBest + '</span>' : '') + (isMe ? ' <span style="color:var(--brass-dark); font-size:11px;">(toi)</span>' : '') +
+            '<div><span style="font-family:\'IBM Plex Mono\', monospace; color:var(--ink-soft); font-size:12px; margin-right:8px;">#' + rank + '</span>' + flairPseudoHtml(entry.pseudo || '?', { color: entry.color, gold: entry.gold, character: entry.character }) + sectionTagHtml(entry) + (entry.title ? ' <span style="font-size:10px; color:var(--brass-dark);">' + escapeHtml(String(entry.title).slice(0, 40)) + '</span>' : '') + (entry.survivalBest > 0 ? ' <span style="font-size:10px; color:var(--ink-soft);">🔥' + entry.survivalBest + '</span>' : '') + (isMe ? ' <span style="color:var(--brass-dark); font-size:11px;">(toi)</span>' : '') +
               '<div style="font-size:11px; color:var(--ink-soft); margin-top:2px; margin-left:28px;">' + (entry[countField]||0) + ' série' + ((entry[countField]||0) > 1 ? 's' : '') + '</div>' +
             '</div>' +
             '<div style="font-family:\'IBM Plex Mono\', monospace; font-size:15px; font-weight:700;">' + (entry[scoreField]||0) + '%</div>' +
@@ -3483,10 +3639,6 @@ let gResults = [];
 let gGraded = null;
 let gradesScopeLabel = 'Tous';
 
-function startGrades(){
-  startGradesFromPool(GRADES_POOL);
-  gradesScopeLabel = 'Tous';
-}
 
 function startGradesFromPool(pool){
   gSession = weightedSample(pool, pool.length);
@@ -3615,10 +3767,6 @@ let oGraded = null;
 const O_TOTAL_DEFAULT = 25;
 let orgsScopeLabel = 'Tous';
 
-function startOrgs(){
-  startOrgsFromPool(ORGS_POOL, O_TOTAL_DEFAULT);
-  orgsScopeLabel = 'Tous';
-}
 
 function startOrgsFromPool(pool, n){
   oSession = weightedSample(pool, n);
@@ -4216,11 +4364,6 @@ function startOrgsScoped(category){
 }
 
 /* ---- Choix du périmètre : questions CEE1 (25) ---- */
-function startQuizScoped(mixed){
-  ensurePaidAccess(function(){
-    startQuiz(mixed);
-  });
-}
 
 /* ---- Choix du périmètre : alphabet OTAN ---- */
 function showAlphaScope(){
@@ -4690,57 +4833,7 @@ function lockProfile(){
   else { showAuthScreen(); }
 }
 
-/* ---- CARTE JOUEUR : grade, XP, série de jours, récompenses ---- */
-function refreshPlayerCard(){
-  const card = document.getElementById('playerCard');
-  if(!card) return;
-  const r = getMyRank();
-
-  document.getElementById('plIcon').textContent = r.rank.icon;
-  document.getElementById('plRank').textContent = r.rank.name;
-  document.getElementById('plXp').textContent = r.xp.toLocaleString('fr-FR') + ' XP';
-  document.getElementById('plNext').textContent = r.next
-    ? 'Encore ' + (r.next.xp - r.xp).toLocaleString('fr-FR') + ' XP pour ' + (r.next.short || r.next.name)
-    : 'Sommet de la hiérarchie atteint 👑';
-  document.getElementById('plBar').style.width = r.progress + '%';
-
-  let streak = 0, badges = 0;
-  try{ streak = computeStreak(); }catch(e){}
-  try{ badges = getEarnedBadges().length; }catch(e){}
-  const s = computeStats();
-
-  document.getElementById('plStreak').textContent = String(streak);
-  document.getElementById('plSeries').textContent = String(s.totalSeries);
-  document.getElementById('plAvg').textContent = s.totalSeries > 0 ? s.avgScore + '%' : '—';
-  document.getElementById('plBadges').textContent = String(badges);
-  document.getElementById('plMiniIcon').textContent = r.rank.icon;
-  document.getElementById('plMiniXp').textContent = r.xp.toLocaleString('fr-FR') + ' XP';
-  card.classList.remove('hidden');
-  let shrunk = false;
-  try{ shrunk = localStorage.getItem(playerCardKey()) === '1'; }catch(e){}
-  applyPlayerCardState(shrunk);
-}
-
-/* ---- Carte de grade : repli / dépli, mémorisé par compte ---- */
-function playerCardKey(){ return 'cee1_plcard_' + (currentUser ? currentUser.uid : 'anon'); }
-
-function togglePlayerCard(){
-  const card = document.getElementById('playerCard');
-  if(!card) return;
-  const shrunk = !card.classList.contains('shrunk');
-  applyPlayerCardState(shrunk);
-  try{ localStorage.setItem(playerCardKey(), shrunk ? '1' : '0'); }catch(e){}
-}
-
-function applyPlayerCardState(shrunk){
-  const card = document.getElementById('playerCard');
-  if(!card) return;
-  card.classList.toggle('shrunk', shrunk);
-  document.getElementById('plBody').classList.toggle('hidden', shrunk);
-  document.getElementById('plMini').classList.toggle('hidden', !shrunk);
-}
-
-/* ---- ACCUEIL : salutation + descriptions vivantes sur les tuiles ---- */
+/* ---- ACCUEIL : salutation et descriptions vivantes ---- */
 function refreshHomeGreeting(){
   const el = document.getElementById('homeGreeting');
   if(!el) return;
@@ -4829,7 +4922,7 @@ function unlockApp(pseudo){
   document.getElementById('profileNameLabel').textContent = pseudo;
   updateProfileFlair();
   updateProfileRank();
-  refreshPlayerCard();
+  refreshHowBox();
   refreshHomeGreeting();
   refreshHomeDescriptions();
   refreshDailyTile();
@@ -4888,7 +4981,7 @@ function refreshPaidStatus(){
 }
 
 function updatePaidUI(){
-  const lockIds = ['lockIcon-quiz','lockIcon-quizpure','lockIcon-revision','lockIcon-progress','lockIcon-globalboard','lockIcon-spell','lockIcon-exam','lockIcon-fiches','lockIcon-aifiches','lockIcon-routier','lockIcon-globalboard2'];
+  const lockIds = ['lockIcon-quiz','lockIcon-revision','lockIcon-progress','lockIcon-globalboard','lockIcon-spell','lockIcon-exam','lockIcon-fiches','lockIcon-aifiches','lockIcon-routier','lockIcon-globalboard2'];
   lockIds.forEach(function(id){
     const el = document.getElementById(id);
     if(el) el.style.display = isPaidUser ? 'none' : 'inline';
@@ -6256,10 +6349,15 @@ function validateCustomQuestionClient(d){
 }
 
 let announcementRaw = '';
+let annDiag = 'jamais chargé';
+
 function loadAnnouncement(){
-  if(!firebaseReady || !currentUser) return;
+  if(!firebaseReady || !currentUser){ annDiag = 'hors ligne'; return; }
   try{
     fbDb.collection('config').doc('announcement').get().then(function(doc){
+      if(!doc.exists){ annDiag = 'aucune annonce publiée'; }
+      else if(doc.data().active !== true){ annDiag = 'annonce désactivée'; }
+      else { annDiag = 'annonce active'; }
       const banner = document.getElementById('announcementBanner');
       if(!doc.exists || doc.data().active !== true || !doc.data().text){ banner.classList.add('hidden'); return; }
       announcementRaw = String(doc.data().text).slice(0, 300);
@@ -6268,8 +6366,11 @@ function loadAnnouncement(){
       if(dismissed === announcementRaw){ banner.classList.add('hidden'); return; }
       document.getElementById('announcementText').textContent = announcementRaw;
       banner.classList.remove('hidden');
-    }).catch(function(){});
-  }catch(e){}
+    }).catch(function(err){
+      // Le plus souvent : les règles Firestore de la collection « config » ne sont pas publiées
+      annDiag = 'lecture refusée (' + ((err && err.code) || 'erreur') + ') — publie les règles Firestore';
+    });
+  }catch(e){ annDiag = 'erreur interne'; }
 }
 
 function dismissAnnouncement(){
@@ -6852,15 +6953,23 @@ function getMyFlair(){
   if(FLAIR_COLORS.indexOf(color) === -1) color = '';
   return {
     color: isPaidUser ? color : '',
-    avatar: isPaidUser ? avatar : '',
+    avatar: '',                       // remplacé par le personnage dessiné
     gold: getMyReferralCount() >= 10
   };
 }
 
 // Construit le pseudo décoré (avatar + couleur/or) — pour tout affichage HTML.
+// Miniature du personnage, utilisable dans les listes (classements, salons…)
+function avatarThumbHtml(cfg, taille){
+  try{
+    return '<span class="av-thumb" style="width:' + taille + 'px; height:' + taille + 'px;">'
+      + buildAvatarSvg(cfg || getAvatarConfig(), taille) + '</span>';
+  }catch(e){ return ''; }
+}
+
 function flairPseudoHtml(pseudo, flair){
   flair = flair || {};
-  const av = flair.avatar ? escapeHtml(flair.avatar) + ' ' : '';
+  const av = flair.character ? avatarThumbHtml(flair.character, 22) + ' ' : '';
   if(flair.gold) return av + '<span class="pname-gold">' + escapeHtml(pseudo) + '</span>';
   if(flair.color && /^#[0-9A-Fa-f]{6}$/.test(flair.color)) return av + '<span style="color:' + flair.color + '; font-weight:700;">' + escapeHtml(pseudo) + '</span>';
   return av + escapeHtml(pseudo);
@@ -6929,12 +7038,26 @@ function renderBadges(){
 const AV_SKINS  = ['#F2C9A0','#E0AC7E','#C68B5E','#9C6440','#6E4429'];
 const AV_HAIRS  = ['#2B2118','#6B4423','#B8860B','#8B2500','#4A4A4A','#F0E0C0'];
 const AV_SHIRTS = [
-  { id:'bleu',   nom:'Tenue bleue',      c:'#24518F', need:{type:'free'} },
-  { id:'noir',   nom:'Tenue d\'intervention', c:'#1C2333', need:{type:'xp', xp:2200} },
-  { id:'sombre', nom:'Tenue sombre',     c:'#2E3A4E', need:{type:'xp', xp:800} },
-  { id:'kaki',   nom:'Tenue kaki',       c:'#4A5340', need:{type:'xp', xp:6000} },
-  { id:'blanc',  nom:'Chemise blanche',  c:'#E8ECF4', need:{type:'xp', xp:12000} },
-  { id:'or',     nom:'Tenue de cérémonie', c:'#6B5A2E', need:{type:'premium'} }
+  { id:'tshirt',   nom:'T-shirt',              c:'#3E7CB1', col:'aucun', need:{type:'free'} },
+  { id:'polo',     nom:'Polo',                 c:'#2F6F4E', col:'polo',  need:{type:'free'} },
+  { id:'sweat',    nom:'Sweat à capuche',      c:'#4A4E58', col:'capuche',need:{type:'free'} },
+  { id:'chemise',  nom:'Chemise blanche',      c:'#E8ECF4', col:'chemise',need:{type:'free'} },
+  { id:'chemiseC', nom:'Chemise ciel',         c:'#AFC8E0', col:'chemise',need:{type:'xp', xp:200} },
+  { id:'pull',     nom:'Pull col roulé',       c:'#2B3242', col:'roule', need:{type:'xp', xp:400} },
+  { id:'bomber',   nom:'Bomber',               c:'#1E2430', col:'polo',  need:{type:'xp', xp:800} },
+  { id:'tenuePN',  nom:'Tenue Police Nationale', c:'#1B2A45', col:'police', need:{type:'xp', xp:1400} },
+  { id:'sombre',   nom:'Tenue sombre',         c:'#2E3A4E', col:'police',need:{type:'xp', xp:2200} },
+  { id:'intervention', nom:"Tenue d'intervention", c:'#1C2333', col:'police', need:{type:'xp', xp:3200} },
+  { id:'kaki',     nom:'Tenue kaki',           c:'#4A5340', col:'police',need:{type:'xp', xp:4500} },
+  { id:'costume',  nom:'Costume-cravate',      c:'#232838', col:'cravate',need:{type:'xp', xp:6000} },
+  { id:'costumeC', nom:'Costume clair',        c:'#5A6274', col:'cravate',need:{type:'xp', xp:7800} },
+  { id:'blazer',   nom:'Blazer marine',        c:'#1F3556', col:'chemise',need:{type:'xp', xp:9800} },
+  { id:'crs',      nom:'Tenue de maintien de l\'ordre', c:'#232C3D', col:'police', need:{type:'xp', xp:12000} },
+  { id:'motard',   nom:'Tenue motard',         c:'#15181F', col:'police',need:{type:'xp', xp:14500} },
+  { id:'ceremonie',nom:'Tenue de cérémonie',   c:'#182238', col:'ceremonie', need:{type:'premium'} },
+  { id:'smoking',  nom:'Smoking',              c:'#0F1218', col:'cravate',need:{type:'premium'} },
+  { id:'gala',     nom:'Veste de gala',        c:'#4A2B4E', col:'ceremonie', need:{type:'premium'} },
+  { id:'raid',     nom:'Tenue RAID',           c:'#1A1D22', col:'police',need:{type:'premium'} }
 ];
 const AV_STYLES = [
   { id:'court',   nom:'Cheveux courts' },
@@ -6968,17 +7091,23 @@ const AV_HEADS = [
   { id:'beret',     nom:'Béret',      need:{type:'premium'} }
 ];
 const AV_GEARS = [
-  { id:'aucun',    nom:'Aucun',            need:{type:'free'} },
-  { id:'brassard', nom:'Brassard Police',  need:{type:'xp', xp:400} },
-  { id:'radio',    nom:'Radio à l\'épaule', need:{type:'xp', xp:3200} },
-  { id:'gilet',    nom:'Gilet pare-balles', need:{type:'premium'} },
-  { id:'lunettes', nom:'Lunettes de soleil', need:{type:'premium'} }
+  { id:'aucun',    nom:'Aucun',              need:{type:'free'} },
+  { id:'brassard', nom:'Brassard Police',    need:{type:'xp', xp:300} },
+  { id:'sifflet',  nom:'Sifflet',            need:{type:'xp', xp:600} },
+  { id:'radio',    nom:'Radio à l\'épaule',  need:{type:'xp', xp:1800} },
+  { id:'insigne',  nom:'Insigne de poitrine',need:{type:'xp', xp:3500} },
+  { id:'cravateN', nom:'Cravate noire',      need:{type:'xp', xp:5000} },
+  { id:'echarpe',  nom:'Écharpe tricolore',  need:{type:'xp', xp:8000} },
+  { id:'lunettes', nom:'Lunettes de soleil', need:{type:'xp', xp:11000} },
+  { id:'gilet',    nom:'Gilet pare-balles',  need:{type:'premium'} },
+  { id:'masque',   nom:'Masque à gaz',       need:{type:'premium'} },
+  { id:'medaille', nom:'Médaille d\'honneur', need:{type:'premium'} }
 ];
 
 function avatarKey(){ return 'cee1_avatar2_' + (currentUser ? currentUser.uid : 'anon'); }
 
 function getAvatarConfig(){
-  const parDefaut = { skin:0, hair:0, style:'court', eyes:'ronds', eyecolor:0, shirt:'bleu', head:'aucun', gear:'aucun' };
+  const parDefaut = { skin:0, hair:0, style:'court', eyes:'ronds', eyecolor:0, shirt:'tshirt', head:'aucun', gear:'aucun' };
   try{
     const brut = JSON.parse(localStorage.getItem(avatarKey()) || 'null');
     return brut ? Object.assign(parDefaut, brut) : parDefaut;
@@ -7010,59 +7139,254 @@ function avatarLockLabel(item){
   return '🔒 ' + item.need.xp.toLocaleString('fr-FR') + ' XP';
 }
 
-// Dessine le personnage en SVG (aucune image à charger)
+// Dessine le personnage en SVG — aucune image à charger, net à toutes les tailles
 function buildAvatarSvg(cfg, taille){
   cfg = cfg || getAvatarConfig();
-  const s = AV_SKINS[cfg.skin] || AV_SKINS[0];
-  const h = AV_HAIRS[cfg.hair] || AV_HAIRS[0];
-  const shirt = (AV_SHIRTS.find(function(x){ return x.id === cfg.shirt; }) || AV_SHIRTS[0]).c;
+  const peau = AV_SKINS[cfg.skin] || AV_SKINS[0];
+  const chev = AV_HAIRS[cfg.hair] || AV_HAIRS[0];
+  const oeil = AV_EYECOLORS[cfg.eyecolor] || AV_EYECOLORS[0];
+  const tenue = AV_SHIRTS.find(function(x){ return x.id === cfg.shirt; }) || AV_SHIRTS[0];
   const t = taille || 96;
-  let svg = '<svg viewBox="0 0 100 100" width="' + t + '" height="' + t + '" role="img" aria-label="Mon personnage">';
-  svg += '<circle cx="50" cy="50" r="49" fill="rgba(176,138,46,0.10)"/>';
-  // buste
-  svg += '<path d="M22 100 C22 78 34 70 50 70 C66 70 78 78 78 100 Z" fill="' + shirt + '"/>';
-  svg += '<path d="M46 70 h8 v10 h-8 Z" fill="' + s + '"/>';
+  const sousChapeau = cfg.head !== 'aucun' && cfg.head !== 'bandana';
+  let s = '<svg viewBox="0 0 100 110" width="' + t + '" height="' + Math.round(t * 1.1) + '" role="img" aria-label="Mon personnage">';
+
+  // ---- cou et buste ----
+  s += '<path d="M44 68 h12 v12 h-12 Z" fill="' + peau + '"/>';
+  s += '<path d="M18 110 C18 86 32 78 50 78 C68 78 82 86 82 110 Z" fill="' + tenue.c + '"/>';
+
+  // ---- col selon la tenue ----
+  if(tenue.col === 'chemise' || tenue.col === 'cravate'){
+    s += '<path d="M42 78 L50 92 L58 78 L54 77 L50 85 L46 77 Z" fill="#F4F6FA"/>';
+  }
+  if(tenue.col === 'cravate'){
+    s += '<path d="M50 86 L54 90 L52 104 L48 104 L46 90 Z" fill="#8C1C24"/>';
+  }
+  if(tenue.col === 'police' || tenue.col === 'ceremonie'){
+    s += '<path d="M40 79 L50 90 L60 79 L57 77 L50 84 L43 77 Z" fill="rgba(255,255,255,0.14)"/>';
+    s += '<rect x="26" y="88" width="12" height="4" rx="1" fill="#D4AF37" opacity="0.85"/>';
+  }
+  if(tenue.col === 'ceremonie'){
+    s += '<rect x="62" y="88" width="10" height="3" rx="1" fill="#D4AF37"/>';
+    s += '<rect x="62" y="93" width="10" height="3" rx="1" fill="#D4AF37"/>';
+  }
+  if(tenue.col === 'roule') s += '<path d="M40 78 h20 v7 h-20 Z" fill="' + tenue.c + '" opacity="0.75"/>';
+  if(tenue.col === 'polo')  s += '<path d="M44 78 L50 87 L56 78 Z" fill="rgba(255,255,255,0.18)"/>';
+  if(tenue.col === 'capuche') s += '<path d="M30 84 C34 76 66 76 70 84 C62 80 38 80 30 84 Z" fill="rgba(255,255,255,0.12)"/>';
+
+  // ---- équipements portés sur le buste ----
   if(cfg.gear === 'gilet'){
-    svg += '<path d="M30 100 C30 80 38 74 50 74 C62 74 70 80 70 100 Z" fill="#232C3D" stroke="#3D4A63" stroke-width="1.5"/>';
-    svg += '<rect x="36" y="82" width="28" height="4" rx="2" fill="#3D4A63"/>';
-    svg += '<rect x="46" y="88" width="8" height="8" rx="1.5" fill="#4A5A78"/>';
+    s += '<path d="M28 110 C28 88 38 82 50 82 C62 82 72 88 72 110 Z" fill="#232C3D" stroke="#3D4A63" stroke-width="1.5"/>';
+    s += '<rect x="34" y="92" width="32" height="4" rx="2" fill="#3D4A63"/>';
+    s += '<rect x="45" y="99" width="10" height="9" rx="1.5" fill="#4A5A78"/>';
+    s += '<text x="50" y="106" font-size="5" fill="#C9D4E8" text-anchor="middle" font-family="monospace">POLICE</text>';
   }
-  if(cfg.gear === 'brassard') svg += '<rect x="24" y="84" width="12" height="8" rx="2" fill="#24518F" stroke="#E8ECF4" stroke-width="1"/>';
+  if(cfg.gear === 'brassard') s += '<rect x="21" y="94" width="13" height="9" rx="2" fill="#24518F" stroke="#E8ECF4" stroke-width="1"/>';
   if(cfg.gear === 'radio'){
-    svg += '<rect x="64" y="76" width="7" height="12" rx="2" fill="#1C2333"/>';
-    svg += '<rect x="66.5" y="70" width="2" height="7" rx="1" fill="#1C2333"/>';
+    s += '<rect x="64" y="84" width="8" height="13" rx="2" fill="#1C2333"/>';
+    s += '<rect x="67" y="78" width="2" height="7" rx="1" fill="#1C2333"/>';
   }
-  // tête
-  svg += '<ellipse cx="50" cy="46" rx="19" ry="21" fill="' + s + '"/>';
-  // cheveux (masqués par le casque)
-  if(cfg.head !== 'casque') svg += '<path d="M31 44 C31 28 69 28 69 44 C69 36 62 31 50 31 C38 31 31 36 31 44 Z" fill="' + h + '"/>';
-  // yeux et sourire
+  if(cfg.gear === 'insigne') s += '<path d="M32 92 l4-4 4 4 -4 5 Z" fill="#D4AF37" stroke="#8C6C1E" stroke-width="0.8"/>';
+  if(cfg.gear === 'sifflet') s += '<circle cx="58" cy="94" r="3" fill="#C9CFDA"/><rect x="49" y="86" width="1.5" height="8" fill="#C9CFDA"/>';
+  if(cfg.gear === 'cravateN') s += '<path d="M50 86 L54 90 L52 104 L48 104 L46 90 Z" fill="#14171E"/>';
+  if(cfg.gear === 'echarpe'){
+    s += '<path d="M32 84 L50 104 L68 84 L64 82 L50 98 L36 82 Z" fill="#24518F"/>';
+    s += '<path d="M35 83 L50 100 L65 83 L63 82 L50 96 L37 82 Z" fill="#F4F6FA"/>';
+    s += '<path d="M38 82.5 L50 96 L62 82.5 L61 82 L50 94 L39 82 Z" fill="#C8102E"/>';
+  }
+  if(cfg.gear === 'medaille'){ s += '<path d="M62 84 l3 6 -3 2 -3 -2 Z" fill="#B08A2E"/><circle cx="62" cy="96" r="4.5" fill="#D4AF37" stroke="#8C6C1E" stroke-width="0.8"/>'; }
+
+  // ---- tête ----
+  s += '<ellipse cx="50" cy="48" rx="19" ry="21.5" fill="' + peau + '"/>';
+  s += '<ellipse cx="31" cy="50" rx="3" ry="4.5" fill="' + peau + '"/><ellipse cx="69" cy="50" rx="3" ry="4.5" fill="' + peau + '"/>';
+
+  // ---- coiffure (cachée sous un couvre-chef fermé) ----
+  if(!sousChapeau){
+    if(cfg.style === 'court')   s += '<path d="M31 46 C31 29 69 29 69 46 C69 37 62 33 50 33 C38 33 31 37 31 46 Z" fill="' + chev + '"/>';
+    if(cfg.style === 'rase')    s += '<path d="M32 45 C32 32 68 32 68 45 C66 39 60 36 50 36 C40 36 34 39 32 45 Z" fill="' + chev + '" opacity="0.75"/>';
+    if(cfg.style === 'boucle'){
+      s += '<path d="M31 45 C31 30 69 30 69 45 Z" fill="' + chev + '"/>';
+      [36,44,52,60,64].forEach(function(x, k){ s += '<circle cx="' + x + '" cy="' + (33 + (k % 2) * 3) + '" r="6" fill="' + chev + '"/>'; });
+    }
+    if(cfg.style === 'afro'){
+      s += '<circle cx="50" cy="34" r="20" fill="' + chev + '"/>';
+      s += '<circle cx="34" cy="42" r="9" fill="' + chev + '"/><circle cx="66" cy="42" r="9" fill="' + chev + '"/>';
+    }
+    if(cfg.style === 'tresses'){
+      s += '<path d="M31 46 C31 29 69 29 69 46 C69 37 62 33 50 33 C38 33 31 37 31 46 Z" fill="' + chev + '"/>';
+      [34,40,46,52,58,64].forEach(function(x){ s += '<rect x="' + (x-1) + '" y="30" width="2.5" height="18" rx="1.2" fill="' + chev + '" opacity="0.75"/>'; });
+      s += '<rect x="30" y="46" width="4" height="16" rx="2" fill="' + chev + '"/><rect x="66" y="46" width="4" height="16" rx="2" fill="' + chev + '"/>';
+    }
+    if(cfg.style === 'chignon'){
+      s += '<path d="M31 46 C31 29 69 29 69 46 C69 37 62 33 50 33 C38 33 31 37 31 46 Z" fill="' + chev + '"/>';
+      s += '<circle cx="50" cy="24" r="8" fill="' + chev + '"/>';
+    }
+    if(cfg.style === 'long'){
+      s += '<path d="M29 46 C29 28 71 28 71 46 L71 72 L64 72 L64 46 C64 38 36 38 36 46 L36 72 L29 72 Z" fill="' + chev + '"/>';
+    }
+    if(cfg.style === 'crete'){
+      s += '<path d="M33 46 C33 38 67 38 67 46 C64 42 36 42 33 46 Z" fill="' + chev + '" opacity="0.6"/>';
+      s += '<path d="M44 42 C44 22 56 22 56 42 Z" fill="' + chev + '"/>';
+    }
+    // chauve : rien
+  }
+
+  // ---- yeux ----
   if(cfg.gear === 'lunettes'){
-    svg += '<rect x="35" y="41" width="30" height="9" rx="4" fill="#12161F"/>';
-    svg += '<rect x="49" y="44" width="2" height="3" fill="#2A3242"/>';
+    s += '<rect x="34" y="43" width="32" height="10" rx="4.5" fill="#12161F"/>';
+    s += '<rect x="49" y="46" width="2" height="3" fill="#2A3242"/>';
+  } else if(cfg.gear === 'masque'){
+    s += '<ellipse cx="50" cy="52" rx="17" ry="17" fill="#2A3242" stroke="#151A24" stroke-width="1.5"/>';
+    s += '<circle cx="43" cy="47" r="5" fill="#8FB8D8" stroke="#151A24" stroke-width="1"/>';
+    s += '<circle cx="57" cy="47" r="5" fill="#8FB8D8" stroke="#151A24" stroke-width="1"/>';
+    s += '<circle cx="50" cy="60" r="6" fill="#1C222E" stroke="#151A24" stroke-width="1"/>';
+    s += '<circle cx="50" cy="60" r="2.5" fill="#3A4356"/>';
   } else {
-    svg += '<circle cx="43" cy="46" r="2.4" fill="#1C2333"/><circle cx="57" cy="46" r="2.4" fill="#1C2333"/>';
+    if(cfg.eyes === 'ronds'){
+      s += '<circle cx="43" cy="48" r="3" fill="#FFF"/><circle cx="57" cy="48" r="3" fill="#FFF"/>';
+      s += '<circle cx="43" cy="48" r="1.9" fill="' + oeil + '"/><circle cx="57" cy="48" r="1.9" fill="' + oeil + '"/>';
+    } else if(cfg.eyes === 'amandes'){
+      s += '<ellipse cx="43" cy="48" rx="3.6" ry="2.4" fill="#FFF"/><ellipse cx="57" cy="48" rx="3.6" ry="2.4" fill="#FFF"/>';
+      s += '<circle cx="43" cy="48" r="1.7" fill="' + oeil + '"/><circle cx="57" cy="48" r="1.7" fill="' + oeil + '"/>';
+    } else if(cfg.eyes === 'rieurs'){
+      s += '<path d="M39 49 Q43 45 47 49" stroke="' + oeil + '" stroke-width="2.2" fill="none" stroke-linecap="round"/>';
+      s += '<path d="M53 49 Q57 45 61 49" stroke="' + oeil + '" stroke-width="2.2" fill="none" stroke-linecap="round"/>';
+    } else if(cfg.eyes === 'determines'){
+      s += '<circle cx="43" cy="48" r="2.6" fill="' + oeil + '"/><circle cx="57" cy="48" r="2.6" fill="' + oeil + '"/>';
+      s += '<path d="M38 43 L48 45" stroke="' + chev + '" stroke-width="2.2" stroke-linecap="round"/>';
+      s += '<path d="M62 43 L52 45" stroke="' + chev + '" stroke-width="2.2" stroke-linecap="round"/>';
+    } else {
+      s += '<path d="M39 48 Q43 51 47 48" stroke="' + oeil + '" stroke-width="2" fill="none" stroke-linecap="round"/>';
+      s += '<path d="M53 48 Q57 51 61 48" stroke="' + oeil + '" stroke-width="2" fill="none" stroke-linecap="round"/>';
+    }
   }
-  svg += '<path d="M44 55 Q50 59 56 55" stroke="#1C2333" stroke-width="1.8" fill="none" stroke-linecap="round"/>';
-  // couvre-chef
-  if(cfg.head === 'casquette'){
-    svg += '<path d="M30 36 C30 24 70 24 70 36 Z" fill="#1C2333"/>';
-    svg += '<path d="M28 36 h44 v4 h-44 Z" fill="#12161F"/>';
-    svg += '<circle cx="50" cy="31" r="3" fill="#D4AF37"/>';
-  } else if(cfg.head === 'kepi'){
-    svg += '<path d="M29 34 h42 v6 h-42 Z" fill="#12161F"/>';
-    svg += '<path d="M31 22 h38 v12 h-38 Z" fill="#1C2333"/>';
-    svg += '<rect x="31" y="30" width="38" height="3" fill="#D4AF37"/>';
-    svg += '<circle cx="50" cy="26" r="3.2" fill="#D4AF37"/>';
-  } else if(cfg.head === 'casque'){
-    svg += '<path d="M28 46 C28 24 72 24 72 46 Z" fill="#2A3242"/>';
-    svg += '<path d="M28 44 h44 v5 h-44 Z" fill="#12161F"/>';
-    svg += '<path d="M33 44 C33 32 67 32 67 44 Z" fill="rgba(180,210,255,0.22)"/>';
-  } else if(cfg.head === 'beret'){
-    svg += '<path d="M30 34 C30 22 70 22 68 34 C60 30 40 30 30 34 Z" fill="#1B2A45"/>';
-    svg += '<circle cx="66" cy="27" r="3.4" fill="#D4AF37"/>';
+
+  // ---- bouche ----
+  if(cfg.gear !== 'masque') s += '<path d="M44 58 Q50 62 56 58" stroke="#1C2333" stroke-width="1.8" fill="none" stroke-linecap="round"/>';
+
+  // ---- couvre-chef ----
+  const h = cfg.head;
+  if(h === 'casquette'){
+    s += '<path d="M30 38 C30 25 70 25 70 38 Z" fill="#2E3A4E"/>';
+    s += '<path d="M27 38 h46 v4 h-46 Z" fill="#1C2333"/>';
+    s += '<circle cx="50" cy="32" r="3" fill="#D4AF37"/>';
+  } else if(h === 'casquettePN'){
+    s += '<path d="M30 38 C30 25 70 25 70 38 Z" fill="#101C30"/>';
+    s += '<path d="M27 38 h46 v4 h-46 Z" fill="#0A1220"/>';
+    s += '<rect x="30" y="34" width="40" height="3" fill="#24518F"/>';
+    s += '<text x="50" y="33" font-size="6" fill="#E8ECF4" text-anchor="middle" font-family="monospace">POLICE</text>';
+  } else if(h === 'durag'){
+    s += '<path d="M30 44 C30 26 70 26 70 44 C70 34 62 30 50 30 C38 30 30 34 30 44 Z" fill="#1A1D26"/>';
+    s += '<path d="M68 42 L82 50 L80 54 L66 47 Z" fill="#1A1D26"/>';
+    s += '<path d="M32 40 C40 34 60 34 68 40" stroke="#2C3140" stroke-width="1.4" fill="none"/>';
+  } else if(h === 'bandana'){
+    s += '<path d="M31 42 C31 33 69 33 69 42 C60 38 40 38 31 42 Z" fill="#8C1C24"/>';
+    s += '<path d="M66 40 L76 46 L74 49 L64 44 Z" fill="#8C1C24"/>';
+  } else if(h === 'bonnet'){
+    s += '<path d="M30 42 C30 24 70 24 70 42 Z" fill="#3E4A5E"/>';
+    s += '<rect x="29" y="40" width="42" height="7" rx="3" fill="#4E5C72"/>';
+    s += '<circle cx="50" cy="21" r="4" fill="#4E5C72"/>';
+  } else if(h === 'kepi'){
+    s += '<path d="M29 36 h42 v6 h-42 Z" fill="#0A1220"/>';
+    s += '<path d="M31 23 h38 v13 h-38 Z" fill="#101C30"/>';
+    s += '<rect x="31" y="32" width="38" height="3" fill="#D4AF37"/>';
+    s += '<circle cx="50" cy="27" r="3.4" fill="#D4AF37"/>';
+  } else if(h === 'casque'){
+    s += '<path d="M27 48 C27 24 73 24 73 48 Z" fill="#2A3242"/>';
+    s += '<path d="M27 46 h46 v5 h-46 Z" fill="#12161F"/>';
+    s += '<path d="M32 46 C32 32 68 32 68 46 Z" fill="rgba(180,210,255,0.24)"/>';
+    s += '<rect x="46" y="24" width="8" height="6" rx="2" fill="#12161F"/>';
+  } else if(h === 'beret'){
+    s += '<path d="M29 36 C29 22 71 22 68 36 C58 31 40 31 29 36 Z" fill="#1B2A45"/>';
+    s += '<circle cx="67" cy="27" r="3.6" fill="#D4AF37"/>';
   }
-  return svg + '</svg>';
+
+  return s + '</svg>';
+}
+
+/* ---- CHOIX DES THÈMES AVANT UNE SÉRIE ---- */
+const QUIZ_THEMES = [
+  { id:'cee1',    icone:'📘', nom:'Questions CEE1',        desc:'Le programme du concours',     premium:true  },
+  { id:'routier', icone:'🚗', nom:'Contrôle routier',      desc:'Procédures et infractions',    premium:true  },
+  { id:'grades',  icone:'🎖️', nom:'Grades',                desc:'Reconnaître les insignes',     premium:false },
+  { id:'alpha',   icone:'🔤', nom:'Alphabet OTAN',         desc:'Épeler correctement',          premium:false },
+  { id:'orgs',    icone:'🏛️', nom:'Sigles & organisations', desc:'DGPN, IGPN, DNPJ…',           premium:false }
+];
+
+function themeChoiceKey(){ return 'cee1_themes_' + (currentUser ? currentUser.uid : 'anon'); }
+
+function getChosenThemes(){
+  try{
+    const brut = JSON.parse(localStorage.getItem(themeChoiceKey()) || 'null');
+    if(Array.isArray(brut) && brut.length) return brut;
+  }catch(e){}
+  return QUIZ_THEMES.map(function(t){ return t.id; });   // tout par défaut
+}
+
+function saveChosenThemes(liste){
+  try{ localStorage.setItem(themeChoiceKey(), JSON.stringify(liste)); }catch(e){}
+}
+
+function showThemePicker(){
+  showScreen('screen-themes');
+  renderThemePicker();
+}
+
+function renderThemePicker(){
+  const choisis = getChosenThemes();
+  document.getElementById('themeList').innerHTML = QUIZ_THEMES.map(function(t){
+    const actif = choisis.indexOf(t.id) !== -1;
+    const verrou = t.premium && !isPaidUser;
+    return '<button class="theme-pick' + (actif && !verrou ? ' on' : '') + '" onclick="toggleTheme(\'' + t.id + '\')">'
+      + '<span class="tp-ic">' + t.icone + '</span>'
+      + '<span class="tp-tx"><span class="tp-t">' + t.nom + (verrou ? ' 🔒' : '') + '</span>'
+      + '<span class="tp-s">' + t.desc + '</span></span>'
+      + '<span class="tp-check">' + (actif && !verrou ? '✔' : '') + '</span></button>';
+  }).join('');
+  const n = choisis.filter(function(id){
+    const t = QUIZ_THEMES.find(function(x){ return x.id === id; });
+    return t && (!t.premium || isPaidUser);
+  }).length;
+  document.getElementById('themeCount').textContent = n === 0
+    ? 'Sélectionne au moins un thème'
+    : n + ' thème' + (n > 1 ? 's' : '') + ' sélectionné' + (n > 1 ? 's' : '');
+}
+
+function toggleTheme(id){
+  const t = QUIZ_THEMES.find(function(x){ return x.id === id; });
+  if(t && t.premium && !isPaidUser){ showPaywall(); return; }
+  const choisis = getChosenThemes();
+  const i = choisis.indexOf(id);
+  if(i === -1) choisis.push(id); else choisis.splice(i, 1);
+  saveChosenThemes(choisis);
+  renderThemePicker();
+}
+
+function selectAllThemes(){
+  saveChosenThemes(QUIZ_THEMES.filter(function(t){ return !t.premium || isPaidUser; }).map(function(t){ return t.id; }));
+  renderThemePicker();
+}
+
+function startThemedQuiz(){
+  const choisis = getChosenThemes().filter(function(id){
+    const t = QUIZ_THEMES.find(function(x){ return x.id === id; });
+    return t && (!t.premium || isPaidUser);
+  });
+  if(choisis.length === 0){ alert('Choisis au moins un thème pour lancer ta série.'); return; }
+  ensurePaidAccess(function(){ startQuiz(true, choisis); });
+}
+
+/* ---- Encart d'aide : masquable, revient à chaque chargement ---- */
+let howDismissed = false;   // volontairement non mémorisé : réapparaît au rechargement
+
+function dismissHowBox(){
+  howDismissed = true;
+  const b = document.getElementById('howBox');
+  if(b) b.classList.add('hidden');
+}
+
+function refreshHowBox(){
+  const b = document.getElementById('howBox');
+  if(b) b.classList.toggle('hidden', howDismissed);
 }
 
 function showSoloHub(){
@@ -7093,57 +7417,98 @@ function showAvatarScreen(){
 
 function renderAvatarScreen(){
   const cfg = getAvatarConfig();
-  document.getElementById('avatarPreview').innerHTML = buildAvatarSvg(cfg, 150);
+  document.getElementById('avatarPreview').innerHTML = buildAvatarSvg(cfg, 170);
 
-  function rangeCouleurs(titre, liste, champ){
-    let h = '<p class="answer-label" style="margin-top:16px;">' + titre + '</p><div style="display:flex; gap:9px; flex-wrap:wrap;">';
-    liste.forEach(function(col, i){
-      h += '<div onclick="setAvatarPart(\'' + champ + '\', ' + i + ')" style="width:34px; height:34px; border-radius:50%; background:' + col + '; cursor:pointer; border:3px solid ' + (cfg[champ] === i ? 'var(--brass)' : 'var(--line)') + ';"></div>';
-    });
-    return h + '</div>';
+  const tenue = AV_SHIRTS.find(function(x){ return x.id === cfg.shirt; }) || AV_SHIRTS[0];
+  const chapeau = AV_HEADS.find(function(x){ return x.id === cfg.head; }) || AV_HEADS[0];
+  const equip = AV_GEARS.find(function(x){ return x.id === cfg.gear; }) || AV_GEARS[0];
+  document.getElementById('avatarLegend').textContent = tenue.nom + ' · ' + chapeau.nom + (equip.id !== 'aucun' ? ' · ' + equip.nom : '');
+
+  // Une rangée = une caractéristique, avec ses deux flèches
+  function rangee(icone, titre, valeurAffichee, champ, verrou){
+    return '<div class="av-row">'
+      + '<span class="av-row-ic">' + icone + '</span>'
+      + '<button class="av-arrow" onclick="cycleAvatar(\'' + champ + '\', -1)" aria-label="Précédent">‹</button>'
+      + '<span class="av-row-mid"><span class="av-row-t">' + titre + '</span>'
+      + '<span class="av-row-v' + (verrou ? ' av-locked' : '') + '">' + escapeHtml(valeurAffichee) + (verrou ? ' ' + verrou : '') + '</span></span>'
+      + '<button class="av-arrow" onclick="cycleAvatar(\'' + champ + '\', 1)" aria-label="Suivant">›</button>'
+      + '</div>';
   }
 
-  function rangeTenues(titre, liste, champ){
-    let h = '<p class="answer-label" style="margin-top:16px;">' + titre + '</p><div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">';
-    liste.forEach(function(item){
-      const dispo = avatarUnlocked(item);
-      const choisi = cfg[champ] === item.id;
-      h += '<button class="btn-secondary" style="padding:9px 8px; font-size:11.5px; text-align:left; line-height:1.4;'
-        + (choisi ? ' border-color:var(--brass); box-shadow:0 0 0 3px var(--focus);' : '')
-        + (dispo ? '' : ' opacity:0.55;') + '" onclick="setAvatarPart(\'' + champ + '\', \'' + item.id + '\')">'
-        + escapeHtml(item.nom)
-        + (dispo ? (choisi ? ' ✔' : '') : '<br><span style="font-size:10px; color:var(--brass-dark);">' + avatarLockLabel(item) + '</span>')
-        + '</button>';
-    });
-    return h + '</div>';
-  }
+  const style = AV_STYLES.find(function(x){ return x.id === cfg.style; }) || AV_STYLES[0];
+  const yeux = AV_EYES.find(function(x){ return x.id === cfg.eyes; }) || AV_EYES[0];
 
-  document.getElementById('avatarPickers').innerHTML =
-    rangeCouleurs('Teint', AV_SKINS, 'skin') +
-    rangeCouleurs('Cheveux', AV_HAIRS, 'hair') +
-    rangeTenues('Tenue', AV_SHIRTS, 'shirt') +
-    rangeTenues('Couvre-chef', AV_HEADS, 'head') +
-    rangeTenues('Équipement', AV_GEARS, 'gear');
+  document.getElementById('avatarRows').innerHTML =
+      rangee('🎨', 'Teint', 'Nuance ' + (cfg.skin + 1) + '/' + AV_SKINS.length, 'skin', '')
+    + rangee('💇', 'Coiffure', style.nom, 'style', '')
+    + rangee('🖌️', 'Couleur de cheveux', 'Nuance ' + (cfg.hair + 1) + '/' + AV_HAIRS.length, 'hair', '')
+    + rangee('👁️', 'Yeux', yeux.nom, 'eyes', '')
+    + rangee('🔵', 'Couleur des yeux', 'Nuance ' + (cfg.eyecolor + 1) + '/' + AV_EYECOLORS.length, 'eyecolor', '')
+    + rangee('👕', 'Tenue', tenue.nom, 'shirt', avatarLockLabel(tenue))
+    + rangee('🧢', 'Couvre-chef', chapeau.nom, 'head', avatarLockLabel(chapeau))
+    + rangee('🎖️', 'Équipement', equip.nom, 'gear', avatarLockLabel(equip));
 }
 
-function setAvatarPart(champ, valeur){
-  invalidateAvatarXp();
+// Passe à l'option suivante (ou précédente) en sautant celles qui sont verrouillées
+function cycleAvatar(champ, sens){
   const cfg = getAvatarConfig();
-  if(champ === 'shirt' || champ === 'head' || champ === 'gear'){
-    const liste = champ === 'shirt' ? AV_SHIRTS : (champ === 'head' ? AV_HEADS : AV_GEARS);
-    const item = liste.find(function(x){ return x.id === valeur; });
-    if(!avatarUnlocked(item)){
-      if(item.need.type === 'premium'){ showPaywall(); return; }
-      alert('Cette tenue se débloque à ' + item.need.xp.toLocaleString('fr-FR') + ' XP.\n\nTu en as ' + computeXP().toLocaleString('fr-FR') + ' — continue tes séries !');
-      return;
+  const simples = { skin: AV_SKINS, hair: AV_HAIRS, eyecolor: AV_EYECOLORS };
+  if(simples[champ]){
+    const n = simples[champ].length;
+    cfg[champ] = ((cfg[champ] || 0) + sens + n) % n;
+    saveAvatarConfig(cfg); renderAvatarScreen(); return;
+  }
+  const listes = { style: AV_STYLES, eyes: AV_EYES, shirt: AV_SHIRTS, head: AV_HEADS, gear: AV_GEARS };
+  const liste = listes[champ];
+  if(!liste) return;
+  let idx = liste.findIndex(function(x){ return x.id === cfg[champ]; });
+  if(idx === -1) idx = 0;
+  // On avance jusqu'à la prochaine option accessible (au plus un tour complet)
+  for(let k = 0; k < liste.length; k++){
+    idx = (idx + sens + liste.length) % liste.length;
+    if(avatarUnlocked(liste[idx])){
+      cfg[champ] = liste[idx].id;
+      saveAvatarConfig(cfg); renderAvatarScreen(); return;
     }
   }
-  cfg[champ] = valeur;
-  saveAvatarConfig(cfg);
+}
+
+function defaultAvatarConfig(){
+  return { skin:0, hair:0, style:'court', eyes:'ronds', eyecolor:0, shirt:'tshirt', head:'aucun', gear:'aucun' };
+}
+
+function resetAvatar(){
+  saveAvatarConfig(defaultAvatarConfig());
   renderAvatarScreen();
   updateProfileFlair();
-  try{ syncToCloud(); }catch(e){}
 }
+
+function randomAvatar(){
+  function auHasard(liste){
+    const dispo = liste.filter(avatarUnlocked);
+    return dispo[Math.floor(Math.random() * dispo.length)].id;
+  }
+  saveAvatarConfig({
+    skin: Math.floor(Math.random() * AV_SKINS.length),
+    hair: Math.floor(Math.random() * AV_HAIRS.length),
+    eyecolor: Math.floor(Math.random() * AV_EYECOLORS.length),
+    style: auHasard(AV_STYLES),
+    eyes: auHasard(AV_EYES),
+    shirt: auHasard(AV_SHIRTS),
+    head: auHasard(AV_HEADS),
+    gear: auHasard(AV_GEARS)
+  });
+  renderAvatarScreen();
+  updateProfileFlair();
+}
+
+function validateAvatar(){
+  updateProfileFlair();
+  try{ syncToCloud(); }catch(e){}
+  backToMenu();
+}
+
+
 
 /* ---- SECTIONS : choix perso + duel des sections au classement ---- */
 function getMySection(){
@@ -7253,6 +7618,7 @@ function syncToCloud(){
     color: myFlair.color || '',
     avatar: myFlair.avatar || '',
     gold: !!myFlair.gold,
+    character: getAvatarConfig(),
     section: getMySection(),
     survivalBest: getSurvivalBest(),
     title: (function(){ const t = getMyTitle(); return t ? (t.icon + ' ' + t.name) : ''; })(),
@@ -7272,6 +7638,7 @@ function syncToCloud(){
     color: myFlair.color || '',
     avatar: myFlair.avatar || '',
     gold: !!myFlair.gold,
+    character: getAvatarConfig(),
     section: getMySection(),
     survivalBest: getSurvivalBest(),
     title: (function(){ const t = getMyTitle(); return t ? (t.icon + ' ' + t.name) : ''; })(),
