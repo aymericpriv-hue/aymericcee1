@@ -990,14 +990,15 @@
 
   /* ---- RETOUR FLOTTANT : suit le défilement ---- */
   #floatBack{
-    position:fixed; left:50%; transform:translateX(-50%);
-    bottom:calc(18px + env(safe-area-inset-bottom));
+    position:fixed; left:calc(14px + env(safe-area-inset-left));
+    bottom:calc(76px + env(safe-area-inset-bottom));
     z-index:180; display:inline-flex; align-items:center; gap:8px;
     padding:11px 20px 11px 16px; border-radius:99px; cursor:pointer;
     border:1px solid var(--line); background:var(--paper);
     color:var(--ink); font-family:'IBM Plex Sans', sans-serif; font-size:13.5px; font-weight:700;
-    box-shadow:0 10px 28px -10px rgba(0,0,0,0.55);
+    box-shadow:0 8px 22px -10px rgba(0,0,0,0.6);
     transition:opacity .18s ease;
+    font-size:12.5px; padding:9px 15px 9px 12px;
   }
   #floatBack:hover{border-color:var(--brass);}
   #floatBack.hidden{opacity:0; pointer-events:none;}
@@ -1315,10 +1316,11 @@
       <button class="how-close" onclick="dismissHowBox()" aria-label="Masquer">×</button>
       <p class="how-title">💡 Comment ça marche</p>
       <div class="how-body"><ul class="rules">
-        <li><span class="n">1</span><span>Un mélange : surtout des questions CEE1, mais aussi quelques grades 🎖️, lettres OTAN 🔤 et sigles d'organisations 🏛️ glissés dans la série pour varier.</span></li>
-        <li><span class="n">2</span><span>Une fiche par écran. Tu dois <b>rédiger ta réponse</b>, puis tu affiches <b>la réponse de référence</b> pour te corriger toi-même, tout de suite.</span></li>
-        <li><span class="n">3</span><span>Indique honnêtement si tu avais <b>bon</b> ou <b>faux</b> — c'est ce qui construit ton score, et ce qui fait revenir plus souvent ce que tu rates.</span></li>
-        <li><span class="n">4</span><span>Seuil de réussite : <b>12 bonnes réponses sur 25</b>. En dessous, c'est ajourné — on retente, et cette fois tu vises mieux.</span></li>
+        <li><span class="n">1</span><span><b>Choisis ton mode.</b> En <b>solo</b> tu révises à ton rythme ; <b>en ligne</b> tu défies ta promo en duel ou en bataille.</span></li>
+        <li><span class="n">2</span><span><b>Sélectionne tes thèmes</b> avant chaque série : questions CEE1, contrôle routier, grades, alphabet OTAN, sigles. Tu reçois 25 questions tirées dedans.</span></li>
+        <li><span class="n">3</span><span>Une question par écran : tu <b>rédiges ta réponse</b>, tu affiches la correction, puis tu indiques honnêtement si tu avais <b>bon</b> ou <b>faux</b>.</span></li>
+        <li><span class="n">4</span><span>Ce que tu rates <b>revient plus souvent</b>, et l'examen blanc te met dans les conditions du concours : <b>12 bonnes réponses sur 25</b> pour être admis.</span></li>
+        <li><span class="n">5</span><span>Chaque bonne réponse te rapporte de l'<b>expérience</b> : tu montes en grade et tu débloques des tenues pour <b>ton personnage</b>.</span></li>
       </ul></div>
     </div>
 
@@ -7225,14 +7227,19 @@ function buildAvatarSvg(cfg, taille){
   const oeil = AV_EYECOLORS[cfg.eyecolor] || AV_EYECOLORS[0];
   const tenue = AV_SHIRTS.find(function(x){ return x.id === cfg.shirt; }) || AV_SHIRTS[0];
   const t = taille || 96;
+  // « Rien » et le bandana laissent voir la coiffure ; les autres la recouvrent
   const sousChapeau = cfg.head !== 'aucun' && cfg.head !== 'bandana';
+  const styleTete = cfg.style || 'court';
   let s = '<svg viewBox="0 0 100 110" width="' + t + '" height="' + Math.round(t * 1.1) + '" role="img" aria-label="Mon personnage">';
 
   // ---- cou et buste ----
-  s += '<path d="M44 68 h12 v12 h-12 Z" fill="' + peau + '"/>';
+  const cou = (cfg.gender === 'femme') ? 4.6 : ((cfg.gender === 'homme') ? 7 : 6);
+  s += '<path d="M' + (50 - cou) + ' 68 h' + (cou * 2) + ' v12 h-' + (cou * 2) + ' Z" fill="' + peau + '"/>';
   const g = cfg.gender || 'neutre';
-  const largeur = g === 'homme' ? 34 : (g === 'femme' ? 28 : 32);
-  s += '<path d="M' + (50 - largeur) + ' 110 C' + (50 - largeur) + ' 86 ' + (50 - largeur * 0.45) + ' 78 50 78 C' + (50 + largeur * 0.45) + ' 78 ' + (50 + largeur) + ' 86 ' + (50 + largeur) + ' 110 Z" fill="' + tenue.c + '"/>';
+  // Épaules franchement différentes selon la silhouette choisie
+  const largeur = g === 'homme' ? 36 : (g === 'femme' ? 25 : 31);
+  const carrure = g === 'homme' ? 82 : (g === 'femme' ? 88 : 85);   // plus bas = épaules plus tombantes
+  s += '<path d="M' + (50 - largeur) + ' 110 C' + (50 - largeur) + ' ' + carrure + ' ' + (50 - largeur * 0.42) + ' 78 50 78 C' + (50 + largeur * 0.42) + ' 78 ' + (50 + largeur) + ' ' + carrure + ' ' + (50 + largeur) + ' 110 Z" fill="' + tenue.c + '"/>';
 
   // ---- col selon la tenue ----
   if(tenue.col === 'chemise' || tenue.col === 'cravate'){
@@ -7272,16 +7279,19 @@ function buildAvatarSvg(cfg, taille){
   if(cfg.gear === 'medaille'){ s += '<path d="M62 84 l3 6 -3 2 -3 -2 Z" fill="#B08A2E"/><circle cx="62" cy="96" r="4.5" fill="#D4AF37" stroke="#8C6C1E" stroke-width="0.8"/>'; }
 
   // ---- tête ----
-  s += '<ellipse cx="50" cy="48" rx="19" ry="21.5" fill="' + peau + '"/>';
-  s += '<ellipse cx="31" cy="50" rx="3" ry="4.5" fill="' + peau + '"/><ellipse cx="69" cy="50" rx="3" ry="4.5" fill="' + peau + '"/>';
+  const rx = g === 'homme' ? 19.5 : (g === 'femme' ? 17.8 : 19);
+  const ry = g === 'homme' ? 21 : (g === 'femme' ? 21.8 : 21.5);
+  s += '<ellipse cx="50" cy="48" rx="' + rx + '" ry="' + ry + '" fill="' + peau + '"/>';
+  if(g === 'homme') s += '<path d="M34 55 C36 66 44 70 50 70 C56 70 64 66 66 55 C64 63 57 66.5 50 66.5 C43 66.5 36 63 34 55 Z" fill="rgba(0,0,0,0.10)"/>';
+  s += '<ellipse cx="' + (50 - rx) + '" cy="50" rx="3" ry="4.5" fill="' + peau + '"/><ellipse cx="' + (50 + rx) + '" cy="50" rx="3" ry="4.5" fill="' + peau + '"/>';
 
   // ---- coiffure : épouse exactement le crâne (centre 50/48, rayons 19 × 21.5) ----
   if(!sousChapeau){
     // Calotte de référence : suit la courbe du crâne du côté gauche au côté droit
     const calotte = 'M31 48 C31 30 40 26.5 50 26.5 C60 26.5 69 30 69 48 C69 38 62 34.5 50 34.5 C38 34.5 31 38 31 48 Z';
-    if(cfg.style === 'court')  s += '<path d="' + calotte + '" fill="' + chev + '"/>';
-    if(cfg.style === 'rase')   s += '<path d="M31.5 46 C31.5 32 40 28.5 50 28.5 C60 28.5 68.5 32 68.5 46 C67 40 60 37 50 37 C40 37 33 40 31.5 46 Z" fill="' + chev + '" opacity="0.7"/>';
-    if(cfg.style === 'boucle'){
+    if(styleTete === 'court')  s += '<path d="' + calotte + '" fill="' + chev + '"/>';
+    if(styleTete === 'rase')   s += '<path d="M31.5 46 C31.5 32 40 28.5 50 28.5 C60 28.5 68.5 32 68.5 46 C67 40 60 37 50 37 C40 37 33 40 31.5 46 Z" fill="' + chev + '" opacity="0.7"/>';
+    if(styleTete === 'boucle'){
       s += '<path d="' + calotte + '" fill="' + chev + '"/>';
       // Boucles calées sur la courbe du crâne, jamais au-dessus du sommet
       [[37,37,5],[43.5,32,5.2],[50,30.5,5.4],[56.5,32,5.2],[63,37,5]].forEach(function(p){
@@ -7291,11 +7301,11 @@ function buildAvatarSvg(cfg, taille){
         s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="2.4" fill="rgba(0,0,0,0.16)"/>';
       });
     }
-    if(cfg.style === 'afro'){
+    if(styleTete === 'afro'){
       s += '<circle cx="50" cy="36" r="17.5" fill="' + chev + '"/>';
       s += '<circle cx="35" cy="42" r="7.5" fill="' + chev + '"/><circle cx="65" cy="42" r="7.5" fill="' + chev + '"/>';
     }
-    if(cfg.style === 'tresses'){
+    if(styleTete === 'tresses'){
       // Calotte pleine, puis des sillons courbes qui suivent la rondeur du crâne.
       // Des traits sombres se lisent quelle que soit la couleur de cheveux.
       s += '<path d="' + calotte + '" fill="' + chev + '"/>';
@@ -7312,14 +7322,14 @@ function buildAvatarSvg(cfg, taille){
       s += '<path d="M32.5 44 C31 50 31.5 55 33 58" stroke="' + chev + '" stroke-width="4" fill="none" stroke-linecap="round"/>';
       s += '<path d="M67.5 44 C69 50 68.5 55 67 58" stroke="' + chev + '" stroke-width="4" fill="none" stroke-linecap="round"/>';
     }
-    if(cfg.style === 'chignon'){
+    if(styleTete === 'chignon'){
       s += '<path d="' + calotte + '" fill="' + chev + '"/>';
       s += '<circle cx="50" cy="24" r="6.5" fill="' + chev + '"/>';
     }
-    if(cfg.style === 'long'){
+    if(styleTete === 'long'){
       s += '<path d="M30 48 C30 29 40 26 50 26 C60 26 70 29 70 48 L70 70 C70 72 67 72 66.5 70 L66.5 46 C64 39 58 36.5 50 36.5 C42 36.5 36 39 33.5 46 L33.5 70 C33 72 30 72 30 70 Z" fill="' + chev + '"/>';
     }
-    if(cfg.style === 'crete'){
+    if(styleTete === 'crete'){
       s += '<path d="M33 46 C33 39 41 36.5 50 36.5 C59 36.5 67 39 67 46 C64 41.5 36 41.5 33 46 Z" fill="' + chev + '" opacity="0.55"/>';
       s += '<path d="M45 38 C45 24 55 24 55 38 Z" fill="' + chev + '"/>';
     }
@@ -7368,38 +7378,38 @@ function buildAvatarSvg(cfg, taille){
   // ---- couvre-chef ----
   const h = cfg.head;
   if(h === 'casquette'){
-    s += '<path d="M30 38 C30 25 70 25 70 38 Z" fill="#2E3A4E"/>';
-    s += '<path d="M27 38 h46 v4 h-46 Z" fill="#1C2333"/>';
-    s += '<circle cx="50" cy="32" r="3" fill="#D4AF37"/>';
+    s += '<path d="M29.5 41 C29.5 24 70.5 24 70.5 41 Z" fill="#2E3A4E"/>';
+    s += '<path d="M26 41 C26 38 74 38 74 41 C74 44 26 44 26 41 Z" fill="#1C2333"/>';
+    s += '<circle cx="50" cy="31" r="3" fill="#D4AF37"/>';
   } else if(h === 'casquettePN'){
-    s += '<path d="M30 38 C30 25 70 25 70 38 Z" fill="#101C30"/>';
-    s += '<path d="M27 38 h46 v4 h-46 Z" fill="#0A1220"/>';
-    s += '<rect x="30" y="34" width="40" height="3" fill="#24518F"/>';
-    s += '<text x="50" y="33" font-size="6" fill="#E8ECF4" text-anchor="middle" font-family="monospace">POLICE</text>';
+    s += '<path d="M29.5 41 C29.5 24 70.5 24 70.5 41 Z" fill="#101C30"/>';
+    s += '<path d="M26 41 C26 38 74 38 74 41 C74 44 26 44 26 41 Z" fill="#0A1220"/>';
+    s += '<rect x="30" y="36" width="40" height="3" fill="#24518F"/>';
+    s += '<text x="50" y="32.5" font-size="6" fill="#E8ECF4" text-anchor="middle" font-family="monospace">POLICE</text>';
   } else if(h === 'durag'){
-    s += '<path d="M30 44 C30 26 70 26 70 44 C70 34 62 30 50 30 C38 30 30 34 30 44 Z" fill="#1A1D26"/>';
-    s += '<path d="M68 42 L82 50 L80 54 L66 47 Z" fill="#1A1D26"/>';
-    s += '<path d="M32 40 C40 34 60 34 68 40" stroke="#2C3140" stroke-width="1.4" fill="none"/>';
+    s += '<path d="M29.5 45 C29.5 25 70.5 25 70.5 45 C70.5 36 62 32 50 32 C38 32 29.5 36 29.5 45 Z" fill="#1A1D26"/>';
+    s += '<path d="M68.5 43 L82 51 L80 55 L66.5 48 Z" fill="#1A1D26"/>';
+    s += '<path d="M32 41 C40 35 60 35 68 41" stroke="#2C3140" stroke-width="1.4" fill="none"/>';
   } else if(h === 'bandana'){
-    s += '<path d="M31 42 C31 33 69 33 69 42 C60 38 40 38 31 42 Z" fill="#8C1C24"/>';
-    s += '<path d="M66 40 L76 46 L74 49 L64 44 Z" fill="#8C1C24"/>';
+    s += '<path d="M30 43 C30 32 70 32 70 43 C60 38.5 40 38.5 30 43 Z" fill="#8C1C24"/>';
+    s += '<path d="M67 41 L77 47 L75 50 L65 45 Z" fill="#8C1C24"/>';
   } else if(h === 'bonnet'){
-    s += '<path d="M30 42 C30 24 70 24 70 42 Z" fill="#3E4A5E"/>';
-    s += '<rect x="29" y="40" width="42" height="7" rx="3" fill="#4E5C72"/>';
+    s += '<path d="M29 44 C29 23 71 23 71 44 Z" fill="#3E4A5E"/>';
+    s += '<rect x="28.5" y="41" width="43" height="7" rx="3.5" fill="#4E5C72"/>';
     s += '<circle cx="50" cy="21" r="4" fill="#4E5C72"/>';
   } else if(h === 'kepi'){
-    s += '<path d="M29 36 h42 v6 h-42 Z" fill="#0A1220"/>';
-    s += '<path d="M31 23 h38 v13 h-38 Z" fill="#101C30"/>';
-    s += '<rect x="31" y="32" width="38" height="3" fill="#D4AF37"/>';
-    s += '<circle cx="50" cy="27" r="3.4" fill="#D4AF37"/>';
+    s += '<path d="M29.5 40 C29.5 26 70.5 26 70.5 40 Z" fill="#101C30"/>';
+    s += '<path d="M26 40 C26 37 74 37 74 40 C74 43 26 43 26 40 Z" fill="#0A1220"/>';
+    s += '<rect x="31" y="34" width="38" height="3" fill="#D4AF37"/>';
+    s += '<circle cx="50" cy="29" r="3.4" fill="#D4AF37"/>';
   } else if(h === 'casque'){
-    s += '<path d="M27 48 C27 24 73 24 73 48 Z" fill="#2A3242"/>';
-    s += '<path d="M27 46 h46 v5 h-46 Z" fill="#12161F"/>';
-    s += '<path d="M32 46 C32 32 68 32 68 46 Z" fill="rgba(180,210,255,0.24)"/>';
-    s += '<rect x="46" y="24" width="8" height="6" rx="2" fill="#12161F"/>';
+    s += '<path d="M27 49 C27 22 73 22 73 49 Z" fill="#2A3242"/>';
+    s += '<path d="M26 47 C26 44 74 44 74 47 C74 51 26 51 26 47 Z" fill="#12161F"/>';
+    s += '<path d="M32 46 C32 31 68 31 68 46 Z" fill="rgba(180,210,255,0.24)"/>';
+    s += '<rect x="46" y="22" width="8" height="6" rx="2" fill="#12161F"/>';
   } else if(h === 'beret'){
-    s += '<path d="M29 36 C29 22 71 22 68 36 C58 31 40 31 29 36 Z" fill="#1B2A45"/>';
-    s += '<circle cx="67" cy="27" r="3.6" fill="#D4AF37"/>';
+    s += '<path d="M28.5 39 C28.5 22 71.5 22 68.5 39 C58 33.5 39 33.5 28.5 39 Z" fill="#1B2A45"/>';
+    s += '<circle cx="67.5" cy="27" r="3.6" fill="#D4AF37"/>';
   }
 
   return s + '</svg>';
