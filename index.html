@@ -914,6 +914,28 @@
   .av-thumb{display:inline-block; vertical-align:middle; overflow:hidden; border-radius:50%; background:rgba(176,138,46,0.10);}
   .av-thumb svg{display:block; margin-top:-2px;}
 
+  /* ---- FICHES ÉPURÉES ---- */
+  .fiche{
+    padding:14px 2px; border-bottom:1px solid var(--line); cursor:pointer;
+    transition:background .12s ease;
+  }
+  .fiche:last-child{border-bottom:none;}
+  .fiche:hover{background:rgba(127,127,127,0.045);}
+  .fiche-q{
+    display:flex; align-items:flex-start; gap:10px;
+    font-size:14px; line-height:1.55; color:var(--ink);
+  }
+  .fiche-chev{
+    margin-left:auto; flex:none; color:var(--ink-soft); font-size:19px; line-height:1.1;
+    transition:transform .18s ease;
+  }
+  .fiche-chev.open{transform:rotate(90deg); color:var(--brass);}
+  .fiche-a{
+    font-size:13.5px; line-height:1.6; color:var(--brass-dark); font-weight:600;
+    margin-top:8px; padding-left:2px;
+  }
+  .fiche-mine{padding-bottom:10px;}
+
   /* ---- EN-TÊTE DU COMPTE ---- */
   .acc-head{
     display:flex; align-items:center; gap:16px; padding:16px;
@@ -965,6 +987,20 @@
     font-size:19px; line-height:1; cursor:pointer; border-radius:8px;
   }
   .how-close:hover{color:var(--ink); background:var(--line);}
+
+  /* ---- RETOUR FLOTTANT : suit le défilement ---- */
+  #floatBack{
+    position:fixed; left:50%; transform:translateX(-50%);
+    bottom:calc(18px + env(safe-area-inset-bottom));
+    z-index:180; display:inline-flex; align-items:center; gap:8px;
+    padding:11px 20px 11px 16px; border-radius:99px; cursor:pointer;
+    border:1px solid var(--line); background:var(--paper);
+    color:var(--ink); font-family:'IBM Plex Sans', sans-serif; font-size:13.5px; font-weight:700;
+    box-shadow:0 10px 28px -10px rgba(0,0,0,0.55);
+    transition:opacity .18s ease;
+  }
+  #floatBack:hover{border-color:var(--brass);}
+  #floatBack.hidden{opacity:0; pointer-events:none;}
 
   /* ---- RETOUR PLUS VISIBLE ---- */
   .back-menu{
@@ -1373,6 +1409,8 @@
     <p id="mpLobbyWaitNote" style="text-align:center; font-size:12.5px; color:var(--ink-soft); margin-top:14px;">En attente d'un autre joueur…</p>
     <button class="btn-secondary" style="width:100%; margin-top:14px;" onclick="mpLeaveRoom()">Quitter</button>
   </div>
+
+  <button id="floatBack" class="hidden" onclick="floatBackAction()">← Retour</button>
 
   <div id="payOverlay" class="hidden" style="position:fixed; inset:0; background:rgba(2,6,23,0.86); z-index:250; display:flex; align-items:center; justify-content:center; padding:20px;">
     <div style="background:var(--paper); border:1px solid var(--line); border-radius:16px; max-width:380px; width:100%; padding:32px 26px; text-align:center; box-shadow:0 24px 60px -12px rgba(0,0,0,0.6);">
@@ -1989,26 +2027,29 @@
 
   <div id="screen-online" class="card hidden">
     <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
-    <p class="lead" style="font-size:22px;">🌐 Mode en ligne</p>
-    <p style="font-size:13px; color:var(--ink-soft); margin-bottom:18px;">Affronte les autres élèves de ta promo.</p>
+    <p class="lead" style="font-size:22px;">🌐 En ligne</p>
 
-    <div class="grid2">
+    <div class="grid2" style="margin-top:16px;">
       <button class="mode-door" onclick="showMpMenu('duel')">
         <span class="md-ic">⚔️</span>
         <span class="md-t">Duel 1v1</span>
-        <span class="md-s">En direct, avec un code</span>
       </button>
       <button class="mode-door" onclick="showChallengesScreen()">
         <span class="md-ic">🎯</span>
         <span class="md-t">Défis</span>
-        <span class="md-s">Joue quand tu veux</span>
         <span id="chBadge2" class="hidden md-badge"></span>
+      </button>
+      <button class="mode-door" onclick="showMpMenu('battle')">
+        <span class="md-ic">🎖️</span>
+        <span class="md-t">Bataille</span>
+      </button>
+      <button class="mode-door" onclick="showGlobalLeaderboard()">
+        <span class="md-ic">🌍</span>
+        <span class="md-t">Classement <span id="lockIcon-globalboard" class="lock-badge">🔒</span></span>
       </button>
     </div>
 
-    <button class="row-card" style="margin-top:12px;" onclick="showMpMenu('battle')"><span class="row-inner"><span class="ic i-purple">🎖️</span><span class="tx"><span class="t">Bataille de Section</span><span class="s">Toute la classe, au vidéoprojecteur</span></span><span class="arrow">→</span></span></button>
-    <button class="row-card" style="margin-top:10px;" onclick="showGlobalLeaderboard()"><span class="row-inner"><span class="ic i-blue">🌍</span><span class="tx"><span class="t">Classement de la promo <span id="lockIcon-globalboard" class="lock-badge">🔒</span></span><span class="s" id="descBoard">Ton rang cette semaine</span></span><span class="arrow">→</span></span></button>
-    <button class="row-card" style="margin-top:10px;" onclick="showReferralScreen()"><span class="row-inner"><span class="ic i-gold">🤝</span><span class="tx"><span class="t">Inviter des camarades</span><span class="s">Plus on est nombreux, mieux c'est</span></span><span class="arrow">→</span></span></button>
+    <p style="text-align:center; margin-top:16px;"><span style="font-size:12.5px; text-decoration:underline; cursor:pointer; color:var(--ink-soft);" onclick="showReferralScreen()">🤝 Inviter des camarades</span></p>
   </div>
 
   <div id="screen-avatar" class="card hidden">
@@ -2053,7 +2094,9 @@
       <button class="row-card" onclick="showGlobalLeaderboard()"><span class="row-inner"><span class="ic i-blue">🌍</span><span class="tx"><span class="t">Classement <span id="lockIcon-globalboard2" class="lock-badge">🔒</span></span><span class="s">Ton rang cette semaine</span></span><span class="arrow">→</span></span></button>
     </div>
 
-    <p class="sec-label">⚙️ Mon compte</p>
+    <details class="rules-box" style="margin-top:6px;">
+      <summary>⚙️ Réglages du compte</summary>
+      <div style="margin-top:12px;">
     <p class="answer-label">Pseudo affiché</p>
     <div style="display:flex; gap:8px;">
       <input type="text" id="accountDisplayName" placeholder="Pseudo affiché" style="flex:1; border:1px solid var(--line); background:#fff; border-radius:2px; padding:12px 14px; font-family:'IBM Plex Sans', sans-serif; font-size:14px;">
@@ -2082,13 +2125,21 @@
     <div id="titlePicker" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
     </div>
 
-    <p class="sec-label">🔊 Réglages</p>
+      </div>
+    </details>
+
+    <details class="rules-box" style="margin-top:10px;">
+      <summary>🔊 Sons et vibrations</summary>
+      <div style="margin-top:12px;">
     <p class="answer-label" style="margin-bottom:6px;">Volume des sons et vibrations (jeu)</p>
       <div style="display:flex; align-items:center; gap:12px;">
         <span id="volumeIcon" style="font-size:18px; width:24px;">🔊</span>
         <input type="range" id="volumeSlider" min="0" max="100" step="5" value="60" style="flex:1; accent-color:var(--brass); cursor:pointer;" oninput="setVolume(this.value, false)" onchange="setVolume(this.value, true)">
         <span id="volumeLabel" style="font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:700; width:42px; text-align:right;">60%</span>
       </div>
+
+      </div>
+    </details>
 
     <p id="accountError" class="err" style="min-height:16px; margin:10px 0 0;"></p>
     <p id="accountSuccess" style="min-height:16px; margin:4px 0 0; font-size:12.5px; color:var(--green); font-weight:600;"></p>
@@ -2594,6 +2645,7 @@ function isAdminPseudo(p){
 }
 
 function showScreen(targetId){
+  setTimeout(function(){ try{ refreshFloatBack(); }catch(e){} }, 30);
   ALL_SCREEN_IDS.forEach(function(id){
     const el = document.getElementById(id);
     if(!el) return;
@@ -2634,6 +2686,28 @@ function clearActivityTimers(){
   examState = null;
   svState = null;
   chState = null;
+}
+
+/* ---- Retour flottant : apparaît dès qu'on quitte l'accueil et qu'on descend ---- */
+let floatBackTarget = null;   // null = retour à l'accueil
+
+function refreshFloatBack(){
+  const b = document.getElementById('floatBack');
+  if(!b) return;
+  function visible(id){ const e = document.getElementById(id); return e && !e.classList.contains('hidden'); }
+  const descendu = (window.pageYOffset || (document.documentElement && document.documentElement.scrollTop) || 0) > 220;
+  const masquer = visible('screen-start') || visible('screen-auth') || visible('screen-quiz') || !descendu;
+  b.classList.toggle('hidden', masquer);
+}
+
+function floatBackAction(){
+  if(typeof floatBackTarget === 'function'){ floatBackTarget(); }
+  else { backToMenu(); }
+  try{ window.scrollTo({ top: 0, behavior: 'smooth' }); }catch(e){ try{ window.scrollTo(0, 0); }catch(e2){} }
+}
+
+if(typeof window !== 'undefined' && window.addEventListener){
+  window.addEventListener('scroll', function(){ try{ refreshFloatBack(); }catch(e){} });
 }
 
 function backToMenu(){
@@ -4061,10 +4135,9 @@ function renderFiches(theme){
   document.getElementById('fichesToolbar').classList.remove('hidden');
   let html = '';
   fiches.forEach(function(f, i){
-    html += '<div class="review-item" style="cursor:pointer;" onclick="fichesToggle(' + i + ')">'
-      + '<div style="font-size:14px; line-height:1.6;">' + f.front + '</div>'
-      + '<div id="ficheBack-' + i + '" class="hidden" style="margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); font-size:13.5px; line-height:1.6; color:var(--brass-dark); font-weight:600;">' + f.back + '</div>'
-      + '<div id="ficheHint-' + i + '" style="margin-top:8px; font-size:11px; color:var(--ink-soft); font-family:\'IBM Plex Mono\', monospace;">Toucher pour révéler ▼</div>'
+    html += '<div class="fiche" onclick="fichesToggle(' + i + ')">'
+      + '<div class="fiche-q">' + f.front + '<span id="ficheHint-' + i + '" class="fiche-chev">›</span></div>'
+      + '<div id="ficheBack-' + i + '" class="fiche-a hidden">' + f.back + '</div>'
       + '</div>';
   });
   document.getElementById('fichesList').innerHTML = html;
@@ -4072,15 +4145,15 @@ function renderFiches(theme){
 
 function fichesToggle(i){
   const back = document.getElementById('ficheBack-' + i);
-  const hint = document.getElementById('ficheHint-' + i);
+  const chev = document.getElementById('ficheHint-' + i);
   if(!back) return;
   back.classList.toggle('hidden');
-  if(hint) hint.style.display = back.classList.contains('hidden') ? 'block' : 'none';
+  if(chev) chev.classList.toggle('open', !back.classList.contains('hidden'));
 }
 
 function fichesRevealAll(){
   document.querySelectorAll('[id^="ficheBack-"]').forEach(function(el){ el.classList.remove('hidden'); });
-  document.querySelectorAll('[id^="ficheHint-"]').forEach(function(el){ el.style.display = 'none'; });
+  document.querySelectorAll('[id^="ficheHint-"]').forEach(function(el){ el.classList.add('open'); });
 }
 
 function openFiches(theme){
@@ -4156,11 +4229,10 @@ function renderMyFiches(){
   document.getElementById('mfQuizBtn').classList.toggle('hidden', list.length < 3);
   let html = '';
   list.forEach(function(f, i){
-    html += '<div class="review-item">'
-      + '<div style="cursor:pointer;" onclick="fichesToggle(\'mf' + i + '\')">'
-      + '<div style="font-size:14px; line-height:1.6;">' + escapeHtml(f.front) + '</div>'
-      + '<div id="ficheBack-mf' + i + '" class="hidden" style="margin-top:10px; padding-top:10px; border-top:1px dashed var(--line); font-size:13.5px; line-height:1.6; color:var(--brass-dark); font-weight:600;">' + escapeHtml(f.back) + '</div>'
-      + '<div id="ficheHint-mf' + i + '" style="margin-top:8px; font-size:11px; color:var(--ink-soft); font-family:\'IBM Plex Mono\', monospace;">Toucher pour révéler ▼</div>'
+    html += '<div class="fiche fiche-mine">'
+      + '<div onclick="fichesToggle(\'mf' + i + '\')">'
+      + '<div class="fiche-q">' + escapeHtml(f.front) + '<span id="ficheHint-mf' + i + '" class="fiche-chev">›</span></div>'
+      + '<div id="ficheBack-mf' + i + '" class="fiche-a hidden">' + escapeHtml(f.back) + '</div>'
       + '</div>'
       + '<div style="display:flex; gap:8px; margin-top:10px;">'
       + (f.proposed
@@ -4897,7 +4969,8 @@ function refreshHomeDescriptions(){
 
 // Classement : rang réel dans la promo (réseau, jamais bloquant)
 function refreshBoardDescription(){
-  const db = document.getElementById('descBoard');
+  // Le mode en ligne épuré n'affiche plus de sous-titre : plus rien à mettre à jour.
+  const db = null;
   if(!db || !firebaseReady || !currentUser) return;
   try{
   loadGlobalLeaderboard('mix', 'week').then(function(list){
@@ -7054,10 +7127,15 @@ const AV_SHIRTS = [
   { id:'blazer',   nom:'Blazer marine',        c:'#1F3556', col:'chemise',need:{type:'xp', xp:9800} },
   { id:'crs',      nom:'Tenue de maintien de l\'ordre', c:'#232C3D', col:'police', need:{type:'xp', xp:12000} },
   { id:'motard',   nom:'Tenue motard',         c:'#15181F', col:'police',need:{type:'xp', xp:14500} },
-  { id:'ceremonie',nom:'Tenue de cérémonie',   c:'#182238', col:'ceremonie', need:{type:'premium'} },
+  { id:'ceremonie',nom:'Tenue de cérémonie',   c:'#182238', col:'police',    need:{type:'premium'} },
   { id:'smoking',  nom:'Smoking',              c:'#0F1218', col:'cravate',need:{type:'premium'} },
-  { id:'gala',     nom:'Veste de gala',        c:'#4A2B4E', col:'ceremonie', need:{type:'premium'} },
+  { id:'gala',     nom:'Veste bordeaux',      c:'#4A2028', col:'chemise',   need:{type:'premium'} },
   { id:'raid',     nom:'Tenue RAID',           c:'#1A1D22', col:'police',need:{type:'premium'} }
+];
+const AV_GENDERS = [
+  { id:'neutre', nom:'Neutre' },
+  { id:'femme',  nom:'Féminin' },
+  { id:'homme',  nom:'Masculin' }
 ];
 const AV_STYLES = [
   { id:'court',   nom:'Cheveux courts' },
@@ -7107,7 +7185,7 @@ const AV_GEARS = [
 function avatarKey(){ return 'cee1_avatar2_' + (currentUser ? currentUser.uid : 'anon'); }
 
 function getAvatarConfig(){
-  const parDefaut = { skin:0, hair:0, style:'court', eyes:'ronds', eyecolor:0, shirt:'tshirt', head:'aucun', gear:'aucun' };
+  const parDefaut = { gender:'neutre', skin:0, hair:0, style:'court', eyes:'ronds', eyecolor:0, shirt:'tshirt', head:'aucun', gear:'aucun' };
   try{
     const brut = JSON.parse(localStorage.getItem(avatarKey()) || 'null');
     return brut ? Object.assign(parDefaut, brut) : parDefaut;
@@ -7152,7 +7230,9 @@ function buildAvatarSvg(cfg, taille){
 
   // ---- cou et buste ----
   s += '<path d="M44 68 h12 v12 h-12 Z" fill="' + peau + '"/>';
-  s += '<path d="M18 110 C18 86 32 78 50 78 C68 78 82 86 82 110 Z" fill="' + tenue.c + '"/>';
+  const g = cfg.gender || 'neutre';
+  const largeur = g === 'homme' ? 34 : (g === 'femme' ? 28 : 32);
+  s += '<path d="M' + (50 - largeur) + ' 110 C' + (50 - largeur) + ' 86 ' + (50 - largeur * 0.45) + ' 78 50 78 C' + (50 + largeur * 0.45) + ' 78 ' + (50 + largeur) + ' 86 ' + (50 + largeur) + ' 110 Z" fill="' + tenue.c + '"/>';
 
   // ---- col selon la tenue ----
   if(tenue.col === 'chemise' || tenue.col === 'cravate'){
@@ -7161,13 +7241,9 @@ function buildAvatarSvg(cfg, taille){
   if(tenue.col === 'cravate'){
     s += '<path d="M50 86 L54 90 L52 104 L48 104 L46 90 Z" fill="#8C1C24"/>';
   }
-  if(tenue.col === 'police' || tenue.col === 'ceremonie'){
-    s += '<path d="M40 79 L50 90 L60 79 L57 77 L50 84 L43 77 Z" fill="rgba(255,255,255,0.14)"/>';
-    s += '<rect x="26" y="88" width="12" height="4" rx="1" fill="#D4AF37" opacity="0.85"/>';
-  }
-  if(tenue.col === 'ceremonie'){
-    s += '<rect x="62" y="88" width="10" height="3" rx="1" fill="#D4AF37"/>';
-    s += '<rect x="62" y="93" width="10" height="3" rx="1" fill="#D4AF37"/>';
+  if(tenue.col === 'police'){
+    s += '<path d="M41 79 L50 89 L59 79 L56.5 77.5 L50 83.5 L43.5 77.5 Z" fill="rgba(255,255,255,0.12)"/>';
+    s += '<rect x="28" y="89" width="10" height="3" rx="1.5" fill="#D4AF37" opacity="0.7"/>';
   }
   if(tenue.col === 'roule') s += '<path d="M40 78 h20 v7 h-20 Z" fill="' + tenue.c + '" opacity="0.75"/>';
   if(tenue.col === 'polo')  s += '<path d="M44 78 L50 87 L56 78 Z" fill="rgba(255,255,255,0.18)"/>';
@@ -7199,33 +7275,53 @@ function buildAvatarSvg(cfg, taille){
   s += '<ellipse cx="50" cy="48" rx="19" ry="21.5" fill="' + peau + '"/>';
   s += '<ellipse cx="31" cy="50" rx="3" ry="4.5" fill="' + peau + '"/><ellipse cx="69" cy="50" rx="3" ry="4.5" fill="' + peau + '"/>';
 
-  // ---- coiffure (cachée sous un couvre-chef fermé) ----
+  // ---- coiffure : épouse exactement le crâne (centre 50/48, rayons 19 × 21.5) ----
   if(!sousChapeau){
-    if(cfg.style === 'court')   s += '<path d="M31 46 C31 29 69 29 69 46 C69 37 62 33 50 33 C38 33 31 37 31 46 Z" fill="' + chev + '"/>';
-    if(cfg.style === 'rase')    s += '<path d="M32 45 C32 32 68 32 68 45 C66 39 60 36 50 36 C40 36 34 39 32 45 Z" fill="' + chev + '" opacity="0.75"/>';
+    // Calotte de référence : suit la courbe du crâne du côté gauche au côté droit
+    const calotte = 'M31 48 C31 30 40 26.5 50 26.5 C60 26.5 69 30 69 48 C69 38 62 34.5 50 34.5 C38 34.5 31 38 31 48 Z';
+    if(cfg.style === 'court')  s += '<path d="' + calotte + '" fill="' + chev + '"/>';
+    if(cfg.style === 'rase')   s += '<path d="M31.5 46 C31.5 32 40 28.5 50 28.5 C60 28.5 68.5 32 68.5 46 C67 40 60 37 50 37 C40 37 33 40 31.5 46 Z" fill="' + chev + '" opacity="0.7"/>';
     if(cfg.style === 'boucle'){
-      s += '<path d="M31 45 C31 30 69 30 69 45 Z" fill="' + chev + '"/>';
-      [36,44,52,60,64].forEach(function(x, k){ s += '<circle cx="' + x + '" cy="' + (33 + (k % 2) * 3) + '" r="6" fill="' + chev + '"/>'; });
+      s += '<path d="' + calotte + '" fill="' + chev + '"/>';
+      // Boucles calées sur la courbe du crâne, jamais au-dessus du sommet
+      [[37,37,5],[43.5,32,5.2],[50,30.5,5.4],[56.5,32,5.2],[63,37,5]].forEach(function(p){
+        s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + p[2] + '" fill="' + chev + '"/>';
+      });
+      [[40,34],[50,32.5],[60,34]].forEach(function(p){
+        s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="2.4" fill="rgba(0,0,0,0.16)"/>';
+      });
     }
     if(cfg.style === 'afro'){
-      s += '<circle cx="50" cy="34" r="20" fill="' + chev + '"/>';
-      s += '<circle cx="34" cy="42" r="9" fill="' + chev + '"/><circle cx="66" cy="42" r="9" fill="' + chev + '"/>';
+      s += '<circle cx="50" cy="36" r="17.5" fill="' + chev + '"/>';
+      s += '<circle cx="35" cy="42" r="7.5" fill="' + chev + '"/><circle cx="65" cy="42" r="7.5" fill="' + chev + '"/>';
     }
     if(cfg.style === 'tresses'){
-      s += '<path d="M31 46 C31 29 69 29 69 46 C69 37 62 33 50 33 C38 33 31 37 31 46 Z" fill="' + chev + '"/>';
-      [34,40,46,52,58,64].forEach(function(x){ s += '<rect x="' + (x-1) + '" y="30" width="2.5" height="18" rx="1.2" fill="' + chev + '" opacity="0.75"/>'; });
-      s += '<rect x="30" y="46" width="4" height="16" rx="2" fill="' + chev + '"/><rect x="66" y="46" width="4" height="16" rx="2" fill="' + chev + '"/>';
+      // Calotte pleine, puis des sillons courbes qui suivent la rondeur du crâne.
+      // Des traits sombres se lisent quelle que soit la couleur de cheveux.
+      s += '<path d="' + calotte + '" fill="' + chev + '"/>';
+      [
+        'M39 34.5 C37.5 31.5 38.5 29 41 27.8',
+        'M44 34.5 C43 31 43.5 28.5 45.5 27',
+        'M50 34.5 C50 31 50 29 50 26.8',
+        'M56 34.5 C57 31 56.5 28.5 54.5 27',
+        'M61 34.5 C62.5 31.5 61.5 29 59 27.8'
+      ].forEach(function(d){
+        s += '<path d="' + d + '" stroke="rgba(0,0,0,0.30)" stroke-width="1.5" fill="none" stroke-linecap="round"/>';
+      });
+      // Deux tresses courtes le long des tempes, plaquées contre la tête
+      s += '<path d="M32.5 44 C31 50 31.5 55 33 58" stroke="' + chev + '" stroke-width="4" fill="none" stroke-linecap="round"/>';
+      s += '<path d="M67.5 44 C69 50 68.5 55 67 58" stroke="' + chev + '" stroke-width="4" fill="none" stroke-linecap="round"/>';
     }
     if(cfg.style === 'chignon'){
-      s += '<path d="M31 46 C31 29 69 29 69 46 C69 37 62 33 50 33 C38 33 31 37 31 46 Z" fill="' + chev + '"/>';
-      s += '<circle cx="50" cy="24" r="8" fill="' + chev + '"/>';
+      s += '<path d="' + calotte + '" fill="' + chev + '"/>';
+      s += '<circle cx="50" cy="24" r="6.5" fill="' + chev + '"/>';
     }
     if(cfg.style === 'long'){
-      s += '<path d="M29 46 C29 28 71 28 71 46 L71 72 L64 72 L64 46 C64 38 36 38 36 46 L36 72 L29 72 Z" fill="' + chev + '"/>';
+      s += '<path d="M30 48 C30 29 40 26 50 26 C60 26 70 29 70 48 L70 70 C70 72 67 72 66.5 70 L66.5 46 C64 39 58 36.5 50 36.5 C42 36.5 36 39 33.5 46 L33.5 70 C33 72 30 72 30 70 Z" fill="' + chev + '"/>';
     }
     if(cfg.style === 'crete'){
-      s += '<path d="M33 46 C33 38 67 38 67 46 C64 42 36 42 33 46 Z" fill="' + chev + '" opacity="0.6"/>';
-      s += '<path d="M44 42 C44 22 56 22 56 42 Z" fill="' + chev + '"/>';
+      s += '<path d="M33 46 C33 39 41 36.5 50 36.5 C59 36.5 67 39 67 46 C64 41.5 36 41.5 33 46 Z" fill="' + chev + '" opacity="0.55"/>';
+      s += '<path d="M45 38 C45 24 55 24 55 38 Z" fill="' + chev + '"/>';
     }
     // chauve : rien
   }
@@ -7258,6 +7354,12 @@ function buildAvatarSvg(cfg, taille){
       s += '<path d="M39 48 Q43 51 47 48" stroke="' + oeil + '" stroke-width="2" fill="none" stroke-linecap="round"/>';
       s += '<path d="M53 48 Q57 51 61 48" stroke="' + oeil + '" stroke-width="2" fill="none" stroke-linecap="round"/>';
     }
+  }
+
+  // ---- détails de silhouette ----
+  if(cfg.gender === 'femme' && cfg.gear !== 'lunettes' && cfg.gear !== 'masque'){
+    s += '<path d="M38.5 44.5 L41 43" stroke="' + chev + '" stroke-width="1.4" stroke-linecap="round"/>';
+    s += '<path d="M61.5 44.5 L59 43" stroke="' + chev + '" stroke-width="1.4" stroke-linecap="round"/>';
   }
 
   // ---- bouche ----
@@ -7328,6 +7430,7 @@ function saveChosenThemes(liste){
 
 function showThemePicker(){
   showScreen('screen-themes');
+  floatBackTarget = showSoloHub;
   renderThemePicker();
 }
 
@@ -7390,6 +7493,7 @@ function refreshHowBox(){
 }
 
 function showSoloHub(){
+  floatBackTarget = null;
   showScreen('screen-solo');
   // Le mode solo contient désormais la série, la carte du jour et la révision espacée
   try{
@@ -7401,6 +7505,7 @@ function showSoloHub(){
 }
 
 function showOnlineHub(){
+  floatBackTarget = null;
   showScreen('screen-online');
   try{
     refreshBoardDescription();
@@ -7438,8 +7543,11 @@ function renderAvatarScreen(){
   const style = AV_STYLES.find(function(x){ return x.id === cfg.style; }) || AV_STYLES[0];
   const yeux = AV_EYES.find(function(x){ return x.id === cfg.eyes; }) || AV_EYES[0];
 
+  const genre = AV_GENDERS.find(function(x){ return x.id === (cfg.gender || 'neutre'); }) || AV_GENDERS[0];
+
   document.getElementById('avatarRows').innerHTML =
-      rangee('🎨', 'Teint', 'Nuance ' + (cfg.skin + 1) + '/' + AV_SKINS.length, 'skin', '')
+      rangee('👤', 'Silhouette', genre.nom, 'gender', '')
+    + rangee('🎨', 'Teint', 'Nuance ' + (cfg.skin + 1) + '/' + AV_SKINS.length, 'skin', '')
     + rangee('💇', 'Coiffure', style.nom, 'style', '')
     + rangee('🖌️', 'Couleur de cheveux', 'Nuance ' + (cfg.hair + 1) + '/' + AV_HAIRS.length, 'hair', '')
     + rangee('👁️', 'Yeux', yeux.nom, 'eyes', '')
@@ -7458,7 +7566,7 @@ function cycleAvatar(champ, sens){
     cfg[champ] = ((cfg[champ] || 0) + sens + n) % n;
     saveAvatarConfig(cfg); renderAvatarScreen(); return;
   }
-  const listes = { style: AV_STYLES, eyes: AV_EYES, shirt: AV_SHIRTS, head: AV_HEADS, gear: AV_GEARS };
+  const listes = { gender: AV_GENDERS, style: AV_STYLES, eyes: AV_EYES, shirt: AV_SHIRTS, head: AV_HEADS, gear: AV_GEARS };
   const liste = listes[champ];
   if(!liste) return;
   let idx = liste.findIndex(function(x){ return x.id === cfg[champ]; });
@@ -7474,7 +7582,7 @@ function cycleAvatar(champ, sens){
 }
 
 function defaultAvatarConfig(){
-  return { skin:0, hair:0, style:'court', eyes:'ronds', eyecolor:0, shirt:'tshirt', head:'aucun', gear:'aucun' };
+  return { gender:'neutre', skin:0, hair:0, style:'court', eyes:'ronds', eyecolor:0, shirt:'tshirt', head:'aucun', gear:'aucun' };
 }
 
 function resetAvatar(){
@@ -7489,6 +7597,7 @@ function randomAvatar(){
     return dispo[Math.floor(Math.random() * dispo.length)].id;
   }
   saveAvatarConfig({
+    gender: auHasard(AV_GENDERS),
     skin: Math.floor(Math.random() * AV_SKINS.length),
     hair: Math.floor(Math.random() * AV_HAIRS.length),
     eyecolor: Math.floor(Math.random() * AV_EYECOLORS.length),
