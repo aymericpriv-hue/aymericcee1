@@ -1363,7 +1363,7 @@
   </div>
 
   <div id="screen-mp-menu" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="lead" id="mpMenuTitle" style="font-size:20px;">⚔️ Duel 1v1</p>
     <p id="mpMenuDesc" style="font-size:13.5px; color:var(--ink-soft); margin-bottom:12px;"></p>
     <p id="mpConnStatus" style="font-size:12.5px; color:var(--ink-soft); margin-bottom:12px; min-height:16px;"></p>
@@ -1435,7 +1435,7 @@
   </div>
 
   <div id="screen-tournament" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="qnum" id="tournName"></p>
     <p class="lead" style="font-size:21px;">🏆 Tournoi de promo</p>
     <p id="tournStatus" style="font-size:13.5px; font-weight:600; margin-bottom:16px;"></p>
@@ -1444,7 +1444,7 @@
   </div>
 
   <div id="screen-challenges" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <div id="chMain">
       <p class="lead" style="font-size:21px;">🎯 Défis entre camarades</p>
       <p style="font-size:13px; color:var(--ink-soft); margin-bottom:16px;">Défie n'importe qui, <b>même hors ligne</b> : tu joues 5 questions, il relève le défi à sa prochaine connexion sur les <b>mêmes questions</b>, et le site tranche.</p>
@@ -1476,7 +1476,7 @@
 
   <div id="screen-survival" class="card hidden">
     <div id="svIntro">
-      <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+      <button class="back-menu" onclick="goBack()">← Retour</button>
       <p class="lead" style="font-size:21px;">🔥 Mode Survie</p>
       <p style="font-size:14px; color:var(--ink-soft); line-height:1.7; margin-bottom:8px;">Des questions en chaîne, <b>15 secondes</b> chacune. Une seule erreur — ou un temps écoulé — et c'est terminé. Jusqu'où peux-tu tenir ?</p>
       <p id="svBestLine" style="font-size:13.5px; font-weight:700; color:var(--brass-dark); margin-bottom:18px;"></p>
@@ -1498,14 +1498,14 @@
       <div class="actions">
         <button class="btn-secondary" style="flex:1" onclick="shareSurvival()">📤 Partager</button>
         <button class="btn-secondary" style="flex:1" onclick="startSurvival()">Rejouer</button>
-        <button class="btn-secondary" style="flex:1" onclick="backToMenu()">← Retour à l'accueil</button>
+        <button class="btn-secondary" style="flex:1" onclick="goBack()">← Retour</button>
       </div>
     </div>
   </div>
 
   <div id="screen-exam" class="card hidden">
     <div id="examIntro">
-      <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+      <button class="back-menu" onclick="goBack()">← Retour</button>
       <p class="lead" style="font-size:21px;">📝 Examen blanc</p>
       <p style="font-size:14px; color:var(--ink-soft); line-height:1.7; margin-bottom:20px;">Conditions réelles : <b>25 questions</b>, <b>30 secondes</b> chacune, <b>aucune correction avant la fin</b>. Pas de réponse dans le temps = compté faux. À la fin : ta note sur 25 — <b>12 bonnes réponses pour être admis</b> — et la correction de chaque erreur.</p>
       <button class="btn-primary" onclick="startExam()">Démarrer l'examen</button>
@@ -1528,13 +1528,13 @@
       <div class="actions">
         <button class="btn-secondary" style="flex:1" onclick="shareExamResult()">📤 Partager</button>
         <button class="btn-secondary" style="flex:1" onclick="startExam()">Refaire</button>
-        <button class="btn-secondary" style="flex:1" onclick="backToMenu()">← Retour à l'accueil</button>
+        <button class="btn-secondary" style="flex:1" onclick="goBack()">← Retour</button>
       </div>
     </div>
   </div>
 
   <div id="screen-daily" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="qnum" id="dailyDate"></p>
     <p class="lead" style="font-size:21px;">🗓️ Défi du jour</p>
     <p style="font-size:13px; color:var(--ink-soft); margin-bottom:18px;">Une seule question, la même pour toute la promo, une seule tentative. Bonne réponse : <b style="color:var(--brass-dark);">+50 XP</b> · participation : +10 XP.</p>
@@ -1593,7 +1593,7 @@
   </div>
 
   <div id="screen-about" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="lead" style="font-size:20px;">À propos</p>
     <p style="font-size:14px; line-height:1.7; color:var(--ink);">
       Ce site a été créé par Aymeric, élève de la 158ème promotion de l'ENP Périgueux,
@@ -1609,7 +1609,7 @@
   </div>
 
   <div id="screen-referral" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="lead" style="font-size:20px;">🤝 Parrainage</p>
     <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:20px;">Partage ton lien avec tes camarades de promo. Chaque inscription via ton lien compte ci-dessous.</p>
     <div style="display:flex; gap:8px; margin-bottom:14px;">
@@ -1622,7 +1622,7 @@
   </div>
 
   <div id="screen-admin" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="lead" style="font-size:20px;">🛠️ Tableau de bord</p>
     <p style="font-size:12px; color:var(--ink-soft); margin-bottom:20px;">Vue rapide — non sécurisée en soi, la vraie protection reste dans les règles Firestore. Pour les actions (débloquer un compte, etc.), passe toujours par la console Firebase.</p>
     <div id="adminUidBox" style="border:1px solid var(--brass); border-radius:12px; padding:14px; margin-bottom:14px; background:rgba(176,138,46,0.06);"></div>
@@ -1661,7 +1661,7 @@
   </div>
 
   <div id="screen-battle-history" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <div style="display:flex; gap:6px; margin-bottom:18px; flex-wrap:wrap;">
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px;" onclick="switchProgressTab('scores')">🏆 Scores</button>
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px;" onclick="switchProgressTab('weak')">🎯 Points faibles</button>
@@ -1675,7 +1675,7 @@
   </div>
 
   <div id="screen-rewards" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <div style="display:flex; gap:6px; margin-bottom:18px; flex-wrap:wrap;">
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px;" onclick="switchProgressTab('scores')">🏆 Scores</button>
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px;" onclick="switchProgressTab('weak')">🎯 Points faibles</button>
@@ -1688,7 +1688,7 @@
   </div>
 
   <div id="screen-grades-scope" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="lead" style="font-size:20px;">🎖️ Choisis ton périmètre</p>
     <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:20px;">Tu peux réviser tous les grades, ou te concentrer sur un seul corps.</p>
     <div class="module-grid">
@@ -1700,7 +1700,7 @@
   </div>
 
   <div id="screen-orgs-scope" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="lead" style="font-size:20px;">🏛️ Choisis ton périmètre</p>
     <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:20px;">Tous les sigles, ou seulement ceux d'une famille d'organisations.</p>
     <div class="module-grid">
@@ -1712,7 +1712,7 @@
   </div>
 
   <div id="screen-alpha-scope" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="lead" style="font-size:20px;">🔤 Choisis ton exercice</p>
     <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:20px;">Réviser lettre par lettre, ou t'entraîner à épeler des mots entiers au micro.</p>
     <div class="module-grid">
@@ -1722,7 +1722,7 @@
   </div>
 
   <div id="screen-spell" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <div class="progress-track"><div class="progress-fill" id="sProgressFill" style="width:4%"></div></div>
     <div class="progress-label">
       <span id="sProgressText">Mot 1 / 10</span>
@@ -1768,7 +1768,7 @@
   </div>
 
   <div id="screen-quiz" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:4%"></div></div>
     <div class="progress-label">
       <span id="progressText">Question 1 / 25</span>
@@ -1804,7 +1804,7 @@
   </div>
 
   <div id="screen-grades" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <div class="progress-track"><div class="progress-fill" id="gProgressFill" style="width:4%"></div></div>
     <div class="progress-label">
       <span id="gProgressText">Grade 1 / 24</span>
@@ -1849,7 +1849,7 @@
   </div>
 
   <div id="screen-alpha" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <div class="progress-track"><div class="progress-fill" id="aProgressFill" style="width:4%"></div></div>
     <div class="progress-label">
       <span id="aProgressText">Lettre 1 / 26</span>
@@ -1894,7 +1894,7 @@
   </div>
 
   <div id="screen-orgs" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <div class="progress-track"><div class="progress-fill" id="oProgressFill" style="width:4%"></div></div>
     <div class="progress-label">
       <span id="oProgressText">Question 1 / 25</span>
@@ -1937,7 +1937,7 @@
   </div>
 
   <div id="screen-leaderboard" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <div style="display:flex; gap:6px; margin-bottom:18px; flex-wrap:wrap;">
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px; background:var(--ink); color:var(--paper);" onclick="switchProgressTab('scores')">🏆 Scores</button>
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px;" onclick="switchProgressTab('weak')">🎯 Points faibles</button>
@@ -1978,7 +1978,7 @@
   </div>
 
   <div id="screen-themes" class="card hidden">
-    <button class="back-menu" onclick="showSoloHub()">← Retour</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="lead" style="font-size:22px;">🎯 Ma série</p>
     <p style="font-size:13px; color:var(--ink-soft); margin-bottom:16px;">Choisis un ou plusieurs thèmes. Tu auras 25 questions tirées dedans.</p>
     <div id="themeList"></div>
@@ -1988,47 +1988,57 @@
   </div>
 
   <div id="screen-solo" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
-    <p class="lead" style="font-size:22px;">🎯 Mode solo</p>
-    <p style="font-size:13px; color:var(--ink-soft); margin-bottom:18px;">Révise à ton rythme, personne ne regarde.</p>
-    <div class="home-hero">
-      <p class="hero-quote"><span class="hq-a">139 fiches</span>, <span class="hq-b">24 grades</span>, <span class="hq-c">l'alphabet OTAN</span> et <span class="hq-d">les sigles clés</span> — <span class="hq-e">tu progresses série après série.</span></p>
-      <button class="home-hero-cta" onclick="showThemePicker()">🚀 Lancer ma série (25 questions) <span id="lockIcon-quiz" class="lock-badge">🔒</span></button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
+    <p class="lead" style="font-size:22px;">🎯 Solo</p>
+
+    <div class="grid2" style="margin-top:16px;">
+      <button class="mode-door" onclick="showThemePicker()">
+        <span class="md-ic">🚀</span>
+        <span class="md-t">Ma série <span id="lockIcon-quiz" class="lock-badge">🔒</span></span>
+      </button>
+      <button class="mode-door" onclick="showFiches()">
+        <span class="md-ic">📖</span>
+        <span class="md-t">Fiches</span>
+      </button>
+      <button class="mode-door" onclick="showExamIntro()">
+        <span class="md-ic">📝</span>
+        <span class="md-t">Examen blanc <span id="lockIcon-exam" class="lock-badge">🔒</span></span>
+      </button>
+      <button class="mode-door" onclick="showSurvivalIntro()">
+        <span class="md-ic">🔥</span>
+        <span class="md-t">Survie</span>
+      </button>
     </div>
 
-    <p class="sec-label">Aujourd'hui</p>
-    <div class="grid2">
-      <button id="fichesHomeTile" class="row-card" onclick="showFiches()"><span class="row-inner"><span class="ic i-blue">📖</span><span class="tx"><span class="t">Fiches de révision</span><span class="s" id="descFiches">Lire avant de s'auto-tester</span></span><span class="arrow">→</span></span></button>
-      <button id="dailyTile" class="row-card" onclick="showDailyChallenge()"><span class="row-inner"><span class="ic i-gold">🗓️</span><span class="tx"><span class="t">Défi du jour</span><span class="s">Même question pour toute la promo</span></span><span class="arrow">→</span></span></button>
-    </div>
-    <div id="goalTile" class="hidden" style="margin-top:12px; border:1px solid var(--line); border-radius:12px; padding:16px; background:var(--paper);">
-      <div style="display:flex; justify-content:space-between; align-items:baseline; gap:12px;">
-        <span id="goalLabel" style="font-size:13px; font-weight:600;">🏅 Objectif du jour : 0/20 bonnes réponses</span>
-        <span id="goalPct" style="font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-soft);">0%</span>
-      </div>
-      <div class="goal-track" style="height:5px; border-radius:99px; margin-top:12px; overflow:hidden;">
-        <div id="goalBar" style="height:100%; width:0%; background:linear-gradient(90deg, #B08A2E, #F0C868); border-radius:99px; transition:width 0.5s;"></div>
-      </div>
-    </div>
-    <button id="srTile" class="row-card hidden" style="margin-top:12px;" onclick="startSpacedReview()"></button>
+    <button id="dailyTile" class="row-card" style="margin-top:12px;" onclick="showDailyChallenge()"><span class="row-inner"><span class="ic i-gold">🗓️</span><span class="tx"><span class="t">Défi du jour</span><span class="s">Même question pour toute la promo</span></span><span class="arrow">→</span></span></button>
+    <button id="srTile" class="row-card hidden" style="margin-top:10px;" onclick="startSpacedReview()"></button>
 
-    <div class="grid2">
-      <button class="row-card" onclick="showExamIntro()"><span class="row-inner"><span class="ic i-red">📝</span><span class="tx"><span class="t">Examen blanc <span id="lockIcon-exam" class="lock-badge">🔒</span></span><span class="s" id="descExam">25 questions chrono — admis à 12</span></span><span class="arrow">→</span></span></button>
-      <button class="row-card" onclick="showSurvivalIntro()"><span class="row-inner"><span class="ic i-orange">🔥</span><span class="tx"><span class="t">Mode Survie</span><span class="s" id="descSurvival">Enchaîne jusqu'à la première erreur</span></span><span class="arrow">→</span></span></button>
-    </div>
-    <details class="rules-box" style="margin-top:16px;">
-      <summary>✨ Réviser par thème — grades, alphabet, sigles</summary>
-      <div class="grid2" style="margin-top:10px;">
-        <button class="col-card" onclick="showGradesScope()"><span class="ic i-gold">🎖️</span><span class="t">Grades</span></button>
-        <button class="col-card" onclick="showAlphaScope()"><span class="ic i-blue">🔤</span><span class="t">Alphabet OTAN</span></button>
-        <button class="col-card" onclick="showOrgsScope()"><span class="ic i-red">🏛️</span><span class="t">Sigles &amp; orgas</span></button>
-        <button class="col-card" onclick="startRevision()"><span class="ic i-green">🗂️</span><span class="t">Tout relire <span id="lockIcon-revision" class="lock-badge">🔒</span></span></button>
+    <div id="goalTile" class="hidden" style="margin-top:12px; border:1px solid var(--line); border-radius:12px; padding:14px 16px; background:var(--paper);">
+      <div style="display:flex; justify-content:space-between; align-items:center; font-size:12.5px; font-weight:700;">
+        <span id="goalLabel">🏅 Objectif du jour : 0/20 bonnes réponses</span>
+        <span id="goalPct" style="font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-soft);">0%</span>
       </div>
-    </details>
+      <div class="goal-track" style="height:7px; border-radius:99px; margin-top:9px; overflow:hidden;">
+        <div id="goalBar" style="height:100%; width:0%; background:var(--brass); border-radius:99px; transition:width 0.4s;"></div>
+      </div>
+    </div>
+
+    <p style="text-align:center; margin-top:16px;"><span style="font-size:12.5px; text-decoration:underline; cursor:pointer; color:var(--ink-soft);" onclick="showThemeShortcuts()">📚 Réviser un thème précis</span></p>
+  </div>
+
+  <div id="screen-themeshort" class="card hidden">
+    <button class="back-menu" onclick="goBack()">← Retour</button>
+    <p class="lead" style="font-size:22px;">📚 Réviser un thème</p>
+    <div class="grid2" style="margin-top:16px;">
+      <button class="mode-door" onclick="showGradesScope()"><span class="md-ic">🎖️</span><span class="md-t">Grades</span></button>
+      <button class="mode-door" onclick="showAlphaScope()"><span class="md-ic">🔤</span><span class="md-t">Alphabet OTAN</span></button>
+      <button class="mode-door" onclick="showOrgsScope()"><span class="md-ic">🏛️</span><span class="md-t">Sigles &amp; orgas</span></button>
+      <button class="mode-door" onclick="startRevision()"><span class="md-ic">🗂️</span><span class="md-t">Tout relire <span id="lockIcon-revision" class="lock-badge">🔒</span></span></button>
+    </div>
   </div>
 
   <div id="screen-online" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="lead" style="font-size:22px;">🌐 En ligne</p>
 
     <div class="grid2" style="margin-top:16px;">
@@ -2055,7 +2065,7 @@
   </div>
 
   <div id="screen-avatar" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="lead" style="font-size:22px;">🧑‍✈️ Mon personnage</p>
     <p style="font-size:13px; color:var(--ink-soft); margin-bottom:16px;">Il te représente partout sur le site. Utilise les flèches pour composer le tien.</p>
 
@@ -2074,7 +2084,7 @@
   </div>
 
   <div id="screen-account" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
 
     <!-- Identité : personnage + grade, d'un seul coup d'œil -->
     <div class="acc-head">
@@ -2157,7 +2167,7 @@
   </div>
 
   <div id="screen-fiches" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="lead" style="font-size:22px;">📖 Fiches de révision</p>
     <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:18px;">Lis avant de t'auto-tester : chaque fiche cache sa réponse — touche-la pour la révéler.</p>
     <div id="fichesThemePicker" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:18px;">
@@ -2195,7 +2205,7 @@
   </div>
 
   <div id="screen-weak" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <div style="display:flex; gap:6px; margin-bottom:18px; flex-wrap:wrap;">
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px;" onclick="switchProgressTab('scores')">🏆 Scores</button>
       <button class="btn-secondary" style="flex:1; padding:9px 4px; font-size:11.5px; background:var(--ink); color:var(--paper);" onclick="switchProgressTab('weak')">🎯 Points faibles</button>
@@ -2217,7 +2227,7 @@
   <input type="file" id="importFileInput" accept=".txt" style="display:none;" onchange="importProgressData(this)">
 
   <div id="screen-revision" class="card hidden">
-    <button class="back-menu" onclick="backToMenu()">← Retour à l'accueil</button>
+    <button class="back-menu" onclick="goBack()">← Retour</button>
     <p class="lead" style="font-size:22px;">📖 Révisions — tout voir</p>
     <p style="font-size:13.5px; color:var(--ink-soft); margin-bottom:16px;">Toutes les questions et leurs réponses, affichées directement, sans quiz.</p>
 
@@ -2638,7 +2648,7 @@ function resetToStart(){
   backToMenu();
 }
 
-const ALL_SCREEN_IDS = ['screen-auth','screen-welcome-offer','screen-paywall','screen-start','screen-quiz','screen-grades','screen-alpha','screen-orgs','screen-spell','screen-grades-scope','screen-orgs-scope','screen-alpha-scope','screen-fiches','screen-weak','screen-result','screen-gresult','screen-aresult','screen-oresult','screen-sresult','screen-leaderboard','screen-global-leaderboard','screen-themes','screen-solo','screen-online','screen-avatar','screen-account','screen-revision','screen-mp-menu','screen-mp-lobby','screen-mp-question','screen-mp-podium','screen-about','screen-referral','screen-admin','screen-legal','screen-battle-history','screen-rewards','screen-mp-board','screen-daily','screen-exam','screen-survival','screen-challenges','screen-tournament'];
+const ALL_SCREEN_IDS = ['screen-auth','screen-welcome-offer','screen-paywall','screen-start','screen-quiz','screen-grades','screen-alpha','screen-orgs','screen-spell','screen-grades-scope','screen-orgs-scope','screen-alpha-scope','screen-fiches','screen-weak','screen-result','screen-gresult','screen-aresult','screen-oresult','screen-sresult','screen-leaderboard','screen-global-leaderboard','screen-themes','screen-themeshort','screen-solo','screen-online','screen-avatar','screen-account','screen-revision','screen-mp-menu','screen-mp-lobby','screen-mp-question','screen-mp-podium','screen-about','screen-referral','screen-admin','screen-legal','screen-battle-history','screen-rewards','screen-mp-board','screen-daily','screen-exam','screen-survival','screen-challenges','screen-tournament'];
 const ADMIN_PSEUDOS = ['aymeric', 'aymeric1', 'naolank'];
 
 // Comparaison insensible à la casse : « Aymeric », « aymeric1 »… fonctionnent tous
@@ -2647,7 +2657,7 @@ function isAdminPseudo(p){
 }
 
 function showScreen(targetId){
-  setTimeout(function(){ try{ refreshFloatBack(); }catch(e){} }, 30);
+  setTimeout(function(){ try{ refreshFloatBack(); refreshBackLabels(); }catch(e){} }, 30);
   ALL_SCREEN_IDS.forEach(function(id){
     const el = document.getElementById(id);
     if(!el) return;
@@ -2690,6 +2700,99 @@ function clearActivityTimers(){
   chState = null;
 }
 
+/* ============================================================
+   NAVIGATION HIÉRARCHIQUE
+   Chaque écran connaît son parent : le retour remonte d'un cran
+   (Duel → En ligne → Accueil) au lieu de sauter à l'accueil.
+   ============================================================ */
+const SCREEN_PARENT = {
+  // Sous-écrans du mode solo
+  'screen-themes':        'screen-solo',
+  'screen-themeshort':    'screen-solo',
+  'screen-fiches':        'screen-solo',
+  'screen-exam':          'screen-solo',
+  'screen-survival':      'screen-solo',
+  'screen-daily':         'screen-solo',
+  'screen-revision':      'screen-themeshort',
+  'screen-grades-scope':  'screen-themeshort',
+  'screen-alpha-scope':   'screen-themeshort',
+  'screen-orgs-scope':    'screen-themeshort',
+  'screen-spell':         'screen-themeshort',
+
+  // Sous-écrans du mode en ligne
+  'screen-mp-menu':          'screen-online',
+  'screen-mp-lobby':         'screen-mp-menu',
+  'screen-mp-board':         'screen-online',
+  'screen-battle-history':   'screen-online',
+  'screen-challenges':       'screen-online',
+  'screen-global-leaderboard':'screen-online',
+  'screen-referral':         'screen-online',
+  'screen-tournament':       'screen-online',
+
+  // Sous-écrans du compte
+  'screen-avatar':      'screen-account',
+  'screen-leaderboard': 'screen-account',
+  'screen-weak':        'screen-account',
+  'screen-rewards':     'screen-account',
+  'screen-admin':       'screen-account',
+  'screen-about':       'screen-account',
+
+  // Premier niveau : retour à l'accueil
+  'screen-solo':    'screen-start',
+  'screen-online':  'screen-start',
+  'screen-account': 'screen-start'
+};
+
+function currentScreenId(){
+  for(let i = 0; i < ALL_SCREEN_IDS.length; i++){
+    const el = document.getElementById(ALL_SCREEN_IDS[i]);
+    if(el && !el.classList.contains('hidden')) return ALL_SCREEN_IDS[i];
+  }
+  return null;
+}
+
+// Remonte d'un seul niveau ; à défaut de parent connu, revient à l'accueil
+function goBack(){
+  const ici = currentScreenId();
+  const parent = ici && SCREEN_PARENT[ici];
+  if(parent && parent !== 'screen-start'){
+    showScreen(parent);
+    if(parent === 'screen-solo') showSoloHub();
+    else if(parent === 'screen-online') showOnlineHub();
+    else if(parent === 'screen-account') showAccountScreen();
+    else if(parent === 'screen-themeshort') showThemeShortcuts();
+    try{ window.scrollTo({ top: 0, behavior: 'smooth' }); }catch(e){ try{ window.scrollTo(0, 0); }catch(e2){} }
+    return;
+  }
+  backToMenu();
+}
+
+// Libellé du bouton : « Accueil » au premier niveau, sinon le nom du parent
+function backLabelFor(id){
+  const parent = SCREEN_PARENT[id];
+  if(!parent || parent === 'screen-start') return '← Retour à l\'accueil';
+  if(parent === 'screen-solo')       return '← Retour à Solo';
+  if(parent === 'screen-online')     return '← Retour à En ligne';
+  if(parent === 'screen-account')    return '← Retour à Mon compte';
+  if(parent === 'screen-themeshort') return '← Retour aux thèmes';
+  if(parent === 'screen-mp-menu')    return '← Retour';
+  return '← Retour';
+}
+
+function refreshBackLabels(){
+  const id = currentScreenId();
+  if(!id) return;
+  const texte = backLabelFor(id);
+  // On ne renomme que le bouton de retour de l'écran actuellement affiché
+  const ecran = document.getElementById(id);
+  if(ecran && ecran.querySelector){
+    const b = ecran.querySelector('.back-menu');
+    if(b) b.textContent = texte;
+  }
+  const flottant = document.getElementById('floatBack');
+  if(flottant) flottant.textContent = texte;
+}
+
 /* ---- Retour flottant : apparaît dès qu'on quitte l'accueil et qu'on descend ---- */
 let floatBackTarget = null;   // null = retour à l'accueil
 
@@ -2703,8 +2806,7 @@ function refreshFloatBack(){
 }
 
 function floatBackAction(){
-  if(typeof floatBackTarget === 'function'){ floatBackTarget(); }
-  else { backToMenu(); }
+  goBack();
   try{ window.scrollTo({ top: 0, behavior: 'smooth' }); }catch(e){ try{ window.scrollTo(0, 0); }catch(e2){} }
 }
 
@@ -4927,46 +5029,15 @@ function refreshHomeGreeting(){
 }
 
 function refreshHomeDescriptions(){
-  // Ma progression : moyenne et nombre de séries
+  // Les écrans épurés n'affichent plus de sous-titres ; seule « Ma progression »
+  // dans l'onglet Compte reste alimentée.
   const dp = document.getElementById('descProgress');
   if(dp){
     const s = computeStats();
     dp.textContent = s.totalSeries > 0
       ? 'Moyenne ' + s.avgScore + ' % sur ' + s.totalSeries + ' série' + (s.totalSeries > 1 ? 's' : '')
-      : 'Séries, moyenne et points faibles';
+      : 'Séries et moyenne';
   }
-
-  // Mode Survie : meilleure série
-  const ds = document.getElementById('descSurvival');
-  if(ds){
-    let best = 0;
-    try{ best = getSurvivalBest() || 0; }catch(e){}
-    ds.textContent = best > 0
-      ? 'Ton record : ' + best + ' d\'affilée — bats-le !'
-      : 'Enchaîne jusqu\'à la première erreur';
-  }
-
-  // Examen blanc : dernier résultat
-  const de = document.getElementById('descExam');
-  if(de){
-    let last = null;
-    try{ last = JSON.parse(localStorage.getItem('cee1_lastexam_' + (currentUser ? currentUser.uid : 'anon')) || 'null'); }catch(e){}
-    de.textContent = (last && typeof last.score === 'number')
-      ? 'Dernier essai : ' + last.score + '/25 — ' + (last.score >= 12 ? 'admis ✅' : 'à retenter')
-      : '25 questions chrono — admis à 12';
-  }
-
-  // Fiches : nombre de fiches perso
-  const df = document.getElementById('descFiches');
-  if(df){
-    let n = 0;
-    try{ n = getMyFiches().length; }catch(e){}
-    df.textContent = n > 0
-      ? n + ' fiche' + (n > 1 ? 's' : '') + ' à toi + les fiches officielles'
-      : 'Lire avant de s\'auto-tester';
-  }
-
-  try{ refreshBoardDescription(); }catch(e){}
 }
 
 // Classement : rang réel dans la promo (réseau, jamais bloquant)
@@ -6720,8 +6791,6 @@ function refreshDailyTile(){
   let done = false;
   try{ done = localStorage.getItem(dailyDoneKey()) !== null; }catch(e){}
   tile.classList.toggle('hidden', done);
-  const fichesTile = document.getElementById('fichesHomeTile');
-  if(fichesTile) fichesTile.style.gridColumn = done ? '1 / -1' : 'auto';
 }
 
 let dailyShownAt = 0;
@@ -7285,53 +7354,54 @@ function buildAvatarSvg(cfg, taille){
   if(g === 'homme') s += '<path d="M34 55 C36 66 44 70 50 70 C56 70 64 66 66 55 C64 63 57 66.5 50 66.5 C43 66.5 36 63 34 55 Z" fill="rgba(0,0,0,0.10)"/>';
   s += '<ellipse cx="' + (50 - rx) + '" cy="50" rx="3" ry="4.5" fill="' + peau + '"/><ellipse cx="' + (50 + rx) + '" cy="50" rx="3" ry="4.5" fill="' + peau + '"/>';
 
-  // ---- coiffure : épouse exactement le crâne (centre 50/48, rayons 19 × 21.5) ----
+  // ---- coiffure ----
+  // Repères : sommet du crâne y=26.5, ligne de cheveux y=40, yeux y=48.
+  // Aucune coiffure ne descend sous y=44, sinon elle mangerait le regard.
   if(!sousChapeau){
-    // Calotte de référence : suit la courbe du crâne du côté gauche au côté droit
-    const calotte = 'M31 48 C31 30 40 26.5 50 26.5 C60 26.5 69 30 69 48 C69 38 62 34.5 50 34.5 C38 34.5 31 38 31 48 Z';
+    const calotte = 'M31 44 C31 30 40 26.5 50 26.5 C60 26.5 69 30 69 44 C69 38.5 61 36.5 50 36.5 C39 36.5 31 38.5 31 44 Z';
     if(styleTete === 'court')  s += '<path d="' + calotte + '" fill="' + chev + '"/>';
-    if(styleTete === 'rase')   s += '<path d="M31.5 46 C31.5 32 40 28.5 50 28.5 C60 28.5 68.5 32 68.5 46 C67 40 60 37 50 37 C40 37 33 40 31.5 46 Z" fill="' + chev + '" opacity="0.7"/>';
+    if(styleTete === 'rase')   s += '<path d="M32 43 C32 32 40 28.5 50 28.5 C60 28.5 68 32 68 43 C66.5 39.5 60 38 50 38 C40 38 33.5 39.5 32 43 Z" fill="' + chev + '" opacity="0.7"/>';
     if(styleTete === 'boucle'){
       s += '<path d="' + calotte + '" fill="' + chev + '"/>';
-      // Boucles calées sur la courbe du crâne, jamais au-dessus du sommet
-      [[37,37,5],[43.5,32,5.2],[50,30.5,5.4],[56.5,32,5.2],[63,37,5]].forEach(function(p){
+      [[37,35,4.6],[43.5,31,4.8],[50,29.5,5],[56.5,31,4.8],[63,35,4.6]].forEach(function(p){
         s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="' + p[2] + '" fill="' + chev + '"/>';
       });
-      [[40,34],[50,32.5],[60,34]].forEach(function(p){
-        s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="2.4" fill="rgba(0,0,0,0.16)"/>';
+      [[41,33],[50,31.5],[59,33]].forEach(function(p){
+        s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="2.1" fill="rgba(0,0,0,0.14)"/>';
       });
     }
     if(styleTete === 'afro'){
-      s += '<circle cx="50" cy="36" r="17.5" fill="' + chev + '"/>';
-      s += '<circle cx="35" cy="42" r="7.5" fill="' + chev + '"/><circle cx="65" cy="42" r="7.5" fill="' + chev + '"/>';
+      // Volume au-dessus du crâne uniquement : le visage reste dégagé
+      s += '<circle cx="50" cy="30" r="14" fill="' + chev + '"/>';
+      s += '<circle cx="37" cy="35.5" r="6.5" fill="' + chev + '"/><circle cx="63" cy="35.5" r="6.5" fill="' + chev + '"/>';
+      s += '<path d="' + calotte + '" fill="' + chev + '"/>';
     }
     if(styleTete === 'tresses'){
-      // Calotte pleine, puis des sillons courbes qui suivent la rondeur du crâne.
-      // Des traits sombres se lisent quelle que soit la couleur de cheveux.
       s += '<path d="' + calotte + '" fill="' + chev + '"/>';
       [
-        'M39 34.5 C37.5 31.5 38.5 29 41 27.8',
-        'M44 34.5 C43 31 43.5 28.5 45.5 27',
-        'M50 34.5 C50 31 50 29 50 26.8',
-        'M56 34.5 C57 31 56.5 28.5 54.5 27',
-        'M61 34.5 C62.5 31.5 61.5 29 59 27.8'
+        'M39 37 C37.5 33 38.5 30 41 28.2',
+        'M44.5 36.7 C43.5 32.5 44 29.5 46 27.6',
+        'M50 36.5 C50 32 50 29 50 27',
+        'M55.5 36.7 C56.5 32.5 56 29.5 54 27.6',
+        'M61 37 C62.5 33 61.5 30 59 28.2'
       ].forEach(function(d){
         s += '<path d="' + d + '" stroke="rgba(0,0,0,0.30)" stroke-width="1.5" fill="none" stroke-linecap="round"/>';
       });
-      // Deux tresses courtes le long des tempes, plaquées contre la tête
-      s += '<path d="M32.5 44 C31 50 31.5 55 33 58" stroke="' + chev + '" stroke-width="4" fill="none" stroke-linecap="round"/>';
-      s += '<path d="M67.5 44 C69 50 68.5 55 67 58" stroke="' + chev + '" stroke-width="4" fill="none" stroke-linecap="round"/>';
+      s += '<path d="M32.5 43 C31.5 49 32 54 33.5 57" stroke="' + chev + '" stroke-width="3.6" fill="none" stroke-linecap="round"/>';
+      s += '<path d="M67.5 43 C68.5 49 68 54 66.5 57" stroke="' + chev + '" stroke-width="3.6" fill="none" stroke-linecap="round"/>';
     }
     if(styleTete === 'chignon'){
+      s += '<circle cx="50" cy="24" r="6" fill="' + chev + '"/>';
       s += '<path d="' + calotte + '" fill="' + chev + '"/>';
-      s += '<circle cx="50" cy="24" r="6.5" fill="' + chev + '"/>';
     }
     if(styleTete === 'long'){
-      s += '<path d="M30 48 C30 29 40 26 50 26 C60 26 70 29 70 48 L70 70 C70 72 67 72 66.5 70 L66.5 46 C64 39 58 36.5 50 36.5 C42 36.5 36 39 33.5 46 L33.5 70 C33 72 30 72 30 70 Z" fill="' + chev + '"/>';
+      s += '<path d="M30 44 C30 29 40 26 50 26 C60 26 70 29 70 44 L70 68 C70 70 67.5 70 67 68 L67 44 C64.5 38.5 58 36.5 50 36.5 C42 36.5 35.5 38.5 33 44 L33 68 C32.5 70 30 70 30 68 Z" fill="' + chev + '"/>';
     }
     if(styleTete === 'crete'){
-      s += '<path d="M33 46 C33 39 41 36.5 50 36.5 C59 36.5 67 39 67 46 C64 41.5 36 41.5 33 46 Z" fill="' + chev + '" opacity="0.55"/>';
-      s += '<path d="M45 38 C45 24 55 24 55 38 Z" fill="' + chev + '"/>';
+      s += '<path d="M33.5 43 C33.5 38.5 41 36.5 50 36.5 C59 36.5 66.5 38.5 66.5 43 C63.5 39.5 36.5 39.5 33.5 43 Z" fill="' + chev + '" opacity="0.5"/>';
+      // Crête franche, du front jusqu'à l'arrière du crâne
+      s += '<path d="M42 38 C42 20 58 20 58 38 C55 33 45 33 42 38 Z" fill="' + chev + '"/>';
+      s += '<path d="M46 36 C46 24 54 24 54 36 Z" fill="rgba(0,0,0,0.12)"/>';
     }
     // chauve : rien
   }
@@ -7387,12 +7457,14 @@ function buildAvatarSvg(cfg, taille){
     s += '<rect x="30" y="36" width="40" height="3" fill="#24518F"/>';
     s += '<text x="50" y="32.5" font-size="6" fill="#E8ECF4" text-anchor="middle" font-family="monospace">POLICE</text>';
   } else if(h === 'durag'){
-    s += '<path d="M29.5 45 C29.5 25 70.5 25 70.5 45 C70.5 36 62 32 50 32 C38 32 29.5 36 29.5 45 Z" fill="#1A1D26"/>';
-    s += '<path d="M68.5 43 L82 51 L80 55 L66.5 48 Z" fill="#1A1D26"/>';
-    s += '<path d="M32 41 C40 35 60 35 68 41" stroke="#2C3140" stroke-width="1.4" fill="none"/>';
+    // Calotte pleine qui gaine tout le crâne, plus le pan qui retombe derrière
+    s += '<path d="M29.5 43 C29.5 25 70.5 25 70.5 43 C68 40 60 38.5 50 38.5 C40 38.5 32 40 29.5 43 Z" fill="#1A1D26"/>';
+    s += '<path d="M68 41 L81 49 L79 53 L66 46 Z" fill="#1A1D26"/>';
+    s += '<path d="M33 39.5 C40 36.5 60 36.5 67 39.5" stroke="rgba(255,255,255,0.10)" stroke-width="1.2" fill="none"/>';
   } else if(h === 'bandana'){
-    s += '<path d="M30 43 C30 32 70 32 70 43 C60 38.5 40 38.5 30 43 Z" fill="#8C1C24"/>';
-    s += '<path d="M67 41 L77 47 L75 50 L65 45 Z" fill="#8C1C24"/>';
+    // Simple bandeau sur le haut du front, il ne descend pas sur les yeux
+    s += '<path d="M30.5 41.5 C30.5 33 69.5 33 69.5 41.5 C60 37.5 40 37.5 30.5 41.5 Z" fill="#8C1C24"/>';
+    s += '<path d="M67.5 40 L77 46 L75 49 L65.5 43.5 Z" fill="#8C1C24"/>';
   } else if(h === 'bonnet'){
     s += '<path d="M29 44 C29 23 71 23 71 44 Z" fill="#3E4A5E"/>';
     s += '<rect x="28.5" y="41" width="43" height="7" rx="3.5" fill="#4E5C72"/>';
@@ -7523,6 +7595,11 @@ function showOnlineHub(){
     const b = document.getElementById('chBadge2');
     if(b){ b.classList.toggle('hidden', n === 0); if(n > 0) b.textContent = n; }
   }catch(e){}
+}
+
+function showThemeShortcuts(){
+  showScreen('screen-themeshort');
+  floatBackTarget = showSoloHub;
 }
 
 function showAvatarScreen(){
